@@ -1,0 +1,19 @@
+<h1>My leagues</h1>
+<ul ng-repeat="league in main.user.leagues">
+  <div ui-sref="leagueShow({id: league.id})">
+    <li>{{league.title}}</li>
+    <div ng-repeat="member in league.users">
+      <li>{{member.username}}</li>
+    </div>
+    <li>{{league.image}}</li>
+  </div>
+</ul>
+RECIEVED
+<div ng-if="main.user.recieved_requests.length > 0" >
+  <p>You have {{main.user.recieved_requests.length}} requests</p>
+  <ul ng-repeat="request in main.user.recieved_requests">
+    <li > {{request.user.username}} want to join {{request.league.title}}</li>
+  </ul>
+</div>
+
+<br>

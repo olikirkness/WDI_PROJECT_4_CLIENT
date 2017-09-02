@@ -1,0 +1,25 @@
+.notification{
+  background-color: red;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 2.5px;
+  color: white;
+  position: absolute;
+  margin-left: 100px;
+  margin-top: 10px;
+}
+nav{
+  height:50px;
+  .dropdown-toggle{
+    padding: 15px;
+    margin: 0px;
+  }
+  .dropdown-menu{
+    width: 300px;
+    padding: 10px;
+    margin-top: 50px;
+  }
+}

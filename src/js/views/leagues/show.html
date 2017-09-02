@@ -1,0 +1,16 @@
+<h1>show</h1>
+
+{{vm.league.title}}
+<ul ng-repeat="member in vm.league.users">
+  <li>{{member.username}}</li>
+</ul>
+
+{{vm.league.creator.username}}
+
+
+
+<ul ng-repeat="match in vm.matches">
+  <li>{{match.users[0].username}}</li>
+  <li>{{match.users[1].username}}</li>
+  <li>{{match.score}}</li>
+</ul>

@@ -1,14 +1,78 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Project 4 Client</title>
-    <base href="/" />
-    <!-- inject:js -->
-    <!-- endinject -->
-    <!-- inject:css -->
-    <!-- endinject -->
-  </head>
-  <body>
-  </body>
+<html ng-app="LeagueApp">
+<head>
+  <meta charset="utf-8">
+  <title>Project 4 Client</title>
+  <base href="/" />
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body ng-controller="MainCtrl as main">
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" ui-sref="homepage">Match Play</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <p class="navbar-text">Welcome, {{ main.user.username }}</p>
+            </li>
+            <li ng-hide="main.user">
+              <a ui-sref="register">Register</a>
+            </li>
+            <li ng-hide="main.user">
+              <a ui-sref="login">Login</a>
+            </li>
+            <li ng-show="main.user">
+              <a ui-sref="leaguesIndex">Leagues</a>
+            </li>
+            <li ng-show="main.user">
+              <a ui-sref="leaguesNew">Create a new League</a>
+            </li>
+            <li>
+              <div class="dropdown show">
+                <div class="notification">
+                  {{main.user.recieved_requests.length}}
+                </div>
+                <a class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Notifications
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" ng-repeat="request in main.user.recieved_requests">
+                  <a class="dropdown-item" href="#">
+                    {{request.user.username}} wants to join {{request.league.title}}
+                  </a>
+                  <div class="btn" ng-click="main.addToLeague(request.user.id, request.league.id, this, request.id)">
+                    Accept
+                  </div>
+                  <div class="btn">
+                    Delete
+                  </div>
+                </div>
+              </div>
+            </li>
+
+
+            <li ng-show="main.user">
+              <a ng-click="main.logout()">Logout</a>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </header>
+  <main class="" ui-view></main>
+</body>
 </html>

@@ -1,0 +1,66 @@
+angular
+  .module('LeagueApp')
+  .controller('MainCtrl', MainCtrl);
+
+MainCtrl.$inject = ['$rootScope', 'CurrentUserService', '$state', 'User', 'League', 'Request'];
+function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request) {
+  const vm = this;
+
+  $rootScope.$on('loggedIn', () => {
+    vm.user = CurrentUserService.currentUser;
+  });
+
+  $rootScope.$on('loggedOut', () => {
+    vm.user = null;
+    $state.go('login');
+  });
+
+  vm.logout = () => {
+    CurrentUserService.removeUser();
+  };
+
+  vm.allUsers = User.query();
+  vm.allUsers
+  .$promise
+  .then((users)=>{
+    vm.user = CurrentUserService.currentUser;
+    vm.allUsers = users;
+  })
+  .then(()=>{
+    for (var i = 0; i < vm.user.recieved_requests.length; i++) {
+      for (var a = 0; a < vm.allUsers.length; a++) {
+        if(vm.user.recieved_requests[i].sender_id === vm.allUsers[a].id){
+          vm.user.recieved_requests[i].user = vm.allUsers[a];
+        }
+      }
+    }
+  });
+
+  vm.addToLeague = function(userId, leagueId, obj, reqId){
+    League.get({id: leagueId})
+    .$promise
+    .then((data)=>{
+
+      vm.leagueToAdd = {
+        id: data.id,
+        title: data.title,
+        image: data.image,
+        user_ids: [],
+        creator_id: data.creator.id
+      };
+      for (var i = 0; i < data.users.length; i++) {
+        vm.leagueToAdd.user_ids.push(data.users[i].id);
+      }
+      vm.leagueToAdd.user_ids.push(userId);
+      League
+      .update({id: vm.leagueToAdd.id}, {league: vm.leagueToAdd})
+      .$promise
+      .then(()=>{
+
+        vm.user.recieved_requests.splice(obj.$index, 1);
+        Request
+        .delete({id: reqId});
+      });
+    });
+  };
+}
