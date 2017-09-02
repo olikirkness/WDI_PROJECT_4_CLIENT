@@ -1,19 +1,36 @@
+<input type="text" ng-model="vm.q" ng-change="vm.filter()" placeholder="Search...">
+
 <h1>My leagues</h1>
-<ul ng-repeat="league in main.user.leagues">
+<ul ng-repeat="league in main.user.leagues" ng-show="!vm.q">
   <div ui-sref="leagueShow({id: league.id})">
     <li>{{league.title}}</li>
     <div ng-repeat="member in league.users">
       <li>{{member.username}}</li>
     </div>
-    <li>{{league.image}}</li>
+    <div class="indexDiv">
+      <img class="indexImg" src="{{league.image}}" alt="">
+    </div>
   </div>
 </ul>
-RECIEVED
-<div ng-if="main.user.recieved_requests.length > 0" >
-  <p>You have {{main.user.recieved_requests.length}} requests</p>
-  <ul ng-repeat="request in main.user.recieved_requests">
-    <li > {{request.user.username}} want to join {{request.league.title}}</li>
-  </ul>
+
+<div ng-show="vm.q" ng-repeat="league in vm.filtered">
+  <div >
+    <li>{{league.title}}</li>
+    <div ng-repeat="member in league.users">
+      <li>{{member.username}}</li>
+    </div>
+
+  <div class="indexDiv">
+    <img class="indexImg" src="{{league.image}}" alt="">
+  </div>
+  <div class="btn" ng-click="vm.request(main.user.id, league.id, league.creator.id)">
+    Request
+  </div>
+</div>
 </div>
 
-<br>
+
+{{main.user.recieved_requests}}
+<div ng-repeat="request in main.user.recieved_requests">
+  <li>{{request.user.username}}</li>
+</div>

@@ -63,4 +63,12 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request)
       });
     });
   };
+
+  vm.deleteRequest = function(a, b){
+    const index = a.$index;
+
+    Request.delete({id: b});
+    vm.user.recieved_requests.splice(index, 1);
+
+  };
 }

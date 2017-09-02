@@ -24,7 +24,6 @@
           <a class="navbar-brand" ui-sref="homepage">Match Play</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li>
@@ -43,27 +42,30 @@
               <a ui-sref="leaguesNew">Create a new League</a>
             </li>
             <li>
-              <div class="dropdown show">
+              <div class="dropdown show" ng-if="main.user.recieved_requests.length > 0">
                 <div class="notification">
                   {{main.user.recieved_requests.length}}
                 </div>
                 <a class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Notifications
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" ng-repeat="request in main.user.recieved_requests">
-                  <a class="dropdown-item" href="#">
-                    {{request.user.username}} wants to join {{request.league.title}}
-                  </a>
-                  <div class="btn" ng-click="main.addToLeague(request.user.id, request.league.id, this, request.id)">
-                    Accept
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                  <div ng-repeat="request in main.user.recieved_requests" >
+                    <a class="dropdown-item" href="#">
+                      {{request.user.username}} wants to join {{request.league.title}}
+                    </a>
+                    <br>
+                    <div class="btn dropdown-item" ng-click="main.addToLeague(request.user.id, request.league.id, this, request.id)">
+                      Accept
+                    </div>
+                    <div class="btn dropdown-item" ng-click="main.deleteRequest(this, request.id)">
+                      Delete
+                    </div>
                   </div>
-                  <div class="btn">
-                    Delete
-                  </div>
+
                 </div>
               </div>
             </li>
-
 
             <li ng-show="main.user">
               <a ng-click="main.logout()">Logout</a>
