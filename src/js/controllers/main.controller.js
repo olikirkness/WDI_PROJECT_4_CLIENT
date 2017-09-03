@@ -1,6 +1,6 @@
 angular
-  .module('LeagueApp')
-  .controller('MainCtrl', MainCtrl);
+.module('LeagueApp')
+.controller('MainCtrl', MainCtrl);
 
 MainCtrl.$inject = ['$rootScope', 'CurrentUserService', '$state', 'User', 'League', 'Request'];
 function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request) {
@@ -8,6 +8,32 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request)
 
   $rootScope.$on('loggedIn', () => {
     vm.user = CurrentUserService.currentUser;
+    vm.notifications = [];
+    vm.allUsers = User.query();
+    vm.allUsers
+    .$promise
+    .then((users)=>{
+      vm.user = CurrentUserService.currentUser;
+      vm.allUsers = users;
+    })
+    .then(()=>{
+      for (var i = 0; i < vm.user.recieved_requests.length; i++) {
+        for (var a = 0; a < vm.allUsers.length; a++) {
+          if(vm.user.recieved_requests[i].sender_id === vm.allUsers[a].id){
+            vm.user.recieved_requests[i].user = vm.allUsers[a];
+            vm.notifications.push(vm.user.recieved_requests[i]);
+          }
+        }
+      }
+      for (var b = 0; b < vm.user.recieved_challenges.length; b++) {
+        for (var c = 0; c < vm.allUsers.length; c++) {
+          if(vm.user.recieved_challenges[b].sender_id === vm.allUsers[c].id){
+            vm.user.recieved_challenges[b].user = vm.allUsers[c];
+            vm.notifications.push(vm.user.recieved_challenges[b]);
+          }
+        }
+      }
+    });
   });
 
   $rootScope.$on('loggedOut', () => {
@@ -19,22 +45,10 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request)
     CurrentUserService.removeUser();
   };
 
-  vm.allUsers = User.query();
-  vm.allUsers
-  .$promise
-  .then((users)=>{
-    vm.user = CurrentUserService.currentUser;
-    vm.allUsers = users;
-  })
-  .then(()=>{
-    for (var i = 0; i < vm.user.recieved_requests.length; i++) {
-      for (var a = 0; a < vm.allUsers.length; a++) {
-        if(vm.user.recieved_requests[i].sender_id === vm.allUsers[a].id){
-          vm.user.recieved_requests[i].user = vm.allUsers[a];
-        }
-      }
-    }
-  });
+  // for (var i = 0; i < vm.user.recieved_challenges.length; i++) {
+  //   vm.user.recieved_requests[i].id
+  // }
+
 
   vm.addToLeague = function(userId, leagueId, obj, reqId){
     League.get({id: leagueId})
@@ -66,9 +80,7 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request)
 
   vm.deleteRequest = function(a, b){
     const index = a.$index;
-
     Request.delete({id: b});
     vm.user.recieved_requests.splice(index, 1);
-
   };
 }

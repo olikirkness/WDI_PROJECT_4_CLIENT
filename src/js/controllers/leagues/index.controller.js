@@ -21,7 +21,6 @@ function LeaguesIndexCtrl($http, League, filterFilter, Request) {
   };
 
   vm.request = function(a,b, c){
-    console.log('HEY',a ,b, c);
     vm.requestObj = {
       sender_id: a,
       league_id: b,
