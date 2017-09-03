@@ -39,6 +39,11 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     templateUrl: '/js/views/matches/submit.html',
     controller: 'MatchSubmitCtrl as vm'
   })
+  .state('playerShow', {
+    url: '/players/:id',
+    templateUrl: '/js/views/players/show.html',
+    controller: 'PlayerShowCtrl as vm'
+  })
 ;
 
   $urlRouterProvider.otherwise('/');
