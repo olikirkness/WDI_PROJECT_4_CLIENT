@@ -68,6 +68,7 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       .then(()=>{
 
         vm.user.recieved_requests.splice(obj.$index, 1);
+        vm.notifications.splice(obj.$index, 1);
         Request
         .delete({id: reqId});
       });
@@ -87,39 +88,34 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       vm.user.recieved_challenges.splice(obj.$index, 1);
       vm.notifications.splice(obj.$index+vm.user.recieved_requests.length, 1);
       Challenge
-        .delete({id: reqId});
+      .delete({id: reqId});
 
     });
-
-    // Match.get({id: leagueId})
-    // .$promise
-    // .then((data)=>{
-    //   vm.leagueToAdd = {
-    //     id: data.id,
-    //     title: data.title,
-    //     image: data.image,
-    //     user_ids: [],
-    //     creator_id: data.creator.id
-    //   };
-    //   for (var i = 0; i < data.users.length; i++) {
-    //     vm.leagueToAdd.user_ids.push(data.users[i].id);
-    //   }
-    //   vm.leagueToAdd.user_ids.push(userId);
-    //   League
-    //   .update({id: vm.leagueToAdd.id}, {league: vm.leagueToAdd})
-    //   .$promise
-    //   .then(()=>{
-    //
-    //     vm.user.recieved_challenges.splice(obj.$index, 1);
-    //     Challenge
-    //     .delete({id: reqId});
-    //   });
-    // });
   };
 
   vm.deleteRequest = function(a, b){
     const index = a.$index;
     Request.delete({id: b});
     vm.user.recieved_requests.splice(index, 1);
+    vm.notifications.splice(index, 1);
   };
+  vm.deleteChallenge = function(a, b){
+    const index = a.$index;
+    Challenge.delete({id: b});
+    vm.user.recieved_challenges.splice(index, 1);
+    vm.notifications.splice(index+vm.user.recieved_requests.length, 1);
+  };
+
+
+  // vm.matches = [];
+  //
+  // console.log(vm.user, 'USERRRRRR');
+  // for (var i = 0; i < vm.user.matches.length; i++) {
+  //   if(!vm.user.matches[i].played){
+  //     Match.get({id: vm.user.matches[i].id}).$promise.then((data)=>{
+  //       vm.matches.push(data);
+  //     });
+  //   }
+  // }
+  // console.log(vm.matches);
 }

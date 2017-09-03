@@ -1,0 +1,10 @@
+<h1>Challenges</h1>
+<ul ng-repeat="challenge in main.user.matches">
+  <div ng-show="!challenge.played">
+      <li>{{challenge.users[0].username}} ({{challenge.users[0].ranking[0]}}) vs {{challenge.users[1].username}} ({{challenge.users[1].ranking[1]}})</li>
+      <li>{{challenge.league.title}}</li>
+      <div class="btn" ui-sref="matchSubmit({id: challenge.id})">
+        <p>Submit Results</p>
+      </div>
+  </div>
+</ul>

@@ -29,6 +29,16 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     templateUrl: '/js/views/leagues/show.html',
     controller: 'LeagueShowCtrl as vm'
   })
+  .state('challengesIndex', {
+    url: '/challenges',
+    templateUrl: '/js/views/challenges/index.html',
+    controller: 'ChallengeIndexCtrl as vm'
+  })
+  .state('matchSubmit', {
+    url: '/challenges/:id',
+    templateUrl: '/js/views/matches/submit.html',
+    controller: 'MatchSubmitCtrl as vm'
+  })
 ;
 
   $urlRouterProvider.otherwise('/');

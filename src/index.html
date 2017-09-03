@@ -26,9 +26,6 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <p class="navbar-text">Welcome, {{ main.user.username }}</p>
-            </li>
             <li ng-hide="main.user">
               <a ui-sref="register">Register</a>
             </li>
@@ -40,6 +37,9 @@
             </li>
             <li ng-show="main.user">
               <a ui-sref="leaguesNew">Create a new League</a>
+            </li>
+            <li ng-show="main.user">
+              <a ui-sref="challengesIndex">Challenges</a>
             </li>
             <li>
               <div class="dropdown show" ng-if="main.notifications.length > 0">
@@ -72,7 +72,7 @@
                     <div class="btn dropdown-item" ng-click="main.addToMatches(challenge.user.id, challenge.league.id, this, challenge.id)">
                       Accept
                     </div>
-                    <div class="btn dropdown-item" ng-click="main.deleteRequest(this, challange.id)">
+                    <div class="btn dropdown-item" ng-click="main.deleteChallenge(this, challenge.id)">
                       Delete
                     </div>
                   </div>
