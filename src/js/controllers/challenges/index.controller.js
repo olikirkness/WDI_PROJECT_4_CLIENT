@@ -8,6 +8,6 @@ function ChallengeIndexCtrl($http, CurrentUserService) {
 
   const vm = this;
 
-  vm.user = CurrentUserService.currentUser; 
-
+  vm.user = CurrentUserService.currentUser;
+  
 }

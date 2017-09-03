@@ -2,9 +2,9 @@ angular
 .module('LeagueApp')
 .controller('MatchSubmitCtrl', MatchSubmitCtrl);
 
-MatchSubmitCtrl.$inject =['$http', '$stateParams', 'Match', 'ResultsService'];
+MatchSubmitCtrl.$inject =['$http', '$stateParams', 'Match', 'ResultsService', 'User', '$state'];
 
-function MatchSubmitCtrl($http, $stateParams, Match, ResultsService) {
+function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $state) {
 
   const vm = this;
 
@@ -63,13 +63,40 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService) {
         vm.score10 = parseInt(vm.score10.toString().split('')[0] + vm.score10.toString().split('')[1]);
       }
     }
-    vm.match.scores = [vm.score1, vm.score2, vm.score3,vm.score4,vm.score5,vm.score6,vm.score7,vm.score8,vm.score9,vm.score10];
-    ResultsService.getRatings(vm.match.users[0].ranking[0], vm.match.users[1].ranking[0], vm.match.scores);
+    vm.match.score = [vm.score1, vm.score2, vm.score3,vm.score4,vm.score5,vm.score6,vm.score7,vm.score8,vm.score9,vm.score10];
+    ResultsService.getRatings(vm.match.users[0].ranking[0], vm.match.users[1].ranking[0], vm.match.score);
     vm.result1 = ResultsService.result1;
     vm.result2 = ResultsService.result2;
     vm.scoring = ResultsService.scoring;
+    vm.isWinner = ResultsService.isWinner;
   };
 
+  vm.submit = function(){
+    User.get({id: vm.match.users[0].id})
+    .$promise
+    .then((a) => {
+      vm.player1 = a;
+      vm.player1.ranking.unshift(vm.result1);
+    })
+    .then(()=>{
+      User.update({id: vm.player1.id}, {user: vm.player1});
+    });
 
+    User.get({id: vm.match.users[1].id})
+    .$promise.then((b)=>{
+      vm.player2 = b;
+      vm.player2.ranking.unshift(vm.result2);
+    })
+    .then(()=>{
+      User.update({id: vm.player2.id}, {user: vm.player2});
+    });
+
+    vm.match.played = true;
+    console.log(vm.match, 'MAAAAATTTTTTTTTCCCCCCHHHHH');
+    Match.update({id: vm.match.id}, {match: vm.match}).$promise.then((a)=>{
+      a.played = true;
+      $state.go('leagueShow', {id: vm.match.league.id});
+    });
+  };
 
 }

@@ -13,9 +13,6 @@ function ResultsService() {
   };
 
   self.getRatings = function (p1, p2, game){
-    console.log(p1);
-    console.log(p2);
-    console.log(game);
     let player1PointScore = 0;
     let player2PointScore = 0;
 
@@ -30,14 +27,17 @@ function ResultsService() {
           player1GameScore++;
           if(game[a] > 11 && game[a]-game[a+1]>2){
             self.scoring = 'error';
+            return;
           }else if(game[a] > 11 && game[a]-game[a+1] === 2){
             self.scoring = 'american';
           }else if(game[a] === 11 && game[a]-game[a+1]<2){
             self.scoring = 'error';
+            return;
           }else if (game[a] === 11 && game[a+1]<= 9){
             self.scoring = 'american';
           }else if(game[a] !== 11){
             self.scoring = 'error';
+            return;
           }else{
             self.scoring = 'american';
           }
@@ -46,20 +46,24 @@ function ResultsService() {
             self.scoring = 'english';
           }else if(game[a] < 9 ){
             self.scoring = 'error';
+            return;
           }
 
         }else if(game[a] < game[a+1]) {
           player2GameScore++;
           if(game[a+1] > 11 && game[a+1]-game[a]>2){
             self.scoring = 'error';
+            return;
           }else if(game[a+1] > 11 && game[a+1]-game[a] === 2){
             self.scoring = 'american';
           }else if(game[a+1] === 11 && game[a+1]-game[a]<2){
             self.scoring = 'error';
+            return;
           }else if (game[a+1] === 11 && game[a]<= 9){
             self.scoring = 'american';
           }else if(game[a+1] !== 11){
             self.scoring = 'error';
+            return;
           }else{
             self.scoring = 'american';
           }
@@ -68,50 +72,17 @@ function ResultsService() {
             self.scoring = 'english';
           }else if(game[a+1] < 9 ){
             self.scoring = 'error';
+            return;
           }
         }else if(game[a] === game[a+1]){
           self.scoring = 'error';
+          return;
         }
-        //
-        // if(game[a+1] >= 11 || game[a+1] >=11){
-        //   if(game[a] > 11 && game[a] - game[a+1] > 2 && game[a] > game[a+1]){
-        //     self.scoring = 'error';
-        //   }else{
-        //     self.scoring = 'american';
-        //     self.gameWinningScores.push(game[a]);
-        //   }
-        //   if(game[a+1] > 11 && game[a+1] - game[a] > 2 && game[a+1] > game[a]){
-        //     self.scoring = 'error';
-        //   }else{
-        //     self.scoring = 'american';
-        //     self.gameWinningScores.push(game[a+1]);
-        //   }
-        //   if(game[a] === game[a+1]){
-        //     self.scoring = 'error';
-        //   }
-        //   if(game[a] === 11 || game[a+1] === 11){
-        //     if (game[a]>game[a+1] && game[a]-game[a+1]< 2 ) {
-        //       self.scoring = 'error';
-        //     }
-        //   }
-        //
-        // }else if (game[a] >= 9 || game[a+1] >= 9){
-        //   if(game[a] > 9 && game[a] - game[a+1] > 2 && game[a] >= game[a+1]){
-        //     self.scoring = 'error';
-        //   }else{
-        //     self.scoring = 'english';
-        //     self.gameWinningScores.push(game[a]);
-        //   }
-        //   if(game[a+1] > 9 && game[a+1] - game[a] > 2 && game[a+1] >= game[a]){
-        //     self.scoring = 'error';
-        //   }else{
-        //     self.scoring = 'english';
-        //     self.gameWinningScores.push(game[a+1]);
-        //   }
-        // }else{
-        //   self.scoring = 'error';
-        // }
       }
+    }
+    self.isWinner = false;
+    if(player1GameScore === 3 || player2GameScore === 3){
+      self.isWinner = true;
     }
 
 
