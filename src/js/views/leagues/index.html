@@ -1,36 +1,41 @@
 <input type="text" ng-model="vm.q" ng-change="vm.filter()" placeholder="Search...">
 
-<h1>My leagues</h1>
-<ul ng-repeat="league in main.user.leagues" ng-show="!vm.q">
-  <div ui-sref="leagueShow({id: league.id})">
-    <li>{{league.title}}</li>
-    <div ng-repeat="member in league.users">
-      <li>{{member.username}}</li>
-    </div>
-    <div class="indexDiv">
-      <img class="indexImg" src="{{league.image}}" alt="">
-    </div>
-  </div>
-</ul>
 
-<div ng-show="vm.q" ng-repeat="league in vm.filtered">
-  <div >
-    <li>{{league.title}}</li>
-    <div ng-repeat="member in league.users">
-      <li>{{member.username}}</li>
-    </div>
+<h1 ng-show="!vm.q">My leagues</h1>
+<div ng-repeat="league in main.user.leagues track by $index" ng-show="!vm.q">
 
-  <div class="indexDiv">
-    <img class="indexImg" src="{{league.image}}" alt="">
-  </div>
-  <div class="btn" ng-click="vm.request(main.user.id, league.id, league.creator.id)">
-    Request
+  <div class="row">
+    <div ui-sref="leagueShow({id: league.id})">
+      <div class="col-sm-4 col-sm-offset-2">
+        <div class="indexDiv">
+          <img class="indexImg" src="{{league.image}}" alt="">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h2>{{league.title}}</h2>
+        <p>{{league.users.length}} members </p>
+        <p>Ave Ranking: {{league.league_ave_ranking}}</p>
+        <p>Matches played: {{league.matches_played}}</p>
+      </div>
+    </div>
   </div>
 </div>
-</div>
+<div class="row">
+  <div ng-show="vm.q" ng-repeat="league in vm.filtered">
+
+    <div class="col-sm-4 searchResults">
+
+      <i class="fa fa-plus-circle fa-4x" aria-hidden="false" ng-click="vm.request(main.user.id, league.id, league.creator.id)" ></i>
+      <div class="indexDiv">
+        <img class="indexImg" src="{{league.image}}" alt="">
+      </div>
+      <h3>{{league.title}}</h3>
+
+      <p>{{league.users.length}} members </p>
+      <p>Ave Ranking: {{league.league_ave_ranking}}</p>
+      <p>Matches played: {{league.matches_played}}</p>
 
 
-
-<div ng-repeat="request in main.user.recieved_requests">
-  <li>{{request.user.username}}</li>
+    </div>
+  </div>
 </div>

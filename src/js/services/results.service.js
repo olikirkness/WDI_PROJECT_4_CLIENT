@@ -13,6 +13,8 @@ function ResultsService() {
   };
 
   self.getRatings = function (p1, p2, game){
+    self.player1Start = p1;
+    self.player2Start = p2;
     let player1PointScore = 0;
     let player2PointScore = 0;
 
@@ -79,19 +81,14 @@ function ResultsService() {
           self.gameScoringSystem.push('error');
           self.scoring = 'ERROR - INCONSISTANT SCORING SYSTEM';
         }
-        console.log(self.gameScoringSystem);
       }
     }
-
 
     if(player1GameScore === 3 || player2GameScore === 3){
       if (!self.gameScoringSystem.includes('error')) {
         self.isWinner = true;
-        console.log(player1GameScore, player2GameScore, !self.gameScoringSystem.includes('error'));
       }
     }
-
-
 
     for (var i = 0; i < game.length; i = i + 2) {
       if (game[i] !== undefined && game[i+1] !== undefined) {
@@ -115,11 +112,9 @@ function ResultsService() {
 
     self.result1 = Math.round(p1 + k1 * (damp1-e1));
     self.result2 = Math.round(p2 + k2 * (damp2-e2));
-    // console.log('Player One ',p1, '----> ', Math.round(self.result1),  '|    damp1', damp1.toFixed(2), '|   change', Math.round(Math.round(self.result1)/p1 * 100)-100);
-    // console.log('Player Two ',p2, '----> ', Math.round(self.result2),  '|    damp2', damp2.toFixed(2), '|   change', Math.round(Math.round(self.result2)/p2 * 100)-100);
-    //
-    //
-    // console.log(player1GameScore, player2GameScore, scoring);
-    // console.log('----------------------------------------------------------------------');
+    self.player1GameScore = player1GameScore;
+    self.player2GameScore = player2GameScore;
+    self.player1Change = Math.round((self.result1)/p1 * 100)-100;
+    self.player2Change = Math.round((self.result2)/p2 * 100)-100;
   };
 }

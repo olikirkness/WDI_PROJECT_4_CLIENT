@@ -7,8 +7,10 @@ function RegisterCtrl(User, CurrentUserService, $state){
   const vm = this;
 
   vm.register = () => {
+    vm.user.ranking = [1000];
     User
-      .register(vm.user).$promise
+      .register(vm.user)
+      .$promise
       .then(() => {
         CurrentUserService.getUser();
         $state.go('leaguesIndex');

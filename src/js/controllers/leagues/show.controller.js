@@ -14,16 +14,7 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
     vm.league = League.get({id: $stateParams.id});
   });
 
-  // vm.allMatches = Match.query();
-  // vm.allMatches
-  // .$promise
-  // .then((allMatches)=>{
-  //   for (var i = 0; i < allMatches.length; i++) {
-  //     if (allMatches[i].league.id === parseInt($stateParams.id)) {
-  //       vm.matches.push(allMatches[i]);
-  //     }
-  //   }
-  // });
+
   $rootScope.$on('matchSubmitted', ()=>{
     vm.allMatches = Match.query();
     vm.allMatches
@@ -88,5 +79,7 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
     }
   };
 
+
+  // vm.player_one = User.get()
 
 }

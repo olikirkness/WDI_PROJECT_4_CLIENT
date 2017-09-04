@@ -86,16 +86,21 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
     .$promise.then((b)=>{
       vm.player2 = b;
       vm.player2.ranking.unshift(vm.result2);
+
     })
     .then(()=>{
-      User.update({id: vm.player2.id}, {user: vm.player2});
-    });
-
-    vm.match.played = true;
-    Match.update({id: vm.match.id}, {match: vm.match}).$promise.then((a)=>{
-      a.played = true;
-      $rootScope.$broadcast('matchSubmitted');
-      $state.go('leagueShow', {id: vm.match.league.id});
+      User.update({id: vm.player2.id}, {user: vm.player2}).$promise.then(()=>{
+        vm.match.played = true;
+        vm.match.player_one_score = ResultsService.player1GameScore;
+        vm.match.player_two_score = ResultsService.player2GameScore;
+        vm.match.player_one_rank_change = [vm.player1.ranking[0], ResultsService.player1Change, vm.player1.ranking[1]];
+        vm.match.player_two_rank_change = [vm.player2.ranking[0], ResultsService.player2Change, vm.player2.ranking[1]];
+        Match.update({id: vm.match.id}, {match: vm.match}).$promise.then((a)=>{
+          a.played = true;
+          $rootScope.$broadcast('matchSubmitted');
+          $state.go('leagueShow', {id: vm.match.league.id});
+        });
+      });
     });
   };
 

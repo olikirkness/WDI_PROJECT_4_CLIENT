@@ -39,7 +39,50 @@ nav{
 
   }
 }
-#myChart{
-  // height: 200px;
-  // width: 400px!important;
+.searchResults{
+  height: 500px;
+  text-align: center;
+  .indexDiv{
+    height: 230px;
+    width: 230px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 50%;
+    .title{
+      text-align: center;
+      margin-top: 45%;
+      z-index: 1;
+      background: none
+    }
+    .indexImg{
+      position: relative;
+      left: 50%;
+      transform: translate(-50%);
+      height: 230px;
+    }
+  }
+  .btn{
+    position: absolute;
+    margin-top: 440px;
+    width: 80%;
+    background-color: #BF6969;
+    margin-left: -40%;
+    color: white
+  }
+  i{
+    position: absolute;
+    z-index: 1;
+    margin-left: 70px;
+    color: #888;
+    // background-color: white;
+    // border-radius: 50%;
+
+  }
+  .sent{
+    color: blue!important;
+  }
+
 }

@@ -15,4 +15,9 @@ function ChallengeIndexCtrl($http, CurrentUserService, $rootScope) {
     vm.user = CurrentUserService.currentUser;
     console.log('challengeAccepted', vm.user);
   });
+  // $rootScope.$on('matchSubmitted', ()=>{
+  //   console.log('before', vm.user);
+  //   vm.user = CurrentUserService.currentUser;
+  //   console.log('matchSubmitted', vm.user);
+  // });
 }

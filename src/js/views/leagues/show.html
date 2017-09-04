@@ -5,10 +5,10 @@
 {{vm.checkUnplayed()}}
 {{vm.checkSent()}}
 {{vm.checkRecieved()}}
-<ul ng-repeat="member in vm.league.users">
-  <li ui-sref="playerShow({id: member.id})">{{member.username}}</li>
-  {{member.id}}
-
+<ul ng-repeat="member in vm.league.users | orderBy: '-current_ranking' track by $index " h3 >
+  <h3 ui-sref="playerShow({id: member.id})"><span>{{$index+1}}: {{member.username}}</span></h3>
+  <p>Ranking: {{member.current_ranking}}</p>
+  <h3></h3>
   <div class="btn" ng-click="vm.challenge(member.id)" ng-if="!vm.unplayedMatchesInLeague.includes(member.id) && !vm.sentChallengesInLeague.includes(member.id) && !vm.recievedChallengesInLeague.includes(member.id) && member.id !== vm.user.id">
     <p>challenge</p>
   </div>
@@ -16,11 +16,21 @@
 
 {{vm.league.creator.username}}
 
-<ul ng-repeat="match in vm.league.matches">
+<div ng-repeat="match in vm.league.matches">
   <div class="" ng-if="match.score.length > 0">
-    <li>{{match.users[0].username}}</li>
-    <li>{{match.users[1].username}}</li>
-    <li>{{match.score}}</li>
+    <div class="row">
+      <div class="player_1 col-sm-4">
+        <h3>{{match.users[0].username}}</h3>
+        <h5>{{match.player_one_rank_change[2]}} ({{match.player_one_rank_change[1]}}) {{match.player_one_rank_change[0]}}</h5>
+      </div>
+      <div class="score col-sm-4">
+        <h2>{{match.player_one_score}} - {{match.player_two_score}}</h2>
+        <p>{{match.score.join(', ')}}</p>
+      </div>
+      <div class="player_2 col-sm-4">
+        <h3>{{match.users[1].username}}</h3>
+        <h5>{{match.player_two_rank_change[0]}} ({{match.player_two_rank_change[1]}}) {{match.player_two_rank_change[2]}}</h5>
+      </div>
+    </div>
   </div>
-
-</ul>
+</div>

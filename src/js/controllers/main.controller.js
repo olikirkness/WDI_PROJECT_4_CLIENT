@@ -115,4 +115,15 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
   };
 
 
+  vm.updateUser = function(e){
+    const index = e;
+    $rootScope.$on('matchSubmitted', ()=>{
+      console.log(index);
+      vm.user.matches.splice(index, 1);
+    });
+  };
+
+
+
+
 }
