@@ -19,71 +19,78 @@ function ResultsService() {
     let player1GameScore = 0;
     let player2GameScore = 0;
     self.scoring = '';
-    self.gameWinningScores = [];
+    self.gameScoringSystem = [];
+    self.isWinner = false;
+
     for (var a = 0; a < game.length; a = a + 2) {
-      if (game[a] && game[a+1]) {
+      if (game[a] && game[a+1] || game[a]===0 || game[a+1] === 0) {
 
-        if (game[a] > game[a+1]) {
+        if (game[a] > game[a+1] && game[a]<11 && game[a]>= 9) {
+          self.scoring = 'English to player 1';
+          self.gameScoringSystem.push('english');
+
           player1GameScore++;
-          if(game[a] > 11 && game[a]-game[a+1]>2){
-            self.scoring = 'error';
-            return;
-          }else if(game[a] > 11 && game[a]-game[a+1] === 2){
-            self.scoring = 'american';
-          }else if(game[a] === 11 && game[a]-game[a+1]<2){
-            self.scoring = 'error';
-            return;
-          }else if (game[a] === 11 && game[a+1]<= 9){
-            self.scoring = 'american';
-          }else if(game[a] !== 11){
-            self.scoring = 'error';
-            return;
-          }else{
-            self.scoring = 'american';
-          }
+        }else if(game[a+1] > game[a] && game[a+1]<11 && game[a+1]>= 9){
+          self.scoring = 'English to player 2';
+          self.gameScoringSystem.push('english');
 
-          if(game[a] === 9 || game[a] === 10){
-            self.scoring = 'english';
-          }else if(game[a] < 9 ){
-            self.scoring = 'error';
-            return;
-          }
-
-        }else if(game[a] < game[a+1]) {
           player2GameScore++;
-          if(game[a+1] > 11 && game[a+1]-game[a]>2){
-            self.scoring = 'error';
-            return;
-          }else if(game[a+1] > 11 && game[a+1]-game[a] === 2){
-            self.scoring = 'american';
-          }else if(game[a+1] === 11 && game[a+1]-game[a]<2){
-            self.scoring = 'error';
-            return;
-          }else if (game[a+1] === 11 && game[a]<= 9){
-            self.scoring = 'american';
-          }else if(game[a+1] !== 11){
-            self.scoring = 'error';
-            return;
-          }else{
-            self.scoring = 'american';
-          }
-
-          if(game[a+1] === 9 || game[a+1] === 10){
-            self.scoring = 'english';
-          }else if(game[a+1] < 9 ){
-            self.scoring = 'error';
-            return;
-          }
-        }else if(game[a] === game[a+1]){
-          self.scoring = 'error';
-          return;
         }
+
+        if(game[a] > game[a+1] && game[a] === 11 && game[a] - game[a+1] >= 2){
+          self.scoring = 'American to player 1';
+          self.gameScoringSystem.push('american');
+
+          player1GameScore++;
+        }else if(game[a] > game[a+1] && game[a] > 11 && game[a]-game[a+1] === 2){
+          self.scoring = 'American to player 1';
+          self.gameScoringSystem.push('american');
+
+          player1GameScore++;
+        }else if(game[a+1] > game[a] && game[a+1] === 11 && game[a+1] - game[a] >= 2){
+          self.scoring = 'American to player 2';
+          self.gameScoringSystem.push('american');
+
+          player2GameScore++;
+        }else if(game[a+1] > game[a] && game[a+1] > 11 && game[a+1]-game[a] === 2){
+          self.scoring = 'American to player 2';
+          self.gameScoringSystem.push('american');
+
+          player2GameScore++;
+        }
+        if(game[a] < 9 && game[a+1] < 9){
+          self.scoring = 'ERROR';
+          self.gameScoringSystem.push('error');
+        }
+        if(game[a] === game[a+1]){
+          self.scoring = 'ERROR';
+          self.gameScoringSystem.push('error');
+        }
+        if(game[a] - game[a+1] !== 2 && game[a] + game[a+1] >= 20 && game[a]>game[a+1]){
+          self.scoring = 'ERROR';
+          self.gameScoringSystem.push('error');
+        }
+        if(game[a+1] - game[a] !== 2 && game[a] + game[a+1] >= 20 && game[a+1]>game[a]){
+          self.scoring = 'ERROR';
+          self.gameScoringSystem.push('error');
+        }
+
+        if(self.gameScoringSystem.includes('american') && self.gameScoringSystem.includes('english') || self.gameScoringSystem.includes('error')){
+          self.gameScoringSystem.push('error');
+          self.scoring = 'ERROR - INCONSISTANT SCORING SYSTEM';
+        }
+        console.log(self.gameScoringSystem);
       }
     }
-    self.isWinner = false;
+
+
     if(player1GameScore === 3 || player2GameScore === 3){
-      self.isWinner = true;
+      if (!self.gameScoringSystem.includes('error')) {
+        self.isWinner = true;
+        console.log(player1GameScore, player2GameScore, !self.gameScoringSystem.includes('error'));
+      }
     }
+
 
 
     for (var i = 0; i < game.length; i = i + 2) {

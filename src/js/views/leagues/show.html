@@ -1,20 +1,26 @@
 <h1>show</h1>
 
 {{vm.league.title}}
+{{vm.league.id}}
+{{vm.checkUnplayed()}}
+{{vm.checkSent()}}
+{{vm.checkRecieved()}}
 <ul ng-repeat="member in vm.league.users">
   <li ui-sref="playerShow({id: member.id})">{{member.username}}</li>
-  <div class="btn" ng-click="vm.challenge(member.id)">
-    <p>challenge</p>
+  {{member.id}}
 
+  <div class="btn" ng-click="vm.challenge(member.id)" ng-if="!vm.unplayedMatchesInLeague.includes(member.id) && !vm.sentChallengesInLeague.includes(member.id) && !vm.recievedChallengesInLeague.includes(member.id) && member.id !== vm.user.id">
+    <p>challenge</p>
   </div>
 </ul>
 
 {{vm.league.creator.username}}
 
+<ul ng-repeat="match in vm.league.matches">
+  <div class="" ng-if="match.score.length > 0">
+    <li>{{match.users[0].username}}</li>
+    <li>{{match.users[1].username}}</li>
+    <li>{{match.score}}</li>
+  </div>
 
-
-<ul ng-repeat="match in vm.matches">
-  <li>{{match.users[0].username}}</li>
-  <li>{{match.users[1].username}}</li>
-  <li>{{match.score}}</li>
 </ul>

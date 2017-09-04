@@ -34,6 +34,13 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
           }
         }
       }
+    }).then(() =>{
+      vm.sentChallenges = [];
+
+      for (var i = 0; i < vm.user.sent_challenges.length; i++) {
+        vm.sentChallenges.push(vm.user.sent_challenges[i].reciever_id);
+      }
+      console.log(vm.sentChallenges.includes(98));
     });
   });
 
@@ -106,4 +113,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     vm.user.recieved_challenges.splice(index, 1);
     vm.notifications.splice(index+vm.user.recieved_requests.length, 1);
   };
+
+
 }
