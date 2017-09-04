@@ -13,6 +13,11 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
     templateUrl: '/js/views/leagues/index.html',
     controller: 'LeaguesIndexCtrl as vm'
   })
+  .state('leaguesNew', {
+    url: '/leagues/new',
+    templateUrl: '/js/views/leagues/new.html',
+    controller: 'LeagueNewCtrl as vm'
+  })
   .state('register', {
     url: '/register',
     templateUrl: '/js/views/authentications/register.html',

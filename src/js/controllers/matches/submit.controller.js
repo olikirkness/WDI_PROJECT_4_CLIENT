@@ -2,9 +2,9 @@ angular
 .module('LeagueApp')
 .controller('MatchSubmitCtrl', MatchSubmitCtrl);
 
-MatchSubmitCtrl.$inject =['$http', '$stateParams', 'Match', 'ResultsService', 'User', '$state'];
+MatchSubmitCtrl.$inject =['$http', '$stateParams', 'Match', 'ResultsService', 'User', '$state', '$rootScope'];
 
-function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $state) {
+function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $state, $rootScope) {
 
   const vm = this;
 
@@ -92,9 +92,9 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
     });
 
     vm.match.played = true;
-    console.log(vm.match, 'MAAAAATTTTTTTTTCCCCCCHHHHH');
     Match.update({id: vm.match.id}, {match: vm.match}).$promise.then((a)=>{
       a.played = true;
+      $rootScope.$broadcast('matchSubmitted');
       $state.go('leagueShow', {id: vm.match.league.id});
     });
   };

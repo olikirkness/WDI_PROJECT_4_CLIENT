@@ -3,6 +3,10 @@
 {{vm.league.title}}
 <ul ng-repeat="member in vm.league.users">
   <li ui-sref="playerShow({id: member.id})">{{member.username}}</li>
+  <div class="btn" ng-click="vm.challenge(member.id)">
+    <p>challenge</p>
+
+  </div>
 </ul>
 
 {{vm.league.creator.username}}
