@@ -17,7 +17,6 @@ function ResultsService() {
     self.player2Start = p2;
     let player1PointScore = 0;
     let player2PointScore = 0;
-
     let player1GameScore = 0;
     let player2GameScore = 0;
     self.scoring = '';

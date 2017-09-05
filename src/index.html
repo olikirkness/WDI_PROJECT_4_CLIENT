@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Project 4 Client</title>
   <script src="https://use.fontawesome.com/60332babcf.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Ubuntu" rel="stylesheet">
   <base href="/" />
   <!-- inject:js -->
   <!-- endinject -->
@@ -22,7 +23,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" ui-sref="homepage">Match Play</a>
+          <a class="navbar-brand" ui-sref="homepage"><img src="http://i.imgur.com/UDlSGVQ.png" class="nav-logo-img" alt=""></a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -34,56 +35,74 @@
               <a ui-sref="login">Login</a>
             </li>
             <li ng-show="main.user">
-              <a ui-sref="leaguesIndex">Leagues</a>
+              <a ui-sref="leaguesIndex"><i class="fa fa-home home-icon" aria-hidden="true"></i></a>
             </li>
             <li ng-show="main.user">
-              <a ui-sref="leaguesNew">Create a new League</a>
+              <a ui-sref="leaguesNew"><i class="fa fa-plus new-icon" aria-hidden="true"></i></a>
             </li>
             <li ng-show="main.user">
-              <a ui-sref="challengesIndex">Challenges</a>
+              <a ui-sref="challengesIndex"><i class="fa fa-trophy challenge-icon" aria-hidden="true"></i></a>
             </li>
             <li>
-              <div class="dropdown show" ng-if="main.notifications.length > 0">
-                <div class="notification">
-                  {{main.notifications.length}}
+              <div class="dropdown show">
+                <div class="notification" ng-show="main.user.recieved_requests.length + main.user.recieved_challenges.length > 0">
+                  {{main.user.recieved_requests.length + main.user.recieved_challenges.length}}
                 </div>
-                <a class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Notifications
-                </a>
+                <div class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
+                </div >
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
-                  <h4>Your requests</h4>
+                  <h4 ng-show="main.user.recieved_requests.length >0">Your requests</h4>
                   <div ng-repeat="request in main.user.recieved_requests" >
                     <a class="dropdown-item" href="#">
-                      {{request.user.username}} wants to join {{request.league.title}}
+                      {{request.sender.username}} wants to join {{request.league.title}}
                     </a>
                     <br>
-                    <div class="btn dropdown-item" ng-click="main.addToLeague(request.user.id, request.league.id, this, request.id)">
+                    <div class="btn dropdown-item" ng-click="main.addToLeague(request.sender.id, request.league.id, this, request.id)">
                       Accept
                     </div>
                     <div class="btn dropdown-item" ng-click="main.deleteRequest(this, request.id)">
                       Delete
                     </div>
                   </div>
-                  <h4>Your challenges</h4>
+                  <h4 ng-show="main.user.recieved_challenges.length >0">Your challenges</h4>
                   <div ng-repeat="challenge in main.user.recieved_challenges" >
                     <a class="dropdown-item" href="#">
-                      {{challenge.user.username}} wants to challenge you
+                      {{challenge.sender.username}} wants to challenge you
                     </a>
                     <br>
-                    <div class="btn dropdown-item" ng-click="main.addToMatches(challenge.user.id, challenge.league.id, this, challenge.id)">
+                    <div class="btn dropdown-item" ng-click="main.addToMatches(challenge.sender.id, challenge.league.id, this, challenge.id)">
                       Accept
                     </div>
                     <div class="btn dropdown-item" ng-click="main.deleteChallenge(this, challenge.id)">
                       Delete
                     </div>
                   </div>
+                  <div class="dropdown-item" ng-show="main.user.recieved_challenges.length === 0 && main.user.recieved_requests.length === 0">
+                    <h5>You don't have any new notifications</h5>
+                  </div>
 
                 </div>
               </div>
             </li>
-
             <li ng-show="main.user">
-              <a ng-click="main.logout()">Logout</a>
+              <div class="dropdown show">
+                <div class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="nav-img-outer" ng-show="main.user.image">
+                    <img src="{{main.user.image}}"  class="nav-img" alt="">
+                  </div>
+                  <i class="fa fa-user-circle default-img" aria-hidden="true" ng-show="!main.user.image"></i>
+                </div>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                  <div class="dropdown-item">
+                    <h5 ui-sref="playerShow({id: main.user.id})">View Profile</h5>
+                  </div>
+                  <div ng-click="main.logout()" class="dropdown-item">
+                    <h5>Logout</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- <a ng-click="main.logout()">Logout</a> -->
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->

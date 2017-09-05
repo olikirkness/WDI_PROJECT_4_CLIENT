@@ -1,40 +1,60 @@
-<input type="text" ng-model="vm.q" ng-change="vm.filter()" placeholder="Search...">
+<div class="searchDiv">
+  <input class="searchBar" type="text" ng-model="vm.q" ng-change="vm.filter()" placeholder="Search..." ng-show="vm.searching">
+</div>
 
 
-<h1 ng-show="!vm.q">My leagues</h1>
-<div ng-repeat="league in main.user.leagues track by $index" ng-show="!vm.q">
-
-  <div class="row">
-    <div ui-sref="leagueShow({id: league.id})">
-      <div class="col-sm-4 col-sm-offset-2">
-        <div class="indexDiv">
-          <img class="indexImg" src="{{league.image}}" alt="">
+<div class="no-league" ng-show="main.user.leagues.length === 0 && !vm.searching">
+  <h2>You havn't joined any leagues yet, <span ng-click="vm.startSearch()">click here</span> to search.</h2>
+</div>
+<div class="" ng-show="main.user.leagues.length !== 0">
+  <!-- <h1 ng-show="!vm.q">My leagues</h1> -->
+  <div ng-repeat="league in main.user.leagues track by $index" ng-show="!vm.q">
+    <div class="row index-row" ng-if="this.$index%2 ===0">
+      <div ui-sref="leagueShow({id: league.id})">
+        <div class="col-sm-4 col-sm-offset-2">
+          <div class="indexDiv">
+            <img class="indexImg" src="{{league.image}}" alt="">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <h2>{{league.title}}</h2>
+          <p>{{league.users.length}} members </p>
+          <p>Ave Ranking: {{league.league_ave_ranking}}</p>
+          <p>Matches played: {{league.matches_played}}</p>
         </div>
       </div>
-      <div class="col-sm-6">
-        <h2>{{league.title}}</h2>
-        <p>{{league.users.length}} members </p>
-        <p>Ave Ranking: {{league.league_ave_ranking}}</p>
-        <p>Matches played: {{league.matches_played}}</p>
+    </div>
+    <div class="row index-row" ng-if="this.$index%2 !==0">
+      <div ui-sref="leagueShow({id: league.id})">
+        <div class="col-sm-4 col-sm-offset-2">
+          <h2>{{league.title}}</h2>
+          <p>{{league.users.length}} members </p>
+          <p>Ave Ranking: {{league.league_ave_ranking}}</p>
+          <p>Matches played: {{league.matches_played}}</p>
+        </div>
+        <div class="col-sm-4 ">
+          <div class="indexDiv">
+            <img class="indexImg" src="{{league.image}}" alt="">
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="row">
-  <div ng-show="vm.q" ng-repeat="league in vm.filtered">
+<div class="row filterResults">
+  <div ng-show="vm.q || vm.filtered.length >0" ng-repeat="league in vm.filtered">
 
-    <div class="col-sm-4 searchResults">
+    <div class="col-sm-4 searchResults" ng-hide="main.joinedLeagues.includes(league.id)">
 
-      <i class="fa fa-plus-circle fa-4x" aria-hidden="false" ng-click="vm.request(main.user.id, league.id, league.creator.id)" ></i>
+      <i class="fa fa-plus-circle fa-4x" aria-hidden="false" ng-click="main.handleRequest(main.user.id, league.id, league.creator.id)" ng-class="{'delete': main.sentRequestIds.includes(league.id), 'send': !main.sentRequestIds.includes(league.id)}"></i>
+
       <div class="indexDiv">
         <img class="indexImg" src="{{league.image}}" alt="">
       </div>
       <h3>{{league.title}}</h3>
-
       <p>{{league.users.length}} members </p>
       <p>Ave Ranking: {{league.league_ave_ranking}}</p>
       <p>Matches played: {{league.matches_played}}</p>
-
 
     </div>
   </div>

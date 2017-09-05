@@ -9,39 +9,14 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
   $rootScope.$on('loggedIn', () => {
     vm.user = CurrentUserService.currentUser;
     console.log(vm.user);
-    vm.notifications = [];
-    vm.allUsers = User.query();
-    vm.allUsers
-    .$promise
-    .then((users)=>{
-      vm.user = CurrentUserService.currentUser;
-      vm.allUsers = users;
-    })
-    .then(()=>{
-      for (var i = 0; i < vm.user.recieved_requests.length; i++) {
-        for (var a = 0; a < vm.allUsers.length; a++) {
-          if(vm.user.recieved_requests[i].sender_id === vm.allUsers[a].id){
-            vm.user.recieved_requests[i].user = vm.allUsers[a];
-            vm.notifications.push(vm.user.recieved_requests[i]);
-          }
-        }
-      }
-      for (var b = 0; b < vm.user.recieved_challenges.length; b++) {
-        for (var c = 0; c < vm.allUsers.length; c++) {
-          if(vm.user.recieved_challenges[b].sender_id === vm.allUsers[c].id){
-            vm.user.recieved_challenges[b].user = vm.allUsers[c];
-            vm.notifications.push(vm.user.recieved_challenges[b]);
-          }
-        }
-      }
-    }).then(() =>{
-      vm.sentChallenges = [];
-
-      for (var i = 0; i < vm.user.sent_challenges.length; i++) {
-        vm.sentChallenges.push(vm.user.sent_challenges[i].reciever_id);
-      }
-      console.log(vm.sentChallenges.includes(98));
-    });
+    vm.sentRequestIds = [];
+    for (var i = 0; i < vm.user.sent_requests.length; i++) {
+      vm.sentRequestIds.push(vm.user.sent_requests[i].league.id);
+    }
+    vm.joinedLeagues = [];
+    for (var a = 0; a < vm.user.leagues.length; a++) {
+      vm.joinedLeagues.push(vm.user.leagues[a].id);
+    }
   });
 
   $rootScope.$on('loggedOut', () => {
@@ -73,7 +48,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       .update({id: vm.leagueToAdd.id}, {league: vm.leagueToAdd})
       .$promise
       .then(()=>{
-
         vm.user.recieved_requests.splice(obj.$index, 1);
         vm.notifications.splice(obj.$index, 1);
         $rootScope.$broadcast('addedToLeague');
@@ -100,6 +74,50 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       $rootScope.$broadcast('challengeAccepted');
     });
   };
+  /////__________________________________________________________________________________
+  vm.handleRequest = function(senderId, leagueId, recieverId){
+    User.get({id: vm.user.id}).$promise.then((user)=>{
+      vm.user = user;
+      if(vm.sentRequestIds.includes(leagueId)){
+        for (var i = 0; i < vm.user.sent_requests.length; i++) {
+          if (vm.user.sent_requests[i].league.id === leagueId) {
+            vm.removeRequestFromFilter(vm.user.sent_requests[i].id, leagueId);
+            const index = vm.sentRequestIds.indexOf(leagueId);
+            vm.sentRequestIds.splice(index, 1);
+          }
+        }
+      }else{
+        vm.sentRequestIds.push(leagueId);
+        vm.request(senderId, leagueId, recieverId);
+      }
+
+    });
+  };
+  vm.removeRequestFromFilter = function(requestId, leagueId){
+    vm.justClicked = '';
+    console.log(leagueId, vm.sentRequestIds, 'DEEEEELLLLEEETTTTEEEEEE');
+    Request.delete({id: requestId});
+  };
+
+  vm.request = function(a, b, c){
+    vm.requestObj = {
+      sender_id: a,
+      league_id: b,
+      reciever_id: c
+    };
+    vm.requestSent = true;
+    Request
+    .save({request: vm.requestObj})
+    .$promise
+    .then(()=>{
+
+      // vm.sentRequestIds.push(b);
+      console.log(vm.sentRequestIds, b, 'AAAAAAADDDDDDDDDDDDDDDDDD');
+      vm.justClicked = b;
+    });
+  };
+
+  ///////////////////////////////////////////////////////////////////////
 
   vm.deleteRequest = function(a, b){
     const index = a.$index;
@@ -107,6 +125,7 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     vm.user.recieved_requests.splice(index, 1);
     vm.notifications.splice(index, 1);
   };
+  
   vm.deleteChallenge = function(a, b){
     const index = a.$index;
     Challenge.delete({id: b});
@@ -122,8 +141,4 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       vm.user.matches.splice(index, 1);
     });
   };
-
-
-
-
 }

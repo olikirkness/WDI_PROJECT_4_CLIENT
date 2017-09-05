@@ -1,17 +1,45 @@
-<h1>show</h1>
+
 
 {{vm.league.title}}
 {{vm.league.id}}
 {{vm.checkUnplayed()}}
 {{vm.checkSent()}}
 {{vm.checkRecieved()}}
-<ul ng-repeat="member in vm.league.users | orderBy: '-current_ranking' track by $index " h3 >
-  <h3 ui-sref="playerShow({id: member.id})"><span>{{$index+1}}: {{member.username}}</span></h3>
-  <p>Ranking: {{member.current_ranking}}</p>
-  <h3></h3>
-  <div class="btn" ng-click="vm.challenge(member.id)" ng-if="!vm.unplayedMatchesInLeague.includes(member.id) && !vm.sentChallengesInLeague.includes(member.id) && !vm.recievedChallengesInLeague.includes(member.id) && member.id !== vm.user.id">
-    <p>challenge</p>
+
+<ul ng-repeat="member in vm.league.users | orderBy: '-current_ranking' track by $index " >
+  <div class="row member-rank-list">
+    <!-- <h3 class="col-sm-2" ui-sref="playerShow({id: member.id})">{{$index+1}}</h3>
+
+    <div class="league-img-icon-outer col-sm-2" ng-if="member.image">
+      <img class=" league-img-icon"  src="{{member.image}}" alt="">
+    </div>
+    <i class="fa fa-user-circle default-img-league col-sm-2" aria-hidden="true" ng-show="!member.image"></i>
+
+    <div class="">
+      <p class="">Ranking: {{member.current_ranking}}</p>
+    </div>
+
+    <div class="btn col-sm-4" ng-click="vm.challenge(member.id)" ng-if="!vm.unplayedMatchesInLeague.includes(member.id) && !vm.sentChallengesInLeague.includes(member.id) && !vm.recievedChallengesInLeague.includes(member.id) && member.id !== vm.user.id">
+      <p>challenge</p>
+    </div> -->
+    <div class="col-sm-2 test">
+      <h3 class="rank-no" ui-sref="playerShow({id: member.id})">{{$index+1}}</h3>
+    </div>
+    <div class="col-sm-2 test">
+      <div class="league-img-icon-outer col-sm-2" ng-if="member.image">
+        <img class=" league-img-icon"  src="{{member.image}}" alt="">
+      </div>
+      <i class="fa fa-user-circle default-img-league col-sm-2" aria-hidden="true" ng-show="!member.image"></i>
+
+    </div>
+    <div class="col-sm-4 test">
+      <h3 class="memberName" >{{member.username}}</h3>
+    </div>
+    <div class="col-sm-4 test">
+      <h3  class="memberName" >{{member.current_ranking}}</h3>
+    </div>
   </div>
+
 </ul>
 
 {{vm.league.creator.username}}
