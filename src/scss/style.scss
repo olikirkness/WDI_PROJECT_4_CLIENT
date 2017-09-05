@@ -1,4 +1,6 @@
 @import "components/typography";
+@import "components/slick";
+
 .notification{
   background-color: #34b77d;
   width: 20px;
@@ -257,4 +259,18 @@ a:hover{
   font-size: 40px;
   margin-top: 25px;
   margin-left: -20px;
+}
+
+.newChart{
+  height: 300px;
+  width: 500px;
+}
+
+.ct-series-a .ct-line {
+  /* Set the colour of this series line */
+  stroke: #BF6969;
+  /* Control the thikness of your lines */
+  stroke-width: 5px;
+  /* Create a dashed line with a pattern */
+
 }

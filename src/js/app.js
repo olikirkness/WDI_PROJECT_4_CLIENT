@@ -2,5 +2,6 @@ angular
 .module('LeagueApp', [
   'ui.router',
   'ngResource',
-  'angular-jwt'
+  'angular-jwt',
+  'slick'
 ]);
