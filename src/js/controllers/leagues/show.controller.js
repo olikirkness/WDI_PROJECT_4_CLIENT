@@ -27,8 +27,9 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
       }
     });
   });
-
+  // vm.clicked = false;
   vm.challenge = function(e){
+    // vm.clicked = true;
     Challenge.save({challenge: {
       sender_id: CurrentUserService.currentUser.id,
       reciever_id: e,

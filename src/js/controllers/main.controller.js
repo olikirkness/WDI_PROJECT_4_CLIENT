@@ -18,6 +18,16 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       vm.joinedLeagues.push(vm.user.leagues[a].id);
     }
   });
+  vm.count = 0;
+  vm.startSearch = function(){
+    vm.count++;
+    if (vm.count%2 === 1) {
+      $rootScope.$broadcast('search');
+    }else{
+      $rootScope.$broadcast('stopSearch');
+    }
+
+  };
 
   $rootScope.$on('loggedOut', () => {
     vm.user = null;
@@ -125,7 +135,7 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     vm.user.recieved_requests.splice(index, 1);
     vm.notifications.splice(index, 1);
   };
-  
+
   vm.deleteChallenge = function(a, b){
     const index = a.$index;
     Challenge.delete({id: b});

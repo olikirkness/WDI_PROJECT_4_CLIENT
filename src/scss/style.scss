@@ -210,26 +210,40 @@ transform: translate(-50%);
   color: grey;
   font-size: 62px;
   margin-left: 15px;
-  margin-top: -103px;
+  margin-top: 22px;
 }
 .rank-no, .memberName{
 
-  font-size: 50px;
+  font-size: 40px;
   color: #777;
   // margin-left: 30px;
   margin-top: 27px;
 }
 .memberName{
-  font-size: 40px;
+  font-size: 35px;
   margin-top: 33px;
 }
 .member-rank-list{
   height: 120px;
+  border-bottom: 2px solid #777;
+  margin-top: 10px;
 }
 .test{
-  border-bottom: 2px solid #777;
+
   height: 100%;
   text-align: center;
+}
+.leagueTitle{
+  text-align: center;
+  font-size: 25px;
+}
+.leagueImg{
+  margin-right: 0px;
+  margin-left: 29px;
+  margin-top: 40px;
+}
+.searching{
+  background-color: grey;
 }
 a{
   text-decoration: none;
@@ -237,4 +251,10 @@ a{
 }
 a:hover{
   outline: none;
+}
+.icon-show{
+  color: #FFC107;
+  font-size: 40px;
+  margin-top: 25px;
+  margin-left: -20px;
 }

@@ -8,7 +8,7 @@
 </div>
 <div class="" ng-show="main.user.leagues.length !== 0">
   <!-- <h1 ng-show="!vm.q">My leagues</h1> -->
-  <div ng-repeat="league in main.user.leagues track by $index" ng-show="!vm.q">
+  <div ng-repeat="league in main.user.leagues track by $index" ng-show="!vm.searching">
     <div class="row index-row" ng-if="this.$index%2 ===0">
       <div ui-sref="leagueShow({id: league.id})">
         <div class="col-sm-4 col-sm-offset-2">

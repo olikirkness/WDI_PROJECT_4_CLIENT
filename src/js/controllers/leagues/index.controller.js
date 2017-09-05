@@ -2,9 +2,9 @@ angular
 .module('LeagueApp')
 .controller('LeaguesIndexCtrl', LeaguesIndexCtrl);
 
-LeaguesIndexCtrl.$inject =['$http', 'League', 'filterFilter'];
+LeaguesIndexCtrl.$inject =['$http', 'League', 'filterFilter', '$rootScope'];
 
-function LeaguesIndexCtrl($http, League, filterFilter) {
+function LeaguesIndexCtrl($http, League, filterFilter, $rootScope) {
 
   const vm = this;
 
@@ -27,6 +27,13 @@ function LeaguesIndexCtrl($http, League, filterFilter) {
   };
   vm.searching = false;
   vm.filtered = false;
+  $rootScope.$on('search', ()=>{
+    vm.startSearch();
+  });
+  $rootScope.$on('stopSearch', ()=>{
+    vm.searching = false;
+    vm.filtered = [];
+  });
   vm.startSearch = function(){
     vm.searching = true;
     vm.filtered = vm.leagues;
