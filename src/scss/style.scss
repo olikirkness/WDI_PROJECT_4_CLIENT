@@ -226,7 +226,7 @@ transform: translate(-50%);
   font-size: 25px;
   margin-top: 33px;
 }
-.member-rank-list{
+.member-rank-list, .matches-row{
   height: 120px;
   border-bottom: 2px solid #777;
   margin-top: 10px;
@@ -331,4 +331,54 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .players{
   height: 60px;
+}
+.show-info-header{
+  transition: all 0.2s;
+  height: 50px;
+  text-align: center;
+  background-color: #ccc;
+  color: white;
+  h4{
+    margin-top: 17px;
+  }
+}
+.selected{
+  background-color: #BF6969;
+}
+.data-group{
+  // background-color: #fafafa;
+  // padding: 10px;
+  text-align: center;
+}
+.matches{
+  text-align: center;
+  // display: table;
+  height: 120px;
+  color: #777;
+  // border: 1px solid blue;
+  h4, h5{
+    .old-rank{
+      color: #bbb
+    }
+    position: relative;
+    color: #777;
+    margin-top: 30px;
+  }
+  h2{
+    // margin-top: 0px;
+  }
+  p{
+    font-size: 10px;
+  }
+}
+.matches-img-icon{
+  margin-left: 5px;
+  margin-top: 27px;
+}
+.matches-icon{
+  margin-left: -8px;
+  margin-top: 29px;
+}
+.showImg{
+  margin-left: 20px;
 }

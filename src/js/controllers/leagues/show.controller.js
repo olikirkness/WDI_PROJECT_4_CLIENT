@@ -75,7 +75,10 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
   };
 
 
-
+  vm.setSelected = function(){
+    console.log('LOGGED');
+    vm.selected = !vm.selected;
+  };
 
 
 
