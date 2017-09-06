@@ -1,0 +1,13 @@
+.relative-section {
+  height: 100vh;
+  text-align: center;
+  position: relative;
+
+  .relative-button {
+    // @include absolute-center;
+    bottom: 40px;
+    a, img {
+      display: block;
+    }
+  }
+}

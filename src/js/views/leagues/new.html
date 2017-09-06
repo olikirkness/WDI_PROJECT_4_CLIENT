@@ -1,9 +1,34 @@
-<h1>new</h1>
 
 
-<form class="" ng-submit="vm.submit()">
-  <input type="text" name="" value="" placeholder="League Name" ng-model="vm.league.title">
-  <input type="text" name="" value="" placeholder="Club" ng-model="vm.league.club">
-  <input type="text" name="" value="" placeholder="League Photo" ng-model="vm.league.image">
-  <input type="submit" name="" value="Submit">
+
+<form ng-submit="vm.submit()" class="newForm">
+  <div class="row">
+    <div class="col-sm-5">
+      <h3>Give your league a name </h3>
+    </div>
+    <div class="col-sm-7">
+      <input type="text" name="" value="" ng-model="vm.league.title">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <h3>The primary club is </h3>
+    </div>
+    <div class="col-sm-7">
+      <input type="text" name="" value=""  ng-model="vm.league.club">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <h3>Give your league an image </h3>
+    </div>
+    <div class="col-sm-7">
+      <input type="text" name="" value=""  ng-model="vm.league.image">
+    </div>
+  </div>
+
+  <div class="row subBtn">
+    <input type="submit" ng-disabled="!vm.league.image || !vm.league.club || !vm.league.title" ng-class="{'valid':vm.league.image && vm.league.club && vm.league.title}" class="btn" value="Submit">
+  </div>
+
 </form>

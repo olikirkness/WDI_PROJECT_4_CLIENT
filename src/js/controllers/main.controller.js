@@ -30,11 +30,20 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
 
   $rootScope.$on('loggedOut', () => {
     vm.user = null;
-    $state.go('login');
+    $state.go('HomeCtrl');
   });
+
+  $rootScope.$on('Home', () => {
+    vm.home = true;
+  });
+  $rootScope.$on('notHome', () => {
+    vm.home = false;
+  });
+
 
   vm.logout = () => {
     CurrentUserService.removeUser();
+    $rootScope.$broadcast('Home');
   };
 
   vm.addToLeague = function(userId, leagueId, obj, reqId){
@@ -146,4 +155,8 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       vm.user.matches.splice(index, 1);
     });
   };
+  // vm.home = true;
+  // vm.home = function(){
+  //   vm.home = !vm.home;
+  // };
 }

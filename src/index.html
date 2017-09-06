@@ -5,6 +5,7 @@
   <title>Project 4 Client</title>
   <link rel="stylesheet"
           href="bower_components/chartist/dist/chartist.min.css">
+            <link rel="stylesheet" href="animate.min.css">
   <script src="https://use.fontawesome.com/60332babcf.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Ubuntu" rel="stylesheet">
   <script
@@ -20,7 +21,7 @@
 </head>
 <body ng-controller="MainCtrl as main">
   <header>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" ng-hide="main.home">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">

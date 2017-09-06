@@ -11,12 +11,12 @@ function LeagueNewCtrl( League, $state, CurrentUserService) {
     if(!vm.league.image || !vm.league.club || !vm.league.title){
       console.log('NOT COMPLETE');
     }else{
+      console.log(vm.league.club);
       vm.league.created_by = CurrentUserService.currentUser.id;
       vm.league.user_ids = [CurrentUserService.currentUser.id];
       League.save({league: vm.league}).$promise.then((e)=>{
         $state.go('leagueShow', {id: e.id});
       });
-
     }
   };
 }

@@ -1,6 +1,7 @@
 @import "components/typography";
 @import "components/slick";
 @import "components/charts";
+@import "components/homepage";
 
 .notification{
   background-color: #34b77d;
@@ -273,18 +274,25 @@ a:hover{
   // transform: translate(-50%);
   h4, h3{
     margin-top: 35px;
-    color: #777
+    color: #777;
+    text-align: center;
   }
   h3{
+  // text-align: center;
+  }
+  .number{
     text-align: right;
   }
+}
+.submitPage{
+    margin-left: -60px
 }
 .match-result-input{
   width: 80px;
   height: 80px;
   font-size: 45px;
   outline: none;
-  border: 2px solid #777;
+  border: 2px solid #bbb;
   border-radius: 5px;
   text-align: center;
   padding: 5px;
@@ -326,7 +334,7 @@ input[type=number]::-webkit-outer-spin-button {
 .right-player{
   margin-top: 15px;
   color: #777;
-  text-align: left!important;
+  text-align: center!important;
   height: 100px;
 }
 .players{
@@ -381,4 +389,59 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .showImg{
   margin-left: 20px;
+}
+.newForm{
+  margin-top: 50px;
+  color: #777;
+  font-size: 30px;
+  .row{
+    height: 100px;
+    padding: 30px;
+  }
+
+  input{
+
+    background-color: white;
+    width: 80%;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #777;
+      transition: all 0.3s;
+  }
+
+  .subBtn{
+
+    text-align: center;
+    .btn{
+      width: 40%;
+      background-color: #bbb;
+      color: white;
+      border: none;
+      font-size: 20px;
+    }
+    .valid{
+      background-color: #BF6969;
+    }
+  }
+  h3{
+    text-align: right;
+  }
+}
+
+
+.no-challenges{
+  height: 600px;
+  text-align: center;
+  h4{
+    color: #777;
+    font-size: 40px;
+    // margin-top: 30%;
+    padding-top: 25%;
+  }
+}
+.challenge-show{
+  border-bottom: 2px solid #777;
+  text-align: center;
+
+    color: #777;
 }

@@ -1,0 +1,73 @@
+<div data-ng-controller="MainCtrl as main" ng-init="main.home()"></div>
+<section class="relative-section homepage" id="home-page">
+  <header class="">
+    <p>
+      <img class="logo" src="/images/logo.svg" alt="">
+    </p>
+    <h1>Matchplay</h1>
+  </header>
+  <div>
+    <div class="relative-button">
+      <a href="#wrapper" id="loginLink">
+        <p class="all-button" ><strong>Enter</strong></p>
+        <img class="assets animated pulse" src="/images/arrow-down.svg" alt="">
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<div class="wrapper" id="wrapper">
+  <div class="test">
+  </div>
+  <div class="slick">
+    <div ng-controller="LoginCtrl as login" class="relative-section" id="login-page">
+      <form ng-submit="login.login()">
+        <h2 >Login</h2>
+
+        <div>
+          <input type="email" name="email" placeholder="email" ng-model="login.user.email">
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="password" ng-model="login.user.password">
+        </div>
+        <input type="submit" ng-click="main.home()" class="login-btn all-button" value="LOGIN" id="bold-log">
+      </form>
+    </div>
+
+    <div ng-controller="RegisterCtrl as register" class="relative-section" id="register-page">
+      <form ng-submit="register.register()" >
+        <h2 ng-click="main.findStories()">Register</h2>
+
+        <div>
+          <input type="text" name="username" placeholder="username" ng-model="register.user.username">
+        </div>
+        <div>
+          <input type="profilePicture" name="profilePicture" placeholder="http://www.your-picture-here.com" ng-model="register.user.profilePicture">
+        </div>
+        <div>
+          <input type="email" name="email" placeholder="email" ng-model="register.user.email">
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="password" ng-model="register.user.password">
+        </div>
+        <div>
+          <input type="password" name="passwordConfirmation" placeholder="confirm your password" ng-model="register.user.passwordConfirmation">
+        </div>
+        <input type="submit" ng-click="main.findStories()" class="register-btn" value="REGISTER" id="bold-reg">
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.slick').slick({
+    infinite: false,
+    arrows: true,
+    draggable: false
+  });
+
+  $('.slick-prev, .slick-next').appendTo('.test');
+  $('.slick-prev').addClass('login-arrow');
+  $('.slick-next').addClass('register-arrow');
+</script>

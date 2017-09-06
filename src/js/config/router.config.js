@@ -8,6 +8,11 @@ function Router($stateProvider, $locationProvider, $urlRouterProvider){
   $locationProvider.html5Mode(true);
 
   $stateProvider
+  .state('HomeCtrl', {
+    url: '/',
+    templateUrl: '/js/views/home.html',
+    controller: 'HomeCtrl as vm'
+  })
   .state('leaguesIndex', {
     url: '/leagues',
     templateUrl: '/js/views/leagues/index.html',
