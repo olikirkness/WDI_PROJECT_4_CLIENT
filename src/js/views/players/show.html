@@ -3,20 +3,34 @@
   <!-- <canvas id="myChart"></canvas> -->
 </div>
 
-
-
-
-<slick slides-to-show="1" slides-to-scroll="1" init-onload="true" data="vm.data" dots="false" arrows="true" rows="1" autoplay="false" >
-  <!-- <div ng-repeat="story in stories.stories track by $index" > -->
-    <div class="slide-wrapper">
-      <div class="newChart">
-        <div class="ct-chart ct-perfect-fourth level"> HEY</div>
-      </div>
+<div class="row">
+  <div class="col-sm-5">
+    <div class="indexDiv leagueImg">
+      <img class="indexImg" src="{{vm.player.image}}" alt="">
     </div>
-    <div class="slide-wrapper">
-      <div class="newChart">
-        <div class="ct-chart ct-perfect-fourth pie"> HI</div>
+  </div>
+
+</div>
+
+
+
+<div class="row">
+
+  <div class="col-sm-12">
+    <slick slides-to-show="1" ng-show="vm.player.matches.length !== 0" slides-to-scroll="1" init-onload="true" data="vm.data" dots="false" arrows="true" rows="1" autoplay="false" >
+
+      <div class="slide-wrapper">
+        <div class="newChart">
+          <div class="ct-chart ct-perfect-fourth level"></div>
+        </div>
       </div>
-    </div>
-  <!-- </div> -->
-</slick>
+
+      <div class="slide-wrapper">
+        <div class="newChart">
+          <div class="ct-chart ct-perfect-fourth pie"></div>
+        </div>
+      </div>
+    </slick>
+  </div>
+
+</div>

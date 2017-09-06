@@ -5,7 +5,7 @@ angular
 MatchSubmitCtrl.$inject =['$http', '$stateParams', 'Match', 'ResultsService', 'User', '$state', '$rootScope'];
 
 function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $state, $rootScope) {
-
+  $rootScope.$broadcast('matchSubmitted');
   const vm = this;
 
   vm.match = Match.get({id: $stateParams.id});
@@ -79,6 +79,9 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
       vm.player1.ranking.unshift(vm.result1);
     })
     .then(()=>{
+      if (ResultsService.player1GameScore > ResultsService.player2GameScore) {
+        vm.player1.matches_won = vm.player1.matches_won+1;
+      }
       User.update({id: vm.player1.id}, {user: vm.player1});
     });
 
@@ -86,7 +89,9 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
     .$promise.then((b)=>{
       vm.player2 = b;
       vm.player2.ranking.unshift(vm.result2);
-
+      if (ResultsService.player2GameScore > ResultsService.player1GameScore) {
+        vm.player2.matches_won = vm.player2.matches_won+1;
+      }
     })
     .then(()=>{
       User.update({id: vm.player2.id}, {user: vm.player2}).$promise.then(()=>{
@@ -98,6 +103,7 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
         Match.update({id: vm.match.id}, {match: vm.match}).$promise.then((a)=>{
           a.played = true;
           $rootScope.$broadcast('matchSubmitted');
+
           $state.go('leagueShow', {id: vm.match.league.id});
         });
       });

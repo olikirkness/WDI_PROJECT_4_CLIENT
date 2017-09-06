@@ -8,6 +8,7 @@ function RegisterCtrl(User, CurrentUserService, $state){
 
   vm.register = () => {
     vm.user.ranking = [1000];
+    vm.user.matches_won = 0;
     User
       .register(vm.user)
       .$promise

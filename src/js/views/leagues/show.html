@@ -2,9 +2,9 @@
 
 
 
-{{vm.checkUnplayed()}}
+<!-- {{vm.checkUnplayed()}}
 {{vm.checkSent()}}
-{{vm.checkRecieved()}}
+{{vm.checkRecieved()}} -->
 <div class="row">
   <div class="col-sm-8">
     <div ng-repeat="member in vm.league.users | orderBy: '-current_ranking' track by $index " >
@@ -19,7 +19,7 @@
           <i class="fa fa-user-circle default-img-league col-sm-2" aria-hidden="true" ng-show="!member.image"></i>
 
         </div>
-        <div class="col-sm-4 test">
+        <div class="col-sm-4 test" ui-sref="playerShow({id: member.id})">
           <h3 class="memberName" >{{member.username}}</h3>
         </div>
         <div class="col-sm-3 test">

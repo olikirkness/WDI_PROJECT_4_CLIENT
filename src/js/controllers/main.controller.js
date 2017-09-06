@@ -8,7 +8,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
 
   $rootScope.$on('loggedIn', () => {
     vm.user = CurrentUserService.currentUser;
-    console.log(vm.user);
     vm.sentRequestIds = [];
     for (var i = 0; i < vm.user.sent_requests.length; i++) {
       vm.sentRequestIds.push(vm.user.sent_requests[i].league.id);
@@ -58,15 +57,20 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       .update({id: vm.leagueToAdd.id}, {league: vm.leagueToAdd})
       .$promise
       .then(()=>{
-        vm.user.recieved_requests.splice(obj.$index, 1);
-        vm.notifications.splice(obj.$index, 1);
-        $rootScope.$broadcast('addedToLeague');
-        Request
-        .delete({id: reqId});
+        CurrentUserService.getUser();
+        $rootScope.$on('loggedIn', ()=>{
+          vm.user = CurrentUserService.currentUser;
+          vm.user.recieved_requests.splice(obj.$index, 1);
+          $rootScope.$broadcast('addedToLeague');
+          Request
+          .delete({id: reqId});
+        });
+
       });
     });
   };
   vm.addToMatches = function(userId, leagueId, obj, reqId){
+    // CurrentUserService.getUser();
     console.log(userId, leagueId, obj, reqId);
     vm.match = {
       score: [],
@@ -76,13 +80,18 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     };
 
     Match.save({match: vm.match}).$promise.then(()=>{
-
-      vm.user.recieved_challenges.splice(obj.$index, 1);
-      vm.notifications.splice(obj.$index+vm.user.recieved_requests.length, 1);
-      Challenge
-      .delete({id: reqId});
-      $rootScope.$broadcast('challengeAccepted');
+      // CurrentUserService.getUser();
+      // $rootScope.$on('loggedIn', ()=>{
+      // vm.user = CurrentUserService.currentUser;
+      // vm.notifications.splice(obj.$index+vm.user.recieved_requests.length, 1);
+      const index = obj.$index;
+      Challenge.delete({id: reqId});
+      vm.user.recieved_challenges.splice(index, 1);
     });
+    // $rootScope.$broadcast('challengeAccepted');
+
+
+    // });
   };
   /////__________________________________________________________________________________
   vm.handleRequest = function(senderId, leagueId, recieverId){
@@ -100,12 +109,10 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
         vm.sentRequestIds.push(leagueId);
         vm.request(senderId, leagueId, recieverId);
       }
-
     });
   };
   vm.removeRequestFromFilter = function(requestId, leagueId){
     vm.justClicked = '';
-    console.log(leagueId, vm.sentRequestIds, 'DEEEEELLLLEEETTTTEEEEEE');
     Request.delete({id: requestId});
   };
 
@@ -120,9 +127,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     .save({request: vm.requestObj})
     .$promise
     .then(()=>{
-
-      // vm.sentRequestIds.push(b);
-      console.log(vm.sentRequestIds, b, 'AAAAAAADDDDDDDDDDDDDDDDDD');
       vm.justClicked = b;
     });
   };
@@ -133,21 +137,20 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     const index = a.$index;
     Request.delete({id: b});
     vm.user.recieved_requests.splice(index, 1);
-    vm.notifications.splice(index, 1);
+    // vm.notifications.splice(index, 1);
   };
 
   vm.deleteChallenge = function(a, b){
     const index = a.$index;
     Challenge.delete({id: b});
     vm.user.recieved_challenges.splice(index, 1);
-    vm.notifications.splice(index+vm.user.recieved_requests.length, 1);
+    // vm.notifications.splice(index+vm.user.recieved_requests.length, 1);
   };
 
 
   vm.updateUser = function(e){
     const index = e;
     $rootScope.$on('matchSubmitted', ()=>{
-      console.log(index);
       vm.user.matches.splice(index, 1);
     });
   };

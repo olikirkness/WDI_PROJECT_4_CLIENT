@@ -1,10 +1,12 @@
 <h1>Challenges</h1>
-<ul ng-repeat="challenge in main.user.matches">
+<div ng-repeat="challenge in main.user.matches">
   <div ng-show="!challenge.played">
-      <li>{{challenge.users[0].username}} ({{challenge.users[0].ranking[0]}}) vs {{challenge.users[1].username}} ({{challenge.users[1].ranking[1]}})</li>
-      <li>{{challenge.league.title}}</li>
+      <h3>{{challenge.users[0].username}} ({{challenge.users[0].ranking[0]}}) vs {{challenge.users[1].username}} ({{challenge.users[1].ranking[0]}})</h3>
+      <h3>{{challenge.league.title}}</h3>
+
+      <h4>Contact your opponent via email: <span ng-if="challenge.users[0].id !== main.user.id">{{challenge.users[0].email}}</span><span ng-if="challenge.users[1].id !== main.user.id">{{challenge.users[1].email}}</span></h4>
       <div class="btn" ui-sref="matchSubmit({id: challenge.id})" ng-click="main.updateUser(this.$index)">
         <p>Submit Results</p>
       </div>
   </div>
-</ul>
+</div>

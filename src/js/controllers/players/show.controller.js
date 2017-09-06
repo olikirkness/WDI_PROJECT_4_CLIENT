@@ -7,42 +7,95 @@ function PlayerShowCtrl($stateParams, User) {
   const vm = this;
   User.get({id: $stateParams.id}).$promise.then((a)=>{
     vm.player = a;
+    console.log(vm.player);
     vm.matchStamps = [];
+    vm.formattedMatches = [{x: new Date(vm.player.created_at), y: 1000}];
     for (var i = 0; i < vm.player.matches.length; i++) {
       if(vm.player.matches[i].played){
         vm.matchStamps.unshift(vm.player.matches[i].updated_at.split('').splice(0,10).join(''));
+        vm.formattedMatches.push({x: new Date(vm.player.matches[i].updated_at), y: vm.player.ranking.reverse()[i]});
       }
     }
-    var data = {
-      // A labels array that can contain any sort of values
-      labels: vm.matlevels,
-      // Our series array that contains series objects or in this case series data arrays
+    console.log(vm.formattedMatches);
+    vm.levels = new Chartist.Line('.ct-chart', {
       series: [
-        vm.player.ranking
-      ]
-    };
+        {
+          name: 'series-1',
+          data:
+            vm.formattedMatches
+        }]
+      },{
+        axisX: {
+          type: Chartist.FixedScaleAxis,
+          divisor: 5,
+          labelInterpolationFnc: function(value) {
+            return moment(value).format('MMM D');
+          }
+        }
+      });
+    // var chart = new Chartist.Line('.ct-chart', {
+    //   series: [
+    //     {
+    //       name: 'series-1',
+    //       data: [
+    //         {x: new Date(143134652600), y: 53},
+    //         {x: new Date(143234652600), y: 40},
+    //         {x: new Date(143340052600), y: 45},
+    //         {x: new Date(143366652600), y: 40},
+    //         {x: new Date(143410652600), y: 20},
+    //         {x: new Date(143508652600), y: 32},
+    //         {x: new Date(143569652600), y: 18},
+    //         {x: new Date(143579652600), y: 11}
+    //       ]
+    //     },
+    //     {
+    //       name: 'series-2',
+    //       data: [
+    //         {x: new Date(143134652600), y: 53},
+    //         {x: new Date(143234652600), y: 35},
+    //         {x: new Date(143334652600), y: 30},
+    //         {x: new Date(143384652600), y: 30},
+    //         {x: new Date(143568652600), y: 10}
+    //       ]
+    //     }
+    //   ]
+    // }, {
+    //   axisX: {
+    //     type: Chartist.FixedScaleAxis,
+    //     divisor: 5,
+    //     labelInterpolationFnc: function(value) {
+    //       return moment(value).format('MMM D');
+    //     }
+    //   }
+    // });
 
-    // Create a new line chart object where as first parameter we pass in a selector
-    // that is resolving to our chart container element. The Second parameter
-    // is the actual data object.
-    var options = {
-      width: 700,
-      height: 400
-    };
-    vm.levels = [new Chartist.Line('.level', data, options)];
     var pieData = {
-      series: [5, 3, 4]
+      labels: ['Wins', 'Losses'],
+      series: [vm.player.matches_won, vm.player.matches.length - vm.player.matches_won]
     };
 
-    var sum = function(a, b) {
-      return a + b;
-    };
-
-    vm.pie = new Chartist.Pie('.pie', pieData, {
+    var pieOptions = {
       labelInterpolationFnc: function(value) {
-        return Math.round(value / pieData.series.reduce(sum) * 100) + '%';
+        return value[0];
       }
-    });
+    };
+
+    var responsiveOptions = [
+      ['screen and (min-width: 640px)', {
+        chartPadding: 30,
+        labelOffset: 100,
+        labelDirection: 'explode',
+        labelInterpolationFnc: function(value) {
+          return value;
+        }
+      }],
+      ['screen and (min-width: 1024px)', {
+        labelOffset: 80,
+        chartPadding: 20
+      }]
+    ];
+
+    vm.pie = new Chartist.Pie('.pie', pieData, pieOptions, responsiveOptions);
 
     vm.data = [vm.levels, vm.pie];
   });

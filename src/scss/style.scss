@@ -1,5 +1,6 @@
 @import "components/typography";
 @import "components/slick";
+@import "components/charts";
 
 .notification{
   background-color: #34b77d;
@@ -222,7 +223,7 @@ transform: translate(-50%);
   margin-top: 27px;
 }
 .memberName{
-  font-size: 35px;
+  font-size: 25px;
   margin-top: 33px;
 }
 .member-rank-list{
@@ -244,9 +245,14 @@ transform: translate(-50%);
   margin-left: 29px;
   margin-top: 40px;
 }
-.searching{
-  background-color: grey;
+.search-icon{
+  transition: all 0.3s;
 }
+.searching{
+
+  color: #34b77d;
+}
+
 a{
   text-decoration: none;
   border: none;
@@ -259,18 +265,4 @@ a:hover{
   font-size: 40px;
   margin-top: 25px;
   margin-left: -20px;
-}
-
-.newChart{
-  height: 300px;
-  width: 500px;
-}
-
-.ct-series-a .ct-line {
-  /* Set the colour of this series line */
-  stroke: #BF6969;
-  /* Control the thikness of your lines */
-  stroke-width: 5px;
-  /* Create a dashed line with a pattern */
-
 }
