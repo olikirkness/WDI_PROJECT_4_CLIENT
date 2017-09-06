@@ -9,6 +9,7 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
   const vm = this;
 
   vm.match = Match.get({id: $stateParams.id});
+  console.log(vm.match);
 
   vm.results = function(){
 
@@ -81,6 +82,7 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
     .then(()=>{
       if (ResultsService.player1GameScore > ResultsService.player2GameScore) {
         vm.player1.matches_won = vm.player1.matches_won+1;
+        vm.match.winner_id = vm.player1.id;
       }
       User.update({id: vm.player1.id}, {user: vm.player1});
     });
@@ -91,6 +93,7 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
       vm.player2.ranking.unshift(vm.result2);
       if (ResultsService.player2GameScore > ResultsService.player1GameScore) {
         vm.player2.matches_won = vm.player2.matches_won+1;
+        vm.match.winner_id = vm.player2.id;
       }
     })
     .then(()=>{
@@ -98,12 +101,13 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
         vm.match.played = true;
         vm.match.player_one_score = ResultsService.player1GameScore;
         vm.match.player_two_score = ResultsService.player2GameScore;
-        vm.match.player_one_rank_change = [vm.player1.ranking[0], ResultsService.player1Change, vm.player1.ranking[1]];
-        vm.match.player_two_rank_change = [vm.player2.ranking[0], ResultsService.player2Change, vm.player2.ranking[1]];
+        vm.match.users[0] = vm.player1;
+        vm.match.users[1] = vm.player2;
+        vm.match.player_one_rank_change = [vm.match.users[0].ranking[0], ResultsService.player1Change, vm.match.users[0].ranking[1]];
+        vm.match.player_two_rank_change = [vm.match.users[1].ranking[0], ResultsService.player2Change, vm.match.users[1].ranking[1]];
         Match.update({id: vm.match.id}, {match: vm.match}).$promise.then((a)=>{
           a.played = true;
           $rootScope.$broadcast('matchSubmitted');
-
           $state.go('leagueShow', {id: vm.match.league.id});
         });
       });

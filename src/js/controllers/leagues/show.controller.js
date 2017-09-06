@@ -10,10 +10,12 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
   CurrentUserService.getUser();
 
   vm.league = League.get({id: $stateParams.id});
+  console.log(vm.league);
   $rootScope.$on('addedToLeague', ()=>{
     vm.league = League.get({id: $stateParams.id});
-  });
 
+  });
+// console.log(vm.league);
   $rootScope.$on('loggedIn', () => {
     vm.user = CurrentUserService.currentUser;
     vm.sentChallengesInLeague = [];
