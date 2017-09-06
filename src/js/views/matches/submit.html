@@ -1,75 +1,98 @@
 
 
-{{vm.match.score}}
-
-{{vm.match.users[0].username}}
-{{vm.match.users[1].username}}
-<div class="row">
-  <div class="col-sm-3">
-      <h3>Game 1</h3>
+<!-- {{vm.match.score}} -->
+<div class="row  players">
+  <!-- <div class="col-sm-12 challengers">
+        <span>    vs   </span>    {{vm.match.users[1].username}}</h3>
+  </div> -->
+  <div class="col-sm-3 submit-input-div">
   </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score1" ng-change="vm.results()">
+  <div class="col-sm-3 submit-input-div">
+    <h3>{{vm.match.users[0].username}}</h3>
   </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score2" ng-change="vm.results()">
+  <div class="col-sm-1 submit-input-div">
+    <h4>vs</h4>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-3">
-      <h3>Game 2</h3>
-  </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score3" ng-change="vm.results()">
-  </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score4" ng-change="vm.results()">
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-3">
-      <h3>Game 3</h3>
-  </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score5" ng-change="vm.results()">
-  </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score6" ng-change="vm.results()">
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-3">
-      <h3>Game 4</h3>
-  </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score7" ng-change="vm.results()" ng-disabled="vm.isWinner && !vm.score7">
-  </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score8" ng-change="vm.results()" ng-disabled="vm.isWinner && !vm.score8">
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-3">
-      <h3>Game 5</h3>
-  </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score9" ng-change="vm.results()" ng-disabled="vm.isWinner && !vm.score9">
-  </div>
-  <div class="col-sm-3">
-    <input type="number" placeholder="0" ng-model="vm.score10" ng-change="vm.results()" ng-disabled="vm.isWinner && !vm.score10">
+  <div class="col-sm-3 right-player">
+    <h3 class="">{{vm.match.users[1].username}}</h3>
   </div>
 </div>
 
 
-<div class="btn" ng-if="vm.scoring !== 'error' && vm.isWinner" ng-click="vm.submit()">
-  <p>SUBMIT</p>
+<div class="row">
+  <div class="col-sm-4 submit-input-div">
+      <h3>1</h3>
+  </div>
+  <div class="col-sm-2 submit-input-div">
+    <input type="number"   class="match-result-input" ng-model="vm.score1" ng-change="vm.results()">
+  </div>
+  <div class="col-sm-1 submit-input-div">
+    <h4>-</h4>
+  </div>
+  <div class="col-sm-2 submit-input-div ">
+    <input type="number"   class="match-result-input" ng-model="vm.score2" ng-change="vm.results()">
+  </div>
 </div>
-<br>
-{{vm.match.users[0].ranking[0]}} {{vm.match.users[0].username}}
-{{vm.result1}}
-<br>
-{{vm.match.users[1].ranking[0]}} {{vm.match.users[1].username}}
-{{vm.result2}}
-<br>
-{{vm.scoring}}
+
+<div class="row">
+  <div class="col-sm-4 submit-input-div ">
+      <h3>2</h3>
+  </div>
+  <div class="col-sm-2 submit-input-div ">
+    <input type="number"   class="match-result-input" ng-model="vm.score3" ng-change="vm.results()">
+  </div>
+  <div class="col-sm-1 submit-input-div">
+    <h4>-</h4>
+  </div>
+  <div class="col-sm-2 submit-input-div ">
+    <input type="number"   class="match-result-input" ng-model="vm.score4" ng-change="vm.results()">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4 submit-input-div">
+      <h3>3</h3>
+  </div>
+  <div class="col-sm-2 submit-input-div">
+    <input type="number"   class="match-result-input" ng-model="vm.score5" ng-change="vm.results()">
+  </div>
+  <div class="col-sm-1 submit-input-div">
+    <h4>-</h4>
+  </div>
+  <div class="col-sm-2 submit-input-div ">
+    <input type="number"  class="match-result-input"  ng-model="vm.score6" ng-change="vm.results()">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4 submit-input-div">
+      <h3>4</h3>
+  </div>
+  <div class="col-sm-2 submit-input-div ">
+    <input type="number"   class="match-result-input" ng-model="vm.score7" ng-change="vm.results()" ng-disabled="vm.isWinner && !vm.score7">
+  </div>
+  <div class="col-sm-1 submit-input-div">
+    <h4>-</h4>
+  </div>
+  <div class="col-sm-2 submit-input-div ">
+    <input type="number"   class="match-result-input" ng-model="vm.score8" ng-change="vm.results()" ng-disabled="vm.isWinner && !vm.score8">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4 submit-input-div">
+      <h3>5</h3>
+  </div>
+  <div class="col-sm-2 submit-input-div">
+    <input type="number"  class="match-result-input"  ng-model="vm.score9" ng-change="vm.results()" ng-disabled="vm.isWinner && !vm.score9">
+  </div>
+  <div class="col-sm-1 submit-input-div">
+    <h4>-</h4>
+  </div>
+  <div class="col-sm-2 submit-input-div ">
+    <input type="number" class="match-result-input"  ng-model="vm.score10" ng-change="vm.results()" ng-disabled="vm.isWinner && !vm.score10">
+  </div>
+</div>
+
+<div class="row">
+  <div class="btn col-sm-5 col-sm-offset-4 submit-btn" ng-disabled="!m.scoring !== 'error' && !vm.isWinner" ng-class="{'valid': vm.scoring !== 'error' && vm.isWinner}" ng-click="vm.submit()">
+    <p>SUBMIT</p>
+  </div>
+</div>

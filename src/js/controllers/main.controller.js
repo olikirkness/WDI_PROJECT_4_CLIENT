@@ -70,7 +70,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     });
   };
   vm.addToMatches = function(userId, leagueId, obj, reqId){
-    // CurrentUserService.getUser();
     console.log(userId, leagueId, obj, reqId);
     vm.match = {
       score: [],
@@ -80,18 +79,11 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     };
 
     Match.save({match: vm.match}).$promise.then(()=>{
-      // CurrentUserService.getUser();
-      // $rootScope.$on('loggedIn', ()=>{
-      // vm.user = CurrentUserService.currentUser;
-      // vm.notifications.splice(obj.$index+vm.user.recieved_requests.length, 1);
       const index = obj.$index;
       Challenge.delete({id: reqId});
       vm.user.recieved_challenges.splice(index, 1);
     });
-    // $rootScope.$broadcast('challengeAccepted');
 
-
-    // });
   };
   /////__________________________________________________________________________________
   vm.handleRequest = function(senderId, leagueId, recieverId){

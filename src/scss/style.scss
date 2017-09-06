@@ -266,3 +266,69 @@ a:hover{
   margin-top: 25px;
   margin-left: -20px;
 }
+.submit-input-div{
+  text-align: center;
+  height: 100px;
+  vertical-align: middle;
+  // transform: translate(-50%);
+  h4, h3{
+    margin-top: 35px;
+    color: #777
+  }
+  h3{
+    text-align: right;
+  }
+}
+.match-result-input{
+  width: 80px;
+  height: 80px;
+  font-size: 45px;
+  outline: none;
+  border: 2px solid #777;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px;
+  margin: 10px;
+  color: #777;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+.submit-btn{
+  transition: all 0.5s;
+  background-color: #777;
+  border-radius: 8px;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  p{
+    font-size: 20px;
+    padding-top: 5px;
+    height: 80%;
+  }
+}
+.submit-btn:hover{
+  color: white;
+}
+
+.valid{
+  background-color: #BF6969!important;
+}
+.challengers{
+  text-align: center;
+  color: #777;
+
+}
+.right-player{
+  margin-top: 15px;
+  color: #777;
+  text-align: left!important;
+  height: 100px;
+}
+.players{
+  height: 60px;
+}
