@@ -29,10 +29,26 @@ nav{
     margin: 0px;
   }
   .dropdown-menu{
+    max-height: 300px;
+    overflow: auto;
     width: 300px;
     padding: 10px;
     margin-top: 50px;
     position: absolute;
+    text-align: center;
+    color: #777;
+    h4 {
+      color: #BF6969;
+    }
+    h5 {
+      color: #555;
+    }
+    .buttons{
+      margin-top: -10px;
+      border-bottom: 1px solid #777;
+      // margin: -10px 40px;
+      margin-bottom: 30px;
+    }
   }
 }
 .no-league{
@@ -462,4 +478,17 @@ input[type=number]::-webkit-outer-spin-button {
   height: 35px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.user-drop-down{
+  width: 40px!important;
+  text-align: center;
+  color: #777;
+  h5{
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-bottom: 1px solid #777;
+  }
+
 }

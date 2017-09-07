@@ -60,29 +60,35 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
                   <h4 ng-show="main.user.recieved_requests.length >0">Your requests</h4>
                   <div ng-repeat="request in main.user.recieved_requests" >
-                    <a class="dropdown-item" href="#">
-                      {{request.sender.username}} wants to join {{request.league.title}}
-                    </a>
+                    <div class="dropdown-item">
+                      <h5>{{request.sender.username}} wants to join {{request.league.title}}</h5>
+                    </div>
                     <br>
+                    <div class="buttons">
+
+
                     <div class="btn dropdown-item" ng-click="main.addToLeague(request.sender.id, request.league.id, this, request.id)">
                       Accept
                     </div>
                     <div class="btn dropdown-item" ng-click="main.deleteRequest(this, request.id)">
                       Delete
                     </div>
+                    </div>
                   </div>
                   <h4 ng-show="main.user.recieved_challenges.length >0">Your challenges</h4>
                   <div ng-repeat="challenge in main.user.recieved_challenges" >
-                    <a class="dropdown-item" href="#">
-                      {{challenge.sender.username}} wants to challenge you
-                    </a>
+                    <div class="dropdown-item" href="#">
+                      <h5>{{challenge.sender.username}} wants to challenge you</h5>
+                    </div>
                     <br>
+                    <div class="buttons">
                     <div class="btn dropdown-item" ng-click="main.addToMatches(challenge.sender.id, challenge.league.id, this, challenge.id)">
                       Accept
                     </div>
                     <div class="btn dropdown-item" ng-click="main.deleteChallenge(this, challenge.id)">
                       Delete
                     </div>
+                  </div>
                   </div>
                   <div class="dropdown-item" ng-show="main.user.recieved_challenges.length === 0 && main.user.recieved_requests.length === 0">
                     <h5>You don't have any new notifications</h5>
@@ -99,8 +105,8 @@
                   </div>
                   <i class="fa fa-user-circle default-img" aria-hidden="true" ng-show="!main.user.image"></i>
                 </div>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
-                  <div class="dropdown-item">
+                <div class="dropdown-menu user-drop-down" aria-labelledby="dropdownMenuLink" >
+                  <div class="dropdown-item view-profile">
                     <h5 ui-sref="playerShow({id: main.user.id})">View Profile</h5>
                   </div>
                   <div ng-click="main.logout()" class="dropdown-item">
