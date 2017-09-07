@@ -3,8 +3,8 @@
   overflow: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #fafafa;
-  border-radius: 5px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
 }
 .text-area{
   background-color: white;
@@ -26,29 +26,10 @@
   }
 }
 .comment{
-  background-color: #f1f1f1;
+  background-color: #ececec;
   border-radius: 20px;
   width: 80%;
   left: 10%;
-  // .image{
-  //   margin: 0!important;
-  //   padding: 0!important;
-  //   height: 55px!important;
-  //   width: 55px!important;
-  //   overflow: hidden!important;
-  //   margin-left: 26px!important;
-  //   margin-top: 35px!important;
-  //   border-radius: 50%!important;
-  //   .icon{
-  //     position: relative;
-  //     left: 50%;
-  //     height: 55px;
-  //     width: auto;
-  //     border-radius: 50%;
-  //     width: 55px;
-  //     transform: translate(-50%);
-  //   }
-  // }
   h4, p{
     text-align: left;
     margin-top: 10px;

@@ -11,7 +11,7 @@
         <h4>Matches</h4>
       </div>
     </div>
-    <div ng-show="!vm.selected" ng-repeat="member in vm.league.users | orderBy: '-current_ranking' track by $index " class="data-group">
+    <div ng-show="!vm.selected" ng-repeat="member in vm.league.users | orderBy: '-current_ranking' track by $index " class="">
       <div class="row member-rank-list">
         <div class="col-sm-2 test">
           <h3 class="rank-no" ui-sref="playerShow({id: member.id})">{{$index+1}}</h3>

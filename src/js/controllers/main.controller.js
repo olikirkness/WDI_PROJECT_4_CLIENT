@@ -79,7 +79,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     });
   };
   vm.addToMatches = function(userId, leagueId, obj, reqId){
-    console.log(userId, leagueId, obj, reqId);
     vm.match = {
       score: [],
       played: false,

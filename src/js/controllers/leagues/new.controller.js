@@ -8,10 +8,7 @@ function LeagueNewCtrl( League, $state, CurrentUserService) {
 
   const vm = this;
   vm.submit = function(){
-    if(!vm.league.image || !vm.league.club || !vm.league.title){
-      console.log('NOT COMPLETE');
-    }else{
-      console.log(vm.league.club);
+    if(vm.league.image && vm.league.club && vm.league.title){
       vm.league.created_by = CurrentUserService.currentUser.id;
       vm.league.user_ids = [CurrentUserService.currentUser.id];
       League.save({league: vm.league}).$promise.then((e)=>{

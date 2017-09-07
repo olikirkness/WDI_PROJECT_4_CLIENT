@@ -17,7 +17,6 @@ function CurrentUserService(TokenService, $rootScope, User) {
         });
     }
   };
-  console.log(self.currentUser);
   self.removeUser = () => {
     self.currentUser = null;
     TokenService.removeToken();

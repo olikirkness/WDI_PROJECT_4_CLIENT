@@ -9,7 +9,6 @@ function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $stat
   const vm = this;
 
   vm.match = Match.get({id: $stateParams.id});
-  console.log(vm.match);
 
   vm.results = function(){
 

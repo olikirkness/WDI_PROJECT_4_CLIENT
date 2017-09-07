@@ -10,12 +10,10 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
   CurrentUserService.getUser();
 
   vm.league = League.get({id: $stateParams.id});
-  console.log(vm.league);
   $rootScope.$on('addedToLeague', ()=>{
     vm.league = League.get({id: $stateParams.id});
 
   });
-  // console.log(vm.league);
   $rootScope.$on('loggedIn', () => {
     vm.user = CurrentUserService.currentUser;
     vm.sentChallengesInLeague = [];
@@ -68,7 +66,6 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
 
   vm.challenge = function(e){
     vm.updateState();
-    // vm.clicked = true;
     Challenge.save({challenge: {
       sender_id: CurrentUserService.currentUser.id,
       reciever_id: e,
@@ -78,7 +75,6 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
 
 
   vm.setSelected = function(){
-    console.log('LOGGED');
     vm.selected = !vm.selected;
   };
 

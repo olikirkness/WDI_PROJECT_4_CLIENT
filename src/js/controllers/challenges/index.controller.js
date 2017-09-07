@@ -11,9 +11,9 @@ function ChallengeIndexCtrl($http, CurrentUserService, $rootScope) {
   vm.user = CurrentUserService.currentUser;
   CurrentUserService.getUser();
   $rootScope.$on('challengeAccepted', ()=>{
-    console.log('before', vm.user);
+
     vm.user = CurrentUserService.currentUser;
-    console.log('challengeAccepted', vm.user);
+
   });
 
   vm.count = 0;
