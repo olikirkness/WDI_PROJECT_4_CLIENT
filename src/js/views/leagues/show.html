@@ -37,7 +37,7 @@
 
       </div>
     </div>
-    <div ng-show="vm.selected" ng-repeat="match in vm.league.matches | orderBy: '-updated_at'"r>
+    <div ng-show="vm.selected" ng-repeat="match in vm.league.matches | orderBy: '-updated_at'">
       <!-- <div class="">
       HELLO
     </div> -->
@@ -146,7 +146,7 @@
   </div>
 <div class="comment-div">
   <h3>Comments</h3>
-  <div class="comments" ng-repeat="comment in vm.league.comments">
+  <div class="comments" ng-repeat="comment in vm.league.comments | orderBy: '-created_at'">
     <div class="comment row">
       <div class="col-sm-12  body">
         <h4>{{comment.sender.username}}</h4>

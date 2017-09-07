@@ -29,6 +29,14 @@ function PlayerShowCtrl($stateParams, User) {
           labelInterpolationFnc: function(value) {
             return moment(value).format('MMM D');
           }
+        },
+        axisY: {
+          type: Chartist.FixedScaleAxis,
+          divisor: 5,
+          labelInterpolationFnc: function (value) {
+            // do whatever math operation you want here
+            return Math.floor(value);
+          }
         }
       });
 
@@ -72,6 +80,6 @@ function PlayerShowCtrl($stateParams, User) {
       //   }
 
       vm.data = [vm.levels, vm.pie];
-  });
+    });
 
-}
+  }

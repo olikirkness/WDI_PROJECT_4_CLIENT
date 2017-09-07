@@ -1,6 +1,7 @@
 .comment-div{
+  color: #777;
   height: 400px;
-  overflow: auto;
+  overflow: scroll;
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #f8f8f8;
@@ -26,16 +27,21 @@
   }
 }
 .comment{
+  color: #444;
   background-color: #ececec;
   border-radius: 20px;
-  width: 80%;
-  left: 10%;
+  width: 85%;
+  left: 12%;
   h4, p{
     text-align: left;
     margin-top: 10px;
   }
+  h4 {
+    font-size: 16px;
+  }
   .body{
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   margin-top: 10px;
 

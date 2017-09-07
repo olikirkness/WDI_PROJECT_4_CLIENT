@@ -9,17 +9,23 @@
 //
 .ct-series-a .ct-line {
   /* Set the colour of this series line */
-  stroke: #BF6969;
+  stroke: #34b77d;
   /* Control the thikness of your lines */
   stroke-width: 5px;
   /* Create a dashed line with a pattern */
 
+}
+.ct-series-a .ct-point{
+  stroke: #2a6d4f;
 }
 .charts{
   margin-top: 40px;
 }
 .ct-series-b .ct-slice-pie, .ct-series-b .ct-slice-donut-solid, .ct-series-b .ct-area {
     fill: #f2f2f2;
+}
+.ct-series-a .ct-slice-pie, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-area {
+    fill: #34b77d;
 }
 .ct-label{
   fill: #555;
@@ -33,6 +39,8 @@
 }
 .chart-title{
   text-align: center;
+  font-size: 30px;
+  color: #777
 }
 
 // .ct-series-a .ct-slice-pie {

@@ -219,7 +219,7 @@ width: 65px;
 overflow: hidden;
 position: relative;
 text-align: center;
-margin-left: 26px;
+// margin-left: 26px;
 margin-top: 23px;
 border-radius: 50%;
 
@@ -234,7 +234,7 @@ border-radius: 50%;
 .default-img-league{
   color: grey;
   font-size: 62px;
-  margin-left: 15px;
+  margin-left: -10px;
   margin-top: 22px;
 }
 .rank-no, .memberName{
@@ -245,8 +245,8 @@ border-radius: 50%;
   margin-top: 27px;
 }
 .memberName{
-  font-size: 25px;
-  margin-top: 33px;
+  font-size: 23px;
+  margin-top: 38px;
 }
 .member-rank-list, .matches-row{
   height: 120px;
@@ -305,6 +305,7 @@ a:hover{
     text-align: right;
   }
 }
+
 .submitPage{
     margin-left: -60px
 }
