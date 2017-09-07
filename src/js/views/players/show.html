@@ -1,22 +1,26 @@
-<h2>{{vm.player.username}}</h2>
-<div class="chart-container" style="position: relative; height:20vh; width:60vw">
-  <!-- <canvas id="myChart"></canvas> -->
-</div>
+
 
 <div class="row">
-  <div class="col-sm-5">
+  <div class="col-sm-4 col-sm-offset-2">
     <div class="indexDiv leagueImg">
       <img class="indexImg" src="{{vm.player.image}}" alt="">
     </div>
   </div>
-
+  <div class="col-sm-3 player-info">
+    <h2>{{vm.player.username}}</h2>
+    <h4 ng-if="vm.player.leagues.length !== 0">Member of {{vm.player.leagues.length}} <span ng-if="vm.player.leagues.length > 1">leagues</span><span ng-if="vm.player.leagues.length === 1">league</span></h4>
+    <h4 ng-if="vm.player.leagues.length === 0">Hasn't joined any leagues yet</h4>
+    <h4>Current ranking of {{vm.player.current_ranking}}</h4>
+    <h4>Average ranking of {{vm.player.ave_ranking}}</h4>
+    <h4>{{vm.player.ranking.length -1}} matches played</h4>
+  </div>
 </div>
-
 
 
 <div class="row">
 
-  <div class="col-sm-12">
+  <div class="col-sm-8 col-sm-offset-2 charts">
+    <h4 class="chart-title">Stats</h4>
     <slick slides-to-show="1" ng-show="vm.player.matches.length !== 0" slides-to-scroll="1" init-onload="true" data="vm.data" dots="false" arrows="true" rows="1" autoplay="false" >
 
       <div class="slide-wrapper">

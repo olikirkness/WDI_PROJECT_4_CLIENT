@@ -37,7 +37,7 @@
 
       </div>
     </div>
-    <div ng-show="vm.selected" ng-repeat="match in vm.league.matches">
+    <div ng-show="vm.selected" ng-repeat="match in vm.league.matches | orderBy: '-updated_at'"r>
       <!-- <div class="">
       HELLO
     </div> -->
@@ -139,13 +139,11 @@
     </div>
   </div>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-4 aside">
   <h2 class="memberName leagueTitle">{{vm.league.title}}</h2>
   <div class="indexDiv leagueImg showImg">
     <img class="indexImg" src="{{vm.league.image}}" alt="">
   </div>
 
 </div>
-
-
 </div>

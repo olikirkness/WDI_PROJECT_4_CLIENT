@@ -2,9 +2,8 @@
 <section class="relative-section homepage" id="home-page">
   <header class="">
     <p>
-      <img class="logo" src="/images/logo.svg" alt="">
+      <img class="logo" src="http://i.imgur.com/9iELu4V.png" alt="">
     </p>
-    <h1>Matchplay</h1>
   </header>
   <div>
     <div class="relative-button">
@@ -18,8 +17,6 @@
 
 
 <div class="wrapper" id="wrapper">
-  <div class="test">
-  </div>
   <div class="slick">
     <div ng-controller="LoginCtrl as login" class="relative-section" id="login-page">
       <form ng-submit="login.login()">
@@ -38,7 +35,6 @@
     <div ng-controller="RegisterCtrl as register" class="relative-section" id="register-page">
       <form ng-submit="register.register()" >
         <h2 ng-click="main.findStories()">Register</h2>
-
         <div>
           <input type="text" name="username" placeholder="username" ng-model="register.user.username">
         </div>
@@ -52,9 +48,9 @@
           <input type="password" name="password" placeholder="password" ng-model="register.user.password">
         </div>
         <div>
-          <input type="password" name="passwordConfirmation" placeholder="confirm your password" ng-model="register.user.passwordConfirmation">
+          <input type="password" name="passwordConfirmation" placeholder="Confirm password" ng-model="register.user.passwordConfirmation">
         </div>
-        <input type="submit" ng-click="main.findStories()" class="register-btn" value="REGISTER" id="bold-reg">
+        <input type="submit" ng-click="main.findStories()" class="register-btn all-button" value="REGISTER" id="bold-reg">
       </form>
     </div>
   </div>

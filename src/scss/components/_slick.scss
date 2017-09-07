@@ -1,25 +1,33 @@
 .slick-next:before {
   color: black;
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   content: '>';
   font-size: 30px;
+  margin-left: 20px;
+  color: #777;
 }
 
 .slick-prev:before {
   color: black;
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   content: '<';
   font-size: 30px;
+  color: #777;
+
 }
 
 .login-arrow:before {
   content: '<Login';
   font-size: 20px;
-  margin: -20px;
+  margin: 40px;
 }
 .register-arrow:before {
   content: 'Register>';
   font-size: 20px;
+  margin: -60px;
+}
+.slick-next{
+  right: 30px;
 }
 
 
@@ -30,6 +38,7 @@
 // NAVBAR
 .slick-frame {
     visibility: hidden;
+    align-items: center;
 }
 .slick-frame.slick-initialized {
     visibility: visible;

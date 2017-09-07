@@ -15,6 +15,9 @@
   /* Create a dashed line with a pattern */
 
 }
+.charts{
+  margin-top: 40px;
+}
 .ct-series-b .ct-slice-pie, .ct-series-b .ct-slice-donut-solid, .ct-series-b .ct-area {
     fill: #f2f2f2;
 }
@@ -25,8 +28,11 @@
 .pie{
   .ct-label{
     fill: #bbb;
-    font-size: 40px;
+    font-size: 20px;
   }
+}
+.chart-title{
+  text-align: center;
 }
 
 // .ct-series-a .ct-slice-pie {

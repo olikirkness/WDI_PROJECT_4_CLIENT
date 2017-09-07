@@ -2,12 +2,49 @@
   height: 100vh;
   text-align: center;
   position: relative;
+  // background-color: #ccc;
+  // width: 100vw;
+form{
+  margin-top: 30%;
+  input{
+    background-color: white;
+    border: none;
+    outline: none;
+    width: 400px;
+    margin: 10px;
+    font-size: 20px;
+    border-bottom: 2px solid #777;
+  }
+  .all-button{
+    background-color: #BF6969;
+    border-radius: 5px;
+    color: white;
+    border: none;
+  }
 
-  .relative-button {
-    // @include absolute-center;
+}
+.logo{
+  margin-left: -35px;
+}
+
+.wrapper{
+  width: 500px;
+}
+.slick{
+  width:80%;
+}
+.relative-button {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%);
     bottom: 40px;
     a, img {
       display: block;
     }
   }
+
 }
+// .wrapper{
+//   background-color: blue;
+// }

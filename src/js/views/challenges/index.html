@@ -6,7 +6,7 @@
         <h4>{{challenge.league.title}}</h4>
       </div>
       <div class="col-sm-6">
-          <h4>
+          <h4 class="contact-email">
             Contact your opponent via email:
             <span ng-if="challenge.users[0].id !== main.user.id">
               <a href="">{{challenge.users[0].email}}</a></span>
@@ -14,11 +14,12 @@
               <a href="">
               {{challenge.users[1].email}}</a></span>
           </h4>
+          <div class="btn submit-results-btn" ui-sref="matchSubmit({id: challenge.id})" ng-click="main.updateUser(this.$index)">
+            <p>Submit Results</p>
+          </div>
       </div>
 
-      <div class="btn" ui-sref="matchSubmit({id: challenge.id})" ng-click="main.updateUser(this.$index)">
-        <p>Submit Results</p>
-      </div>
+
 
     </div>
     {{vm.countInc()}}
