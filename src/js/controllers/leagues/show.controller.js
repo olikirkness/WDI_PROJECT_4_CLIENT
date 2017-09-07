@@ -2,9 +2,9 @@ angular
 .module('LeagueApp')
 .controller('LeagueShowCtrl', LeagueShowCtrl);
 
-LeagueShowCtrl.$inject =['League', '$stateParams', 'Match', '$rootScope', 'Challenge', 'CurrentUserService'];
+LeagueShowCtrl.$inject =['League', '$stateParams', 'Match', '$rootScope', 'Challenge', 'CurrentUserService', 'Comment'];
 
-function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, CurrentUserService) {
+function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, CurrentUserService, Comment) {
 
   const vm = this;
   CurrentUserService.getUser();
@@ -15,7 +15,7 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
     vm.league = League.get({id: $stateParams.id});
 
   });
-// console.log(vm.league);
+  // console.log(vm.league);
   $rootScope.$on('loggedIn', () => {
     vm.user = CurrentUserService.currentUser;
     vm.sentChallengesInLeague = [];
@@ -82,12 +82,15 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
     vm.selected = !vm.selected;
   };
 
-
-
-
-
-
-
-  // vm.player_one = User.get()
-
+  vm.submitComment = function(){
+    vm.comment.league_id = $stateParams.id;
+    vm.comment.sender_id = vm.user.id;
+    Comment.save({comment: vm.comment}).$promise.then(()=> {
+      vm.user = CurrentUserService.currentUser;
+      vm.league = League.get({id: $stateParams.id}).$promise.then((league)=>{
+        vm.league = league;
+        vm.comment.body = '';
+      });
+    });
+  };
 }

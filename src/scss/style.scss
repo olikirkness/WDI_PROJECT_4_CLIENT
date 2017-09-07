@@ -2,6 +2,7 @@
 @import "components/slick";
 @import "components/charts";
 @import "components/homepage";
+@import "components/comments";
 
 .notification{
   background-color: #34b77d;
@@ -224,10 +225,10 @@ border-radius: 50%;
 }
 .league-img-icon{
   position: relative;
-left: 50%;
-height: 65px;
-width: auto;
-transform: translate(-50%);
+  left: 50%;
+  height: 65px;
+  width: auto;
+  transform: translate(-50%);
 }
 .default-img-league{
   color: grey;

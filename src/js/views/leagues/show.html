@@ -144,6 +144,20 @@
   <div class="indexDiv leagueImg showImg">
     <img class="indexImg" src="{{vm.league.image}}" alt="">
   </div>
+<div class="comment-div">
+  <h3>Comments</h3>
+  <div class="comments" ng-repeat="comment in vm.league.comments">
+    <div class="comment row">
+      <div class="col-sm-12  body">
+        <h4>{{comment.sender.username}}</h4>
+        <p>{{comment.body}}</p>
+      </div>
+    </div>
+  </div>
+    </div>
+  <textarea class="text-area" ng-model="vm.comment.body" placeholder="Add new comment"></textarea>
+  <div class="submit" name=""  ng-click="vm.submitComment()">
+    <h4>Post</h4>
+  </div>
 
-</div>
 </div>
