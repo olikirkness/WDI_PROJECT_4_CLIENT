@@ -37,10 +37,12 @@
 
       </div>
     </div>
+
+
+
+
+
     <div ng-show="vm.selected" ng-repeat="match in vm.league.matches | orderBy: '-updated_at'">
-      <!-- <div class="">
-      HELLO
-    </div> -->
     <div class="" ng-show="match.played">
       <div class="row matches-row">
         <div class="col-sm-2 matches">
@@ -137,6 +139,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div ng-show="vm.selected && vm.league.matches.length === 0" class="no-matches-yet">
+    <h2>No matches yet.</h2>
   </div>
 </div>
 <div class="col-sm-4 aside">

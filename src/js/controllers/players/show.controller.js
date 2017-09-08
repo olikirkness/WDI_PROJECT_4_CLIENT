@@ -34,7 +34,6 @@ function PlayerShowCtrl($stateParams, User) {
           type: Chartist.FixedScaleAxis,
           divisor: 5,
           labelInterpolationFnc: function (value) {
-            // do whatever math operation you want here
             return Math.floor(value);
           }
         }
@@ -73,11 +72,6 @@ function PlayerShowCtrl($stateParams, User) {
       //
 
       vm.pie = new Chartist.Pie('.pie', pieData, pieOptions, responsiveOptions);
-      // {
-      //   labelInterpolationFnc: function(value) {
-      //     (value);
-      //     return Math.round(value / pieData.series.reduce(sum) * 100) + '%';
-      //   }
 
       vm.data = [vm.levels, vm.pie];
     });

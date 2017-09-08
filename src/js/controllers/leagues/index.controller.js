@@ -13,12 +13,10 @@ function LeaguesIndexCtrl($http, League, filterFilter, $rootScope) {
   .$promise
   .then((a)=>{
     vm.leagues = a;
-    // vm.filtered = vm.leagues;
   });
 
   vm.filter = function(){
     const params = { title: vm.q };
-    // vm.filtered = vm.leagues;
     if(vm.q){
       vm.filtered = filterFilter(vm.leagues, params);
     }else{

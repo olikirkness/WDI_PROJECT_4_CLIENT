@@ -154,8 +154,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       vm.user.matches.splice(index, 1);
     });
   };
-  // vm.home = true;
-  // vm.home = function(){
-  //   vm.home = !vm.home;
-  // };
+
+  
 }

@@ -85,7 +85,6 @@ nav{
     left: 50%;
     transform: translate(-50%);
     height: 250px;
-
   }
 }
 .searchResults{
@@ -181,7 +180,7 @@ i{
   width: 80%;
   margin-left: 10%;
   border-radius: 10px;
-  background-color: #fbfbfb;
+  background-color: #f6f6f6;
   padding: 20px;
   height: 100%;
   margin-top: 50px;
@@ -523,4 +522,8 @@ input[type=number]::-webkit-outer-spin-button {
     border-bottom: 1px solid #333;
   }
 
+}
+.no-matches-yet{
+  margin-top: 150px;
+  color: #777;
 }
