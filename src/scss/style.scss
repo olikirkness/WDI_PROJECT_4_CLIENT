@@ -21,6 +21,34 @@
 .aside{
   text-align: -webkit-center;
 }
+.filterResults{
+
+  text-align: center;
+  color: #777;
+  transition: visibility 0.3s linear;
+  .fading{
+    visibility: hidden;
+
+  }
+
+  h4{
+    position: absolute;
+    bottom: 21px;
+    font-size: 15px;
+    padding: 15px;
+    width: 70%;
+    margin-left: 9%;
+    transition: all 0.3s;
+    border-radius: 8px;
+    color: white;
+  }
+  .requestSent{
+    background-color: #34b77d;
+    visibility: visible;
+  }
+
+}
+
 nav{
   background-color: #BF6969!important;
   height:50px;
@@ -510,9 +538,9 @@ input[type=number]::-webkit-outer-spin-button {
 
     color: #777;
 }
-.container{
-  margin-bottom: 40px;
-}
+// .container{
+//   margin-bottom: 40px;
+// }
 .contact-email{
   a{
     line-height: 30px;

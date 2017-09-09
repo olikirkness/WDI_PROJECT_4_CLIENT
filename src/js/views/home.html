@@ -1,10 +1,8 @@
 <div data-ng-controller="MainCtrl as main" ng-init="main.home()"></div>
 <section class="relative-section homepage" id="home-page">
-  <header class="">
-    <p>
+  <div class="home-img">
       <img class="logo" src="http://i.imgur.com/9iELu4V.png" alt="">
-    </p>
-  </header>
+  </div>
   <div>
     <div class="relative-button enter-button" >
       <a href="#wrapper" id="loginLink" class="">
@@ -14,12 +12,14 @@
   </div>
 </section>
 
+<div class="home-bottom">
+
 
 <div class="wrapper" id="wrapper">
   <div class="slick">
     <div ng-controller="LoginCtrl as login" class="relative-section" id="login-page">
       <form ng-submit="login.login()">
-        <h2 >Login</h2>
+        <!-- <h2 >Login</h2> -->
 
         <div>
           <input type="email" name="email" placeholder="email" ng-model="login.user.email">
@@ -33,7 +33,7 @@
 
     <div ng-controller="RegisterCtrl as register" class="relative-section" id="register-page">
       <form ng-submit="register.register()" >
-        <h2 ng-click="main.findStories()">Register</h2>
+        <!-- <h2 class="slick-login" ng-click="main.findStories()">Register</h2> -->
         <div>
           <input type="text" name="username" placeholder="username" ng-model="register.user.username">
         </div>
@@ -53,6 +53,7 @@
       </form>
     </div>
   </div>
+</div>
 </div>
 
 <script type="text/javascript">

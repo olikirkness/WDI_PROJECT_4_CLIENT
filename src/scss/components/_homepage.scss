@@ -5,7 +5,11 @@
   // background-color: #ccc;
   // width: 100vw;
 form{
+  // margin-left: 100px;
   margin-top: 20%;
+.slick-login{
+    color: white!important;
+  }
   input{
     background-color: white;
     border: none;
@@ -13,31 +17,41 @@ form{
     width: 400px;
     margin: 10px;
     font-size: 20px;
-    border-bottom: 2px solid #777;
+    padding: 4px;
+    border-radius: 3px;
   }
   .enter-button{
     color: #777!important;
     text-decoration: none!important;
   }
   .all-button{
-    background-color: #BF6969;
+    background-color: white;
     border-radius: 5px;
-    color: white;
+    color: #BF6969;
     border: none;
 
   }
 
 }
+
+
+.home-img{
+  background-color: #eee;
+  position: absolute;
+  // width: 100vw;
+  left: -15%;
+  right: -5%;
+  height: 100vh;
+  // width: 100vw
+}
 .logo{
-  margin-left: -35px;
+  margin-left: 9%;
 }
 
 .wrapper{
   width: 500px;
 }
-.slick{
-  width:80%;
-}
+
 .relative-button {
     position: absolute;
     text-align: center;
@@ -58,3 +72,28 @@ form{
 // .wrapper{
 //   background-color: blue;
 // }
+// .wrapper{
+//   background-color: #34b77d;
+//   height: 100%;
+//
+//   right: 0;
+//   left: -6.666%;
+//   bottom: -40px;
+//   position: relative;
+//   bottom: -40px;
+//   width: 100vw;
+//   top: 0;
+// }
+.slick{
+  margin-left: 10%;
+  width:80%;
+}
+.home-bottom{
+  position: absolute;
+  width: 100vw;
+  // height: 100vh;
+  right: 0px;
+  // bottom: 0px;
+  margin-bottom: -40px;
+  background-color: #BF6969;
+}

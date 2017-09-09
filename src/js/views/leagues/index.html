@@ -4,7 +4,7 @@
 
 
 <div class="no-league" ng-show="main.user.leagues.length === 0 && !vm.searching">
-  <h2>You havn't joined any leagues yet, <span ng-click="vm.startSearch()">click here</span> to search.</h2>
+  <h2>You havn't joined any leagues yet, <span ng-click="main.startSearch()">click here</span> to search.</h2>
 </div>
 <div class="" ng-show="main.user.leagues.length !== 0">
   <!-- <h1 ng-show="!vm.q">My leagues</h1> -->
@@ -47,7 +47,6 @@
   <div ng-show="vm.q || vm.filtered.length >0" ng-repeat="league in vm.filtered">
 
     <div class="col-sm-4 searchResults" ng-hide="main.joinedLeagues.includes(league.id)">
-
       <i class="fa fa-plus-circle fa-4x" aria-hidden="false" ng-click="main.handleRequest(main.user.id, league.id, league.creator.id)" ng-class="{'delete': main.sentRequestIds.includes(league.id), 'send': !main.sentRequestIds.includes(league.id)}"></i>
 
       <div class="indexDiv">
@@ -57,6 +56,10 @@
       <p>{{league.users.length}} members </p>
       <p>Ave Ranking: {{league.league_ave_ranking}}</p>
       <p>Matches played: {{league.matches_played}}</p>
+
+      <div class="fading">
+        <h4 ng-class="{'requestSent': main.sentRequestIds.includes(league.id)}">Your request has been sent to {{league.creator.username}}</h4>
+      </div>
 
     </div>
   </div>
