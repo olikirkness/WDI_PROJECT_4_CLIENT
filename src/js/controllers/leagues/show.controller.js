@@ -108,26 +108,26 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
 
   };
 
-  vm.leagueUpdate = function(){
-    League
-    .update({id: vm.league.id}, vm.league)
-    .$promise
-    .then((league)=>{
-      for (var i = 0; i < vm.user.leagues.length; i++) {
-        if (vm.user.leagues[i].id === parseInt(vm.league.id)) {
-          console.log(vm.user.leagues[i].id, $stateParams.id);
-          vm.user.leagues.splice(i, 1);
-          User.update({id: vm.user.id}, {user: vm.user}).$promise.then((user)=>{
-            // vm.user = user;3
-            console.log(user, 'USER');
-            console.log(league, 'LEAGUE');
-            $state.go('leaguesIndex');
-          });
-        }
-
-      }
-
-
-    });
-  };
+  // vm.leagueUpdate = function(){
+  //   League
+  //   .update({id: vm.league.id}, vm.league)
+  //   .$promise
+  //   .then((league)=>{
+  //     for (var i = 0; i < vm.user.leagues.length; i++) {
+  //       if (vm.user.leagues[i].id === parseInt(vm.league.id)) {
+  //         console.log(vm.user.leagues[i].id, $stateParams.id);
+  //         vm.user.leagues.splice(i, 1);
+  //         User.update({id: vm.user.id}, {user: vm.user}).$promise.then((user)=>{
+  //           // vm.user = user;3
+  //           console.log(user, 'USER');
+  //           console.log(league, 'LEAGUE');
+  //           $state.go('leaguesIndex');
+  //         });
+  //       }
+  //
+  //     }
+  //
+  //
+  //   });
+  // };
 }
