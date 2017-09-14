@@ -2,9 +2,9 @@ angular
 .module('LeagueApp')
 .controller('LeagueShowCtrl', LeagueShowCtrl);
 
-LeagueShowCtrl.$inject =['League', '$stateParams', 'Match', '$rootScope', 'Challenge', 'CurrentUserService', 'Comment'];
+LeagueShowCtrl.$inject =['League', '$stateParams', 'Match', '$rootScope', 'Challenge', 'CurrentUserService', 'Comment', '$state', 'User'];
 
-function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, CurrentUserService, Comment) {
+function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, CurrentUserService, Comment, $state, User) {
 
   const vm = this;
   CurrentUserService.getUser();
@@ -19,6 +19,7 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
     vm.sentChallengesInLeague = [];
     vm.recievedChallengesInLeague = [];
     vm.unplayedMatchesInLeague = [];
+
     vm.checkSent = function (){
       vm.user = CurrentUserService.currentUser;
       for (var i = 0; i < vm.user.sent_challenges.length; i++) {
@@ -58,6 +59,9 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
     vm.checkRecieved();
     vm.checkUnplayed();
   });
+  // vm.checkSent();
+  // vm.checkRecieved();
+  // vm.checkUnplayed();
   vm.updateState = function(){
     CurrentUserService.getUser();
   };
@@ -87,6 +91,43 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
         vm.league = league;
         vm.comment.body = '';
       });
+    });
+  };
+
+  vm.leaveLeague = function(e){
+    console.log(vm.league, e);
+
+    for (var i = 0; i < vm.league.users.length; i++) {
+      if (vm.league.users[i].id === e) {
+
+        vm.league.users.splice(i, 1);
+        vm.leagueUpdate();
+      }
+    }
+
+
+  };
+
+  vm.leagueUpdate = function(){
+    League
+    .update({id: vm.league.id}, vm.league)
+    .$promise
+    .then((league)=>{
+      for (var i = 0; i < vm.user.leagues.length; i++) {
+        if (vm.user.leagues[i].id === parseInt(vm.league.id)) {
+          console.log(vm.user.leagues[i].id, $stateParams.id);
+          vm.user.leagues.splice(i, 1);
+          User.update({id: vm.user.id}, {user: vm.user}).$promise.then((user)=>{
+            // vm.user = user;3
+            console.log(user, 'USER');
+            console.log(league, 'LEAGUE');
+            $state.go('leaguesIndex');
+          });
+        }
+
+      }
+
+
     });
   };
 }

@@ -33,12 +33,11 @@
 
     <div ng-controller="RegisterCtrl as register" class="relative-section" id="register-page">
       <form ng-submit="register.register()" >
-        <!-- <h2 class="slick-login" ng-click="main.findStories()">Register</h2> -->
         <div>
           <input type="text" name="username" placeholder="username" ng-model="register.user.username">
         </div>
         <div>
-          <input type="profilePicture" name="profilePicture" placeholder="http://www.your-picture-here.com" ng-model="register.user.profilePicture">
+          <input type="profilePicture" name="profilePicture" placeholder="http://www.your-picture-here.com" ng-model="register.user.image">
         </div>
         <div>
           <input type="email" name="email" placeholder="email" ng-model="register.user.email">
