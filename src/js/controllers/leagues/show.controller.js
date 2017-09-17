@@ -81,7 +81,6 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
   vm.setSelected = function(){
     vm.selected = !vm.selected;
   };
-
   vm.submitComment = function(){
     vm.comment.league_id = $stateParams.id;
     vm.comment.sender_id = vm.user.id;
@@ -94,40 +93,43 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
     });
   };
 
-  vm.leaveLeague = function(e){
-    console.log(vm.league, e);
-
+  vm.leaveLeague = function(userId){
+    vm.user_ids = [];
     for (var i = 0; i < vm.league.users.length; i++) {
-      if (vm.league.users[i].id === e) {
-
+      if (vm.league.users[i].id === userId) {
+        console.log('MATCH');
         vm.league.users.splice(i, 1);
-        vm.leagueUpdate();
+      }else{
+        vm.user_ids.push(vm.league.users[i].id);
+        console.log(vm.user_ids);
+      }
+    }
+    vm.userUpdate();
+  };
+
+  vm.userUpdate = function(){
+    for (var i = 0; i < vm.user.leagues.length; i++) {
+      if (vm.user.leagues[i].id === vm.league.id) {
+        vm.user.leagues.splice(i,1);
       }
     }
 
-
+    vm.league = {
+      id: vm.league.id,
+      user_ids: vm.user_ids
+    };
+    League
+    .update({id: vm.league.id}, {league: vm.league})
+    .$promise
+    .then((league)=>{
+      console.log(league, 'LEAGUE');
+      $state.go('leaguesIndex');
+    });
   };
-
-  // vm.leagueUpdate = function(){
-  //   League
-  //   .update({id: vm.league.id}, vm.league)
-  //   .$promise
-  //   .then((league)=>{
-  //     for (var i = 0; i < vm.user.leagues.length; i++) {
-  //       if (vm.user.leagues[i].id === parseInt(vm.league.id)) {
-  //         console.log(vm.user.leagues[i].id, $stateParams.id);
-  //         vm.user.leagues.splice(i, 1);
-  //         User.update({id: vm.user.id}, {user: vm.user}).$promise.then((user)=>{
-  //           // vm.user = user;3
-  //           console.log(user, 'USER');
-  //           console.log(league, 'LEAGUE');
-  //           $state.go('leaguesIndex');
-  //         });
-  //       }
-  //
-  //     }
-  //
-  //
+  // vm.leagueUpdate = function(updatedLeague){
+  //   League.update({id: updatedLeague.id}, {user: updatedLeague}).$promise.then((league)=>{
+  //     console.log(league, 'LEAGUE');
+  //     $state.go('leaguesIndex');
   //   });
   // };
 }

@@ -32,6 +32,7 @@
         <div class="col-sm-1">
           <div class="btn test" ng-click="vm.challenge(member.id)" ng-if="!vm.unplayedMatchesInLeague.includes(member.id) && !vm.sentChallengesInLeague.includes(member.id) && !vm.recievedChallengesInLeague.includes(member.id) && member.id !== vm.user.id && !vm.clicked">
             <i class="fa fa-trophy  icon-show" aria-hidden="true"></i>
+            <!-- <p>Challenge</p> -->
           </div>
         </div>
 
@@ -48,7 +49,7 @@
         <div class="col-sm-2 matches">
           <div class="" ng-if="match.users[0].id === match.winner_id">
             <div class="league-img-icon-outer matches-img-icon" ng-if="match.users[0].image">
-              <img class=" league-img-icon"  src="{{match.users[0].image}}" alt="">
+              <img class="league-img-icon"  src="{{match.users[0].image}}" alt="">
             </div>
             <i class="fa fa-user-circle default-img-league col-sm-2 matches-icon" aria-hidden="true" ng-show="!match.users[0].image"></i>
           </div>
@@ -148,10 +149,14 @@
   <h2 class="memberName leagueTitle">{{vm.league.title}}</h2>
   <div class="indexDiv leagueImg showImg">
     <img class="indexImg" src="{{vm.league.image}}" alt="">
+
   </div>
-  <!-- <div class="btn leave-btn" ng-click="vm.leaveLeague(main.user.id)">
-    Leave
-  </div> -->
+  <div class="row">
+    <div class="btn leave-btn" ng-click="vm.leaveLeague(main.user.id)" ng-if="vm.league.created_by !== main.user.id">
+      Leave
+    </div>
+  </div>
+
 <div class="comment-div">
   <h3>Comments</h3>
   <div class="comments" ng-repeat="comment in vm.league.comments | orderBy: '-created_at'">
