@@ -18,21 +18,26 @@
 <div class="wrapper" id="wrapper">
   <div class="slick">
     <div ng-controller="LoginCtrl as login" class="relative-section" id="login-page">
-      <form ng-submit="login.login()">
-        <!-- <h2 >Login</h2> -->
 
+      <form ng-submit="login.login()">
+        <div class="errorMessage" ng-if="login.error">
+          <p>Invalid Login Credentials</p>
+        </div>
         <div>
           <input type="email" name="email" placeholder="email" ng-model="login.user.email">
         </div>
         <div>
-          <input type="password" name="password" placeholder="password" ng-model="login.user.password">
+          <input type="password" name="password" placeholder="password" ng-model="login.user.password" >
         </div>
         <input type="submit" ng-click="main.home()" class="login-btn all-button" value="LOGIN" id="bold-log">
       </form>
     </div>
 
     <div ng-controller="RegisterCtrl as register" class="relative-section" id="register-page">
-      <form ng-submit="register.register()" >
+      <form ng-submit="register.register()">
+        <div class="errorMessage" ng-if="register.regError">
+          <p>Invalid Registration Form.</p>
+        </div>
         <div>
           <input type="text" name="username" placeholder="username" ng-model="register.user.username">
         </div>

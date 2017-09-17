@@ -69,21 +69,20 @@ form{
   }
 
 }
-// .wrapper{
-//   background-color: blue;
-// }
-// .wrapper{
-//   background-color: #34b77d;
-//   height: 100%;
-//
-//   right: 0;
-//   left: -6.666%;
-//   bottom: -40px;
-//   position: relative;
-//   bottom: -40px;
-//   width: 100vw;
-//   top: 0;
-// }
+.errorMessage{
+  // background-color: white;
+  color: white;
+  font-size: 25px;
+  position: relative;
+  height: 50px;
+  margin-top: -50px;
+  width: 100%;
+  top: 20%;
+  // margin-left: 25%;
+}
+.errorInput{
+  border: 1px solid red!important;
+}
 .slick{
   margin-left: 10%;
   width:80%;

@@ -5,8 +5,9 @@ angular
 LoginCtrl.$inject = ['User', 'CurrentUserService', '$state', '$rootScope'];
 function LoginCtrl(User, CurrentUserService, $state, $rootScope) {
   const vm = this;
+  vm.error = false;
   vm.login = () => {
-
+    
     User
       .login(vm.user).$promise
       .then(() => {
@@ -14,6 +15,7 @@ function LoginCtrl(User, CurrentUserService, $state, $rootScope) {
         CurrentUserService.getUser();
         $state.go('leaguesIndex');
       }, err => {
+        vm.error = true;
         console.log(err);
       });
   };

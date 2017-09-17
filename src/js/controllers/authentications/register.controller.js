@@ -5,7 +5,7 @@ angular
 RegisterCtrl.$inject = ['User', 'CurrentUserService', '$state', '$rootScope'];
 function RegisterCtrl(User, CurrentUserService, $state, $rootScope){
   const vm = this;
-
+  vm.regError = false;
   vm.register = () => {
 
     vm.user.ranking = [1000];
@@ -19,6 +19,7 @@ function RegisterCtrl(User, CurrentUserService, $state, $rootScope){
         CurrentUserService.getUser();
         $state.go('leaguesIndex');
       }, err => {
+        vm.regError = true;
         console.log(err);
       });
   };
