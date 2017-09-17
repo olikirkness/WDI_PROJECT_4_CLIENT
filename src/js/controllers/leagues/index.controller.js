@@ -7,7 +7,9 @@ LeaguesIndexCtrl.$inject =['$http', 'League', 'filterFilter', '$rootScope'];
 function LeaguesIndexCtrl($http, League, filterFilter, $rootScope) {
 
   const vm = this;
+  $rootScope.$broadcast('leagueIndex');
 
+  vm.showSearch = true;
 
   League.query()
   .$promise

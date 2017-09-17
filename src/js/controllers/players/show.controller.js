@@ -2,9 +2,10 @@ angular
 .module('LeagueApp')
 .controller('PlayerShowCtrl', PlayerShowCtrl);
 
-PlayerShowCtrl.$inject = ['$stateParams', 'User'];
-function PlayerShowCtrl($stateParams, User) {
+PlayerShowCtrl.$inject = ['$stateParams', 'User', '$rootScope'];
+function PlayerShowCtrl($stateParams, User, $rootScope) {
   const vm = this;
+  $rootScope.$broadcast('notLeagueIndex');
   User.get({id: $stateParams.id}).$promise.then((a)=>{
     vm.player = a;
     vm.matchStamps = [];

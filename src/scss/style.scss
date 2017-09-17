@@ -18,6 +18,16 @@
   margin-left: 30px;
   margin-top: 6px;
 }
+.navIcon{
+  transition: all 0.3s;
+  height: 48px;
+  cursor: pointer;
+}
+.navIcon:hover{
+
+  background-color: #b06161;
+
+}
 .aside{
   text-align: -webkit-center;
 }
@@ -107,7 +117,10 @@ nav{
   overflow: hidden;
   position: relative;
   border-radius: 50%;
+
   .indexImg{
+    // background-color: blue;
+
     position: relative;
     text-align: center;
     left: 50%;
@@ -313,7 +326,55 @@ a:hover{
   color: #FFC107;
   font-size: 40px;
   margin-top: 25px;
-  margin-left: -20px;
+  margin-left: -10px;
+
+}
+.challenge{
+  cursor: pointer;
+}
+.unplayed, .challenge, .sent, .recieved{
+  p{
+    transition: color 0.3s;
+    color: white;
+    // display: none;
+    position: absolute;
+    margin-left: -94%;
+    text-align: center;
+    width: 100px;
+    left: 50%;
+    right: 50%;
+  }
+}
+.unplayed:hover, .challenge:hover, .sent:hover, .recieved:hover{
+  p{
+    color: #888;
+    // display: block;
+    // visibility: visible;
+  }
+}
+.icon-show-sent{
+  margin-left: 50px;
+  color: #777;
+  font-size: 40px;
+  margin-top: 30px;
+  margin-left: -10px;
+}
+.icon-show-recieved{
+  color: #ae4118;
+  font-size: 40px;
+  margin-top: 30px;
+  margin-left: -10px;
+}
+.icon-show-accepted{
+  // margin-left:
+  color: #34b77d;
+  font-size: 40px;
+  margin-top: 30px;
+  margin-left: -10px;
+}
+.message{
+  position: relative;
+  margin-left: -50%;
 }
 .submit-input-div{
   text-align: center;
@@ -391,6 +452,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .show-info-header{
   transition: all 0.2s;
+  cursor: pointer;
   height: 50px;
   text-align: center;
   background-color: #ccc;
@@ -401,6 +463,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .selected{
   background-color: #BF6969;
+  cursor: pointer;
 }
 .data-group{
   // background-color: #fafafa;
@@ -478,7 +541,9 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: right;
   }
 }
-
+.challenges{
+  color: #34b77d;
+}
 
 .no-challenges{
   height: 600px;

@@ -16,6 +16,21 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     for (var a = 0; a < vm.user.leagues.length; a++) {
       vm.joinedLeagues.push(vm.user.leagues[a].id);
     }
+    vm.challngesCount = 0;
+    vm.countChallenges = function (){
+      for (var i = 0; i < vm.user.matches.length; i++) {
+        if (!vm.user.matches[i].played) {
+          vm.challngesCount++;
+        }
+      }
+    };
+    vm.countChallenges();
+  });
+  $rootScope.$on('leagueIndex', ()=>{
+    vm.showSearch = true;
+  });
+  $rootScope.$on('notLeagueIndex', ()=>{
+    vm.showSearch = false;
   });
   vm.count = 0;
   vm.startSearch = function(){
@@ -25,7 +40,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     }else{
       $rootScope.$broadcast('stopSearch');
     }
-
   };
 
   $rootScope.$on('loggedOut', () => {
@@ -116,6 +130,8 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     Request.delete({id: requestId});
   };
 
+
+
   vm.request = function(a, b, c){
     vm.requestObj = {
       sender_id: a,
@@ -155,5 +171,5 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     });
   };
 
-  
+
 }

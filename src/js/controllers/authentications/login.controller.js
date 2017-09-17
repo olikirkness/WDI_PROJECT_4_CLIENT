@@ -7,7 +7,7 @@ function LoginCtrl(User, CurrentUserService, $state, $rootScope) {
   const vm = this;
   vm.error = false;
   vm.login = () => {
-    
+    $rootScope.$broadcast('notLeagueIndex');
     User
       .login(vm.user).$promise
       .then(() => {

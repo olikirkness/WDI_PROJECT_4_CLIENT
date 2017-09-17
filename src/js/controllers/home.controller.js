@@ -5,6 +5,7 @@ angular
 HomeCtrl.$inject = ['$rootScope'];
 function HomeCtrl($rootScope) {
   const vm = this;
+  $rootScope.$broadcast('notLeagueIndex');
   $rootScope.$broadcast('Home');
   vm.registerSection = false;
   vm.loginSection = true;

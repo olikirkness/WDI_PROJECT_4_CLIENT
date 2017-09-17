@@ -7,6 +7,7 @@ MatchSubmitCtrl.$inject =['$http', '$stateParams', 'Match', 'ResultsService', 'U
 function MatchSubmitCtrl($http, $stateParams, Match, ResultsService, User, $state, $rootScope) {
   $rootScope.$broadcast('matchSubmitted');
   const vm = this;
+  $rootScope.$broadcast('notLeagueIndex');
 
   vm.match = Match.get({id: $stateParams.id});
 

@@ -10,7 +10,7 @@ function RegisterCtrl(User, CurrentUserService, $state, $rootScope){
 
     vm.user.ranking = [1000];
     vm.user.matches_won = 0;
-
+    $rootScope.$broadcast('notLeagueIndex');
     User
       .register(vm.user)
       .$promise

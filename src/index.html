@@ -36,23 +36,27 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li ng-show="main.user">
-              <a ng-click="main.startSearch()"><i class="fa fa-search home-icon search-icon" ng-class="{'searching': main.count%2 === 1}" aria-hidden="true"></i></a>
+
+            <li ng-if="main.user" class="navIcon">
+              <!-- {{vm.leagues[1]}} -->
+              <a ng-click="main.startSearch()" ng-if="main.showSearch">
+                <i class="fa fa-search home-icon search-icon" ng-class="{'searching': main.count%2 === 1}" aria-hidden="true"></i>
+              </a>
             </li>
-            <li ng-show="main.user">
+            <li ng-show="main.user" class="navIcon" ng-if="!main.showSearch">
               <a ui-sref="leaguesIndex"><i class="fa fa-home home-icon" aria-hidden="true"></i></a>
             </li>
 
-            <li ng-show="main.user">
+            <li ng-show="main.user" class="navIcon">
               <a ui-sref="leaguesNew"><i class="fa fa-plus new-icon" aria-hidden="true"></i></a>
             </li>
-            <li ng-show="main.user">
-              <a ui-sref="challengesIndex"><i class="fa fa-trophy challenge-icon" aria-hidden="true"></i></a>
+            <li ng-show="main.user" class="navIcon">
+              <a ui-sref="challengesIndex"><i ng-class="{'challenges': main.challngesCount > 0}" class="fa fa-trophy challenge-icon" aria-hidden="true"></i></a>
             </li>
-            <li>
-              <div class="dropdown show">
+            <li ng-show="main.user" class="navIcon">
+              <div class="dropdown show" >
                 <div class="notification" ng-show="main.user.recieved_requests.length + main.user.recieved_challenges.length > 0">
-                  {{main.user.recieved_requests.length + main.user.recieved_challenges.length}}
+                  <p>{{main.user.recieved_requests.length + main.user.recieved_challenges.length}}</p>
                 </div>
                 <div class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
@@ -65,7 +69,6 @@
                     </div>
                     <br>
                     <div class="buttons">
-
 
                     <div class="btn dropdown-item" ng-click="main.addToLeague(request.sender.id, request.league.id, this, request.id)">
                       Accept
@@ -96,7 +99,7 @@
                 </div>
               </div>
             </li>
-            <li ng-show="main.user">
+            <li ng-show="main.user" class="navIcon">
               <div class="dropdown show">
                 <div class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div class="nav-img-outer" ng-show="main.user.image">

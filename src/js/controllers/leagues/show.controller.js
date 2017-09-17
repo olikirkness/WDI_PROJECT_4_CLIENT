@@ -2,11 +2,12 @@ angular
 .module('LeagueApp')
 .controller('LeagueShowCtrl', LeagueShowCtrl);
 
-LeagueShowCtrl.$inject =['League', '$stateParams', 'Match', '$rootScope', 'Challenge', 'CurrentUserService', 'Comment', '$state', 'User'];
+LeagueShowCtrl.$inject =['League', '$stateParams', 'Match', '$rootScope', 'Challenge', 'CurrentUserService', 'Comment', '$state'];
 
-function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, CurrentUserService, Comment, $state, User) {
+function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, CurrentUserService, Comment, $state) {
 
   const vm = this;
+  $rootScope.$broadcast('notLeagueIndex');
   CurrentUserService.getUser();
 
   vm.league = League.get({id: $stateParams.id});
@@ -64,19 +65,25 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
   // vm.checkUnplayed();
   vm.updateState = function(){
     CurrentUserService.getUser();
+    vm.user = CurrentUserService.currentUser;
   };
   vm.updateState();
 
 
-  vm.challenge = function(e){
-    vm.updateState();
+  vm.challenge = function(e, i){
+
     Challenge.save({challenge: {
       sender_id: CurrentUserService.currentUser.id,
       reciever_id: e,
       league_id: vm.league.id
     }});
+    vm.indexClicked = i;
+    // // vm.clicked = true;
+    // vm.trophies.splice(i, 1);
+    // vm.updateState();
+    // console.log(vm.trophies);
   };
-
+  vm.trophies = [];
 
   vm.setSelected = function(){
     vm.selected = !vm.selected;
