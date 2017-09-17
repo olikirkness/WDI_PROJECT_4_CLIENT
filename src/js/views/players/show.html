@@ -20,9 +20,9 @@
 
 <div class="row">
 
-  <div class="col-sm-8 col-sm-offset-2 charts">
+  <div class="col-sm-8 col-sm-offset-2 charts" ng-if="vm.player.matches.length >= 3">
     <h4 class="chart-title">Stats</h4>
-    <slick slides-to-show="1" ng-show="vm.player.matches.length !== 0" slides-to-scroll="1" init-onload="true" data="vm.data" dots="false" arrows="true" rows="1" autoplay="false" >
+    <slick slides-to-show="1"  slides-to-scroll="1" init-onload="true" data="vm.data" dots="false" arrows="true" rows="1" autoplay="false" >
 
       <div class="slide-wrapper">
         <div class="newChart">
@@ -36,6 +36,9 @@
         </div>
       </div>
     </slick>
+  </div>
+  <div class="matchesError" ng-show="vm.player.matches.length < 3">
+    <h4>You need to play at least 3 matches to view stats.</h4>
   </div>
 
 </div>

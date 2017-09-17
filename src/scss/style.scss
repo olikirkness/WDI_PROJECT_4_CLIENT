@@ -636,3 +636,13 @@ input[type=number]::-webkit-outer-spin-button {
 
   // border: 2px solid #BF6969;
 }
+.matchesError{
+  height: 300px;
+  color: #777;
+  h4{
+    font-size: 30px;
+  }
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
+}
