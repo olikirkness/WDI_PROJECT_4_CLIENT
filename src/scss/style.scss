@@ -663,3 +663,56 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
   text-align: center;
 }
+.profilePhoto{
+  border: 2px solid #777;
+  i{
+    font-size: 300px;
+    color: #777;
+  }
+}
+.changePhoto{
+  p{
+    cursor: pointer;
+    font-size: 16px;
+    color: #777;
+    width: 300px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .cancel{
+    display: inline-block;
+    margin-left: 430px!important;
+    border: 2px solid #BF6969!important;
+    color: #BF6969!important;
+    position: relative;
+    // margin-top: -300px;
+  }
+  .cancel:hover{
+    color: white!important;
+    background-color: #BF6969!important;
+  }
+  input{
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #777;
+    background-color: white;
+    width: 300px;
+    margin-top: 30px;
+    margin-bottom:0;
+    // position: absolute;
+    font-size: 20px;
+  }
+  .leave-btn{
+    display: inline-block;
+    border: 2px solid #34b77d;
+    color: #34b77d;
+    margin-left: 320px;
+    position: relative;
+    bottom: -30px;
+    margin-top: -58px;
+  }
+  .leave-btn:hover{
+    color: white;
+    background-color: #34b77d;
+  }
+}

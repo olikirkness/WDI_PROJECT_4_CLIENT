@@ -2,10 +2,26 @@
 
 <div class="row">
   <div class="col-sm-4 col-sm-offset-2">
-    <div class="indexDiv leagueImg">
+    <div class="indexDiv leagueImg profilePhoto">
       <img class="indexImg" src="{{vm.player.image}}" alt="" ng-show="vm.player.image">
-      <i class="fa fa-user-circle indexImg col-sm-2" aria-hidden="true" ng-show="!vm.player.image"></i>
+      <i class="fa fa-user-circle indexImg" aria-hidden="true" ng-show="!vm.player.image"></i>
     </div>
+    <div class="changePhoto row">
+      <div ng-if="vm.player.id === main.user.id" ng-click="vm.enableChange()" ng-show="!vm.change" class="col-sm-4">
+        <p>Change profile photo</p>
+      </div>
+      <div ng-show="vm.change" class="changePhoto">
+        <input type="text" class="col-sm-4" ng-model="vm.player.image" name="" value="" placeholder="Image link here">
+        <div class="btn leave-btn col-sm-3" ng-click="vm.changePhoto(vm.player.id)">
+          Submit
+        </div>
+        <div class="btn leave-btn cancel col-sm-3" ng-click="vm.cancel()">
+          Cancel
+        </div>
+      </div>
+    </div>
+
+
   </div>
   <div class="col-sm-3 player-info">
     <h2>{{vm.player.username}}</h2>
