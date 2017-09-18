@@ -26,7 +26,7 @@
         <div class="col-sm-3 test">
           <h3  class="memberName" >{{member.current_ranking}}</h3>
         </div>
-        <div class="col-sm-1">
+        <div class="col-sm-1" ng-show="main.user.id !== member.id">
           <div class="test" ng-click="vm.challenge(member.id, $index)" ng-if="!vm.unplayedMatchesInLeague.includes(member.id) && !vm.sentChallengesInLeague.includes(member.id) && !vm.recievedChallengesInLeague.includes(member.id) && member.id !== vm.user.id && vm.indexClicked !== $index">
             <div class="challenge">
               <i class="fa fa-trophy  icon-show" aria-hidden="true" ng-if="!vm.clicked"></i>
