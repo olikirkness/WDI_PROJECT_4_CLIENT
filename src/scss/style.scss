@@ -38,9 +38,7 @@
   transition: visibility 0.3s linear;
   .fading{
     visibility: hidden;
-
   }
-
   h4{
     position: absolute;
     bottom: 21px;
@@ -56,7 +54,6 @@
     background-color: #34b77d;
     visibility: visible;
   }
-
 }
 
 nav{
@@ -71,22 +68,53 @@ nav{
     max-height: 300px;
     overflow: auto;
     width: 300px;
-    padding: 10px;
+    padding: 20px;
     margin-top: 50px;
     position: absolute;
     text-align: center;
-    color: #777;
+    // color: white;
     h4 {
       color: #BF6969;
     }
     h5 {
       color: #555;
     }
+    .btn-accept{
+      transition: all 0.3s;
+      display: inline-block;
+      color: #34b77d;
+      width: 40px;
+      padding: 1px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 5px 15px;
+    }
+    .btn-delete{
+      margin: 5px 15px;
+      transition: all 0.3s;
+      display: inline-block;
+      width: 40px;
+      padding: 1px;
+      height: 40px;
+      color: #BF6969;
+      border-radius: 50%;
+    }
+    .btn-delete:hover{
+      background-color: #BF6969;
+      color: white;
+    }
+    .btn-accept:hover{
+      background-color: #34b77d;
+      color: white;
+    }
     .buttons{
-      margin-top: -10px;
-      border-bottom: 1px solid #777;
+
+      font-size: 25px;
+      // height: 30px;
+      margin-top: -20px;
+      border-bottom: 1px solid #ccc;
       // margin: -10px 40px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
   }
 }
@@ -664,7 +692,6 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 .profilePhoto{
-  border: 2px solid #777;
   i{
     font-size: 300px;
     color: #777;

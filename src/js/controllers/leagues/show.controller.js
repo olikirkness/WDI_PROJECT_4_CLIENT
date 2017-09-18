@@ -69,7 +69,7 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
   };
   vm.updateState();
 
-
+  vm.indexClicked = [];
   vm.challenge = function(e, i){
 
     Challenge.save({challenge: {
@@ -77,7 +77,7 @@ function LeagueShowCtrl( League, $stateParams, Match, $rootScope, Challenge, Cur
       reciever_id: e,
       league_id: vm.league.id
     }});
-    vm.indexClicked = i;
+    vm.indexClicked.push(i);
     // // vm.clicked = true;
     // vm.trophies.splice(i, 1);
     // vm.updateState();

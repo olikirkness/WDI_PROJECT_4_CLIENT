@@ -27,7 +27,7 @@
           <h3  class="memberName" >{{member.current_ranking}}</h3>
         </div>
         <div class="col-sm-1" ng-show="main.user.id !== member.id">
-          <div class="test" ng-click="vm.challenge(member.id, $index)" ng-if="!vm.unplayedMatchesInLeague.includes(member.id) && !vm.sentChallengesInLeague.includes(member.id) && !vm.recievedChallengesInLeague.includes(member.id) && member.id !== vm.user.id && vm.indexClicked !== $index">
+          <div class="test" ng-click="vm.challenge(member.id, $index)" ng-if="!vm.unplayedMatchesInLeague.includes(member.id) && !vm.sentChallengesInLeague.includes(member.id) && !vm.recievedChallengesInLeague.includes(member.id) && member.id !== vm.user.id && !vm.indexClicked.includes($index)">
             <div class="challenge">
               <i class="fa fa-trophy  icon-show" aria-hidden="true" ng-if="!vm.clicked"></i>
               <p class="message">Challenge {{member.username}}</p>
@@ -38,7 +38,7 @@
             <i class="fa fa-trophy  icon-show-accepted" aria-hidden="true" ng-if="!vm.clicked"></i>
             <p class="message">Unplayed</p>
           </div>
-          <div class="sent" ng-if="vm.sentChallengesInLeague.includes(member.id) || vm.indexClicked === $index">
+          <div class="sent" ng-if="vm.sentChallengesInLeague.includes(member.id) || vm.indexClicked.includes($index)">
             <i class="fa fa-trophy  icon-show-sent" aria-hidden="true" ng-if="!vm.clicked"></i>
             <p class="message">Sent</p>
           </div>

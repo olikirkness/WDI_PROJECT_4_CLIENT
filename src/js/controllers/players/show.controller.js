@@ -28,7 +28,7 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
       }
     }
     // console.log(vm.formattedMatches, vm.player.ranking, vm.matchStamps);
-  vm.levels = new Chartist.Line('.ct-chart', {
+    vm.levels = new Chartist.Line('.ct-chart', {
     series: [
       {
         name: 'series-1',
@@ -52,8 +52,8 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
       }
     });
     var pieData = {
-      series: [vm.player.matches_won,vm.formattedMatches.length - 1 -vm.player.matches_won],
-      labels: [`Wins -${Math.round(vm.player.matches_won/(vm.formatedMatches.length - 1 )*100)}%`, `Losses -${Math.round((vm.formattedMatches.length - 1-vm.player.matches_won)/(vm.formattedMatches.lngth - 1 )*100)}%`]
+      series: [vm.player.matches_won, vm.formattedMatches.length - 1 -vm.player.matches_won],
+      labels: [`Wins: ${Math.round(vm.player.matches_won/(vm.formattedMatches.length - 1 )*100)}%`, `Losses: ${Math.round((vm.formattedMatches.length - 1 - vm.player.matches_won)/(vm.formattedMatches.length - 1 )*100)}%`]
     };
     var pieOptions = {
       labelInterpolationFnc: function(value) {
@@ -74,10 +74,9 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
         chartPadding: 20
       }]
     ];
-    // var sum = function(a, b) {
-    //   return a + b;
-    // };
-    //
+    var sum = function(a, b) {
+      return a + b;
+    };
 
     vm.pie = new Chartist.Pie('.pie', pieData, pieOptions, responsiveOptions);
 

@@ -70,11 +70,11 @@
                     <br>
                     <div class="buttons">
 
-                    <div class="btn dropdown-item" ng-click="main.addToLeague(request.sender.id, request.league.id, this, request.id)">
-                      Accept
+                    <div class="btn-accept dropdown-item" ng-click="main.addToLeague(request.sender.id, request.league.id, this, request.id)">
+                      <i class="fa fa-check" aria-hidden="true"></i>
                     </div>
-                    <div class="btn dropdown-item" ng-click="main.deleteRequest(this, request.id)">
-                      Delete
+                    <div class="btn-delete dropdown-item" ng-click="main.deleteRequest(this, request.id)">
+                      <i class="fa fa-times" aria-hidden="true"></i>
                     </div>
                     </div>
                   </div>
@@ -85,11 +85,11 @@
                     </div>
                     <br>
                     <div class="buttons">
-                    <div class="btn dropdown-item" ng-click="main.addToMatches(challenge.sender.id, challenge.league.id, this, challenge.id)">
-                      Accept
+                    <div class="btn-accept dropdown-item" ng-click="main.addToMatches(challenge.sender.id, challenge.league.id, this, challenge.id)">
+                      <i class="fa fa-check" aria-hidden="true"></i>
                     </div>
-                    <div class="btn dropdown-item" ng-click="main.deleteChallenge(this, challenge.id)">
-                      Delete
+                    <div class="btn-delete dropdown-item" ng-click="main.deleteChallenge(this, challenge.id)">
+                      <i class="fa fa-times" aria-hidden="true"></i>
                     </div>
                   </div>
                   </div>
