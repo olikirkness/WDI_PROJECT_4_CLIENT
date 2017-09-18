@@ -11,7 +11,7 @@
     <div ng-show="!vm.selected" ng-repeat="member in vm.league.users | orderBy: '-current_ranking' track by $index " class="">
       <div class="row member-rank-list">
         <div class="col-sm-2 test">
-          <h3 class="rank-no" ui-sref="playerShow({id: member.id})">{{$index+1}}</h3>
+          <h3 class="rank-no">{{$index+1}}</h3>
         </div>
         <div class="col-sm-2 test">
           <div class="league-img-icon-outer col-sm-2" ng-if="member.image">
@@ -20,8 +20,8 @@
           <i class="fa fa-user-circle default-img-league col-sm-2" aria-hidden="true" ng-show="!member.image"></i>
 
         </div>
-        <div class="col-sm-4 test" ui-sref="playerShow({id: member.id})">
-          <h3 class="memberName" >{{member.username}}</h3>
+        <div class="col-sm-4 test playerLink" ui-sref="playerShow({id: member.id})">
+          <h3 class="memberName">{{member.username}}</h3>
         </div>
         <div class="col-sm-3 test">
           <h3  class="memberName" >{{member.current_ranking}}</h3>
@@ -76,25 +76,24 @@
 
 
           <div class="" ng-if="match.users[0].id === match.winner_id">
-            <div class="" ng-if="match.player_one_score > match.player_two_score">
+            <div ui-sref="playerShow({id: match.users[0].id})" class="playerLink" ng-if="match.player_one_score > match.player_two_score">
               <h4>{{match.users[0].username}}</h4>
               <h5><span class="old-rank">{{match.player_one_rank_change[2]}}</span> ({{match.player_one_rank_change[1]}}%) {{match.player_one_rank_change[0]}}</h5>
             </div>
-            <div class="" ng-if="match.player_one_score < match.player_two_score">
+            <div ui-sref="playerShow({id: match.users[0].id})" class="playerLink" ng-if="match.player_one_score < match.player_two_score">
               <h4>{{match.users[0].username}}</h4>
               <h5><span class="old-rank">{{match.player_two_rank_change[2]}}</span> ({{match.player_two_rank_change[1]}}%) {{match.player_two_rank_change[0]}}</h5>
             </div>
           </div>
           <div class="" ng-if="match.users[1].id === match.winner_id">
-            <div class="" ng-if="match.player_one_score > match.player_two_score">
+            <div ui-sref="playerShow({id: match.users[1].id})" class="playerLink" ng-if="match.player_one_score > match.player_two_score">
               <h4>{{match.users[1].username}}</h4>
               <h5><span class="old-rank">{{match.player_one_rank_change[2]}}</span> ({{match.player_one_rank_change[1]}}%) {{match.player_one_rank_change[0]}}</h5>
             </div>
-            <div class="" ng-if="match.player_one_score < match.player_two_score">
+            <div ui-sref="playerShow({id: match.users[1].id})" class="playerLink" ng-if="match.player_one_score < match.player_two_score">
               <h4>{{match.users[1].username}}</h4>
               <h5><span class="old-rank">{{match.player_two_rank_change[2]}}</span> ({{match.player_two_rank_change[1]}}%) {{match.player_two_rank_change[0]}}</h5>
             </div>
-
           </div>
 
 
@@ -111,24 +110,24 @@
           <h5>{{match.player_two_rank_change[0]}} ({{match.player_two_rank_change[1]}}%) <span class="old-rank">{{match.player_two_rank_change[2]}}</span></h5> -->
           <div class="" ng-if="match.users[0].id !== match.winner_id">
 
-            <div class="" ng-if="match.player_one_score < match.player_two_score">
+            <div ui-sref="playerShow({id: match.users[0].id})" class="playerLink" ng-if="match.player_one_score < match.player_two_score">
 
               <h4>{{match.users[0].username}}</h4>
 
               <h5>{{match.player_one_rank_change[0]}} ({{match.player_one_rank_change[1]}}%) <span class="old-rank">{{match.player_one_rank_change[2]}}</span></h5>
             </div>
-            <div class="" ng-if="match.player_one_score > match.player_two_score">
+            <div class="playerLink" ui-sref="playerShow({id: match.users[0].id})" ng-if="match.player_one_score > match.player_two_score">
               <h4>{{match.users[0].username}}</h4>
               <h5> {{match.player_two_rank_change[0]}} ({{match.player_two_rank_change[1]}}%)<span class="old-rank"> {{match.player_two_rank_change[2]}}</span></h5>
             </div>
           </div>
 
-          <div class="" ng-if="match.users[1].id !== match.winner_id">
-            <div class="" ng-if="match.player_one_score < match.player_two_score">
+          <div class="playerLink" ng-if="match.users[1].id !== match.winner_id">
+            <div class="" ui-sref="playerShow({id: match.users[1].id})" ng-if="match.player_one_score < match.player_two_score">
               <h4>{{match.users[1].username}}</h4>
               <h5> {{match.player_one_rank_change[0]}} ({{match.player_one_rank_change[1]}}%) <span class="old-rank">{{match.player_one_rank_change[2]}}</span></h5>
             </div>
-            <div class="" ng-if="match.player_one_score > match.player_two_score">
+            <div class="playerLink" ui-sref="playerShow({id: match.users[1].id})" ng-if="match.player_one_score > match.player_two_score">
               <h4>{{match.users[1].username}}</h4>
               <h5>{{match.player_two_rank_change[0]}} ({{match.player_two_rank_change[1]}}%) <span class="old-rank">{{match.player_two_rank_change[2]}}</span></h5>
             </div>
@@ -166,6 +165,11 @@
       Leave
     </div>
   </div>
+  <!-- <div class="row">
+    <div class="btn edit-btn" ng-click="" ng-if="vm.league.created_by === main.user.id">
+      Edit League
+    </div>
+  </div> -->
 
 <div class="comment-div">
   <h3>Comments</h3>
