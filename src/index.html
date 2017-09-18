@@ -54,14 +54,18 @@
               <a ui-sref="challengesIndex"><i ng-class="{'challenges': main.challngesCount > 0}" class="fa fa-trophy challenge-icon" aria-hidden="true"></i></a>
             </li>
             <li ng-show="main.user" class="navIcon">
-              <div class="dropdown show" >
-                <div class="notification" ng-show="main.user.recieved_requests.length + main.user.recieved_challenges.length > 0">
-                  <p>{{main.user.recieved_requests.length + main.user.recieved_challenges.length}}</p>
-                </div>
+              <div class="dropdown show">
+
                 <div class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div class="notification" ng-show="main.user.recieved_requests.length + main.user.recieved_challenges.length > 0">
+                    <p>{{main.user.recieved_requests.length + main.user.recieved_challenges.length}}</p>
+                  </div>
                   <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
+
                 </div >
+
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+
                   <h4 ng-show="main.user.recieved_requests.length >0">Your requests</h4>
                   <div ng-repeat="request in main.user.recieved_requests" >
                     <div class="dropdown-item">
