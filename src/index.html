@@ -81,7 +81,7 @@
                   <h4 ng-show="main.user.recieved_challenges.length >0">Your challenges</h4>
                   <div ng-repeat="challenge in main.user.recieved_challenges" >
                     <div class="dropdown-item" href="#">
-                      <h5>{{challenge.sender.username}} wants to challenge you</h5>
+                      <h5>{{challenge.sender.username}} wants to challenge you in {{challenge.league.title}}</h5>
                     </div>
                     <br>
                     <div class="buttons">
