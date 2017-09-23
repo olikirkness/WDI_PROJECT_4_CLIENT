@@ -11,6 +11,7 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
     vm.matchStamps = [];
     vm.count = 1;
     vm.formattedMatches = [{x: new Date(vm.player.created_at), y: 1000}];
+
     for (var i = 0; i < vm.player.matches.length; i++) {
       if(vm.player.matches[i].played){
 
@@ -20,14 +21,15 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
         vm.formattedMatches.push(
           {
             x: new Date(vm.player.matches[i].updated_at),
-            y: vm.player.ranking[vm.count]
+            y: vm.player.ranking.reverse()[vm.count]
           }
         );
-        // console.log(vm.count, vm.player.ranking.reverse()[vm.count]);
+        console.log(vm.count, vm.player.ranking.reverse()[vm.count]);
         vm.count++;
       }
     }
-    // console.log(vm.formattedMatches, vm.player.ranking, vm.matchStamps);
+
+    console.log(vm.formattedMatches, vm.player.ranking, vm.matchStamps);
     vm.levels = new Chartist.Line('.ct-chart', {
     series: [
       {
