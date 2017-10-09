@@ -11,7 +11,7 @@
   border-radius: 50%;
   text-align: center;
   vertical-align: middle;
-  padding: 1.5px;
+  padding: 0.5px;
   font-size: 13px;
   color: white;
   position: absolute;
@@ -65,7 +65,7 @@ nav{
     margin: 0px;
   }
   .dropdown-menu{
-    max-height: 300px;
+    max-height: 350px;
     overflow: auto;
     width: 300px;
     padding: 20px;
@@ -77,15 +77,17 @@ nav{
       color: #BF6969;
     }
     h5 {
-      color: #555;
+      text-align: left;
+      color: #777;
     }
     .btn-accept{
       transition: all 0.3s;
       display: inline-block;
       color: #34b77d;
-      width: 40px;
+      width: 30px;
       padding: 1px;
-      height: 40px;
+      padding-right: 5px;
+      height: 30px;
       border-radius: 50%;
       margin: 5px 15px;
     }
@@ -93,9 +95,10 @@ nav{
       margin: 5px 15px;
       transition: all 0.3s;
       display: inline-block;
-      width: 40px;
+      width: 30px;
       padding: 1px;
-      height: 40px;
+      padding-right: 7px;
+      height: 30px;
       color: #BF6969;
       border-radius: 50%;
     }
@@ -108,13 +111,18 @@ nav{
       color: white;
     }
     .buttons{
-
-      font-size: 25px;
+      text-align: right;
+      font-size: 20px;
       // height: 30px;
-      margin-top: -20px;
+      margin-top: -35px;
       border-bottom: 1px solid #ccc;
       // margin: -10px 40px;
-      margin-bottom: 25px;
+      margin-bottom: 5px;
+    }
+    .notifIcon{
+      font-size: 25px;
+      margin-top: 30px;
+      color: #888;
     }
   }
 }
@@ -145,6 +153,7 @@ nav{
   overflow: hidden;
   position: relative;
   border-radius: 50%;
+  border: 3px solid #bdbdbd;
 
   .indexImg{
     // background-color: blue;
@@ -435,11 +444,14 @@ a:hover{
   font-size: 45px;
   outline: none;
   border: 2px solid #bbb;
-  border-radius: 5px;
+  border-radius: 8px;
   text-align: center;
   padding: 5px;
   margin: 10px;
   color: #777;
+}
+.match-result-input:disabled{
+  background-color: #aaa;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -449,35 +461,39 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 .submit-btn{
-  transition: all 0.5s;
-  background-color: #777;
+  transition: all 0.3s;
+  background-color: #bbb;
+  border: 2px solid #888;
   border-radius: 8px;
-  color: white;
+  color: #eee;
   margin-top: 10px;
+  height: 40px!important;
   margin-bottom: 30px;
   p{
-    font-size: 20px;
-    padding-top: 5px;
-    height: 80%;
+    font-size: 18px;
+    padding-top: 0px;
   }
 }
-.submit-btn:hover{
+.valid:hover{
   color: white;
+  background-color: #BF6969!important;
 }
 
 .valid{
-  background-color: #BF6969!important;
+  background-color: white!important;
+  border: 2px solid #BF6969;
+  color: #BF6969;
+  // background-color: #BF6969!important;
 }
 .challengers{
   text-align: center;
   color: #777;
-
 }
 .right-player{
   margin-top: 15px;
   color: #777;
   text-align: center!important;
-  height: 100px;
+  height: 85px;
 }
 .players{
   height: 60px;
@@ -534,7 +550,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-top: 29px;
 }
 .showImg{
-  margin-left: 20px;
+  margin-left: 0px;
 }
 .newForm{
   margin-top: 50px;
@@ -599,6 +615,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-top: 22px;
 }
 .submit-results-btn{
+  margin-left: 0!important;
   background-color: #BF6969;
   color: white;
   height: 35px;
@@ -657,8 +674,8 @@ input[type=number]::-webkit-outer-spin-button {
   color: #BF6969;
   background-color: white;
   cursor: pointer;
-  margin-top: 10px;
-  margin-left: 20px;
+  margin-top: 20px;
+  // margin-left: 20px;
   border: 2px solid #BF6969;
   transition: all 0.3s;
 }
@@ -742,4 +759,14 @@ input[type=number]::-webkit-outer-spin-button {
     color: white;
     background-color: #34b77d;
   }
+}
+.tab{
+  /* border: 2px solid black; */
+  height: 40px;
+  z-index: -1;
+  width: 40px;
+  position: absolute;
+  left: 43%;
+  top: 15px;
+  transform: rotate(45deg);
 }

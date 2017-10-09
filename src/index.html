@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <title>Match Play</title>
   <link rel="stylesheet"
-          href="bower_components/chartist/dist/chartist.min.css">
-            <link rel="stylesheet" href="animate.min.css">
+  href="bower_components/chartist/dist/chartist.min.css">
+  <link rel="stylesheet" href="animate.min.css">
   <script src="https://use.fontawesome.com/60332babcf.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Ubuntu" rel="stylesheet">
   <script
@@ -62,40 +62,54 @@
                   </div>
                   <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
                 </div >
-
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
-
-                  <h4 ng-show="main.user.recieved_requests.length >0">Your requests</h4>
-                  <div ng-repeat="request in main.user.recieved_requests" >
+                  <h4 ng-show="main.user.recieved_requests.length >0">Notifications</h4>
+                  <div ng-repeat="notification in main.notifications | orderBy: '-date'">
                     <div class="dropdown-item">
-                      <h5>{{request.sender.username}} wants to join {{request.league.title}}</h5>
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <i ng-if="notification.type === 'request'" class="fa fa-users notifIcon" aria-hidden="true"></i>
+                          <i ng-if="notification.type === 'challenge'" class="fa fa-trophy notifIcon" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-10">
+                          <h5>{{notification.message}}</h5>
+                        </div>
+                        <!-- <h5>{{request.sender.username}} wants to join {{request.league.title}}</h5> -->
+                      </div>
                     </div>
                     <br>
-                    <div class="buttons">
-
-                    <div class="btn-accept dropdown-item" ng-click="main.addToLeague(request.sender.id, request.league.id, this, request.id)">
-                      <i class="fa fa-check" aria-hidden="true"></i>
+                    <div class="buttons" ng-if="notification.type === 'request'">
+                      <div class="btn-accept dropdown-item" ng-click="main.addToLeague(notification.sender_id, notification.league_id, notification, notification.id)">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </div>
+                      <div class="btn-delete dropdown-item" ng-click="main.deleteRequest(notification)">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </div>
                     </div>
-                    <div class="btn-delete dropdown-item" ng-click="main.deleteRequest(this, request.id)">
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
+                    <div class="buttons" ng-if="notification.type === 'challenge'">
+                      <div class="btn-accept dropdown-item" ng-click="main.addToMatches(notification.sender_id, notification.league_id, notification, notification.id)">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </div>
+                      <div class="btn-delete dropdown-item" ng-click="main.deleteChallenge(notification, notification.id)">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </div>
                     </div>
                   </div>
-                  <h4 ng-show="main.user.recieved_challenges.length >0">Your challenges</h4>
+                  <!-- <h4 ng-show="main.user.recieved_challenges.length >0">Your challenges</h4>
                   <div ng-repeat="challenge in main.user.recieved_challenges" >
                     <div class="dropdown-item" href="#">
                       <h5>{{challenge.sender.username}} wants to challenge you in {{challenge.league.title}}</h5>
                     </div>
                     <br>
                     <div class="buttons">
-                    <div class="btn-accept dropdown-item" ng-click="main.addToMatches(challenge.sender.id, challenge.league.id, this, challenge.id)">
-                      <i class="fa fa-check" aria-hidden="true"></i>
+                      <div class="btn-accept dropdown-item" ng-click="main.addToMatches(challenge.sender.id, challenge.league.id, notification, challenge.id)">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </div>
+                      <div class="btn-delete dropdown-item" ng-click="main.deleteChallenge(notification, challenge.id)">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </div>
                     </div>
-                    <div class="btn-delete dropdown-item" ng-click="main.deleteChallenge(this, challenge.id)">
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
-                  </div>
-                  </div>
+                  </div> -->
                   <div class="dropdown-item" ng-show="main.user.recieved_challenges.length === 0 && main.user.recieved_requests.length === 0">
                     <h5>You don't have any new notifications</h5>
                   </div>
@@ -129,6 +143,6 @@
   <div class="container">
     <main class="" ui-view></main>
   </div>
-<script src="bower_components/chartist/dist/chartist.min.js"></script>
+  <script src="bower_components/chartist/dist/chartist.min.js"></script>
 </body>
 </html>

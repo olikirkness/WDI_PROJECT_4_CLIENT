@@ -3,9 +3,13 @@
     <div class="row">
       <div ng-click="vm.setSelected()" ng-disabled="vm.selected" class="col-sm-6 show-info-header" ng-class="{'selected': !vm.selected}">
         <h4>Rankings</h4>
+        <div ng-show="!vm.selected" class="selected tab">
+        </div>
       </div>
       <div ng-click="vm.setSelected()" ng-disabled="!vm.selected" class="col-sm-6 show-info-header" ng-class="{'selected': vm.selected}">
         <h4>Matches</h4>
+        <div ng-show="vm.selected" class="selected tab">
+        </div>
       </div>
     </div>
     <div ng-show="!vm.selected" ng-repeat="member in vm.league.users | orderBy: '-current_ranking' track by $index " class="">
