@@ -92,6 +92,7 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
   };
 
   vm.addToLeague = function(userId, leagueId, obj, reqId){
+    vm.notifications.splice(vm.notifications.indexOf(obj), 1);
     League.get({id: leagueId})
     .$promise
     .then((data)=>{
@@ -127,6 +128,7 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       league_id: leagueId,
       user_ids: [userId, vm.user.id]
     };
+    vm.notifications.splice(vm.notifications.indexOf(obj), 1);
 
     Match.save({match: vm.match}).$promise.then(()=>{
       Challenge
@@ -145,9 +147,9 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       if(vm.sentRequestIds.includes(leagueId)){
         for (var i = 0; i < vm.user.sent_requests.length; i++) {
           if (vm.user.sent_requests[i].league.id === leagueId) {
-            vm.removeRequestFromFilter(vm.user.sent_requests[i].id);
             const index = vm.sentRequestIds.indexOf(leagueId);
             vm.sentRequestIds.splice(index, 1);
+            vm.removeRequestFromFilter(vm.user.sent_requests[i].id);
           }
         }
       }else{
@@ -197,6 +199,4 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       vm.user.matches.splice(index, 1);
     });
   };
-
-
 }

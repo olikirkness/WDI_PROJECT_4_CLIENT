@@ -44,7 +44,7 @@
   </div>
 </div>
 <div class="row filterResults">
-  <div ng-show="vm.q || vm.filtered.length >0" ng-repeat="league in vm.filtered">
+  <div ng-show="vm.q || vm.filtered.length > 0" ng-repeat="league in vm.filtered">
 
     <div class="col-sm-4 searchResults" ng-hide="main.joinedLeagues.includes(league.id)">
       <i class="fa fa-plus-circle fa-4x" aria-hidden="false" ng-click="main.handleRequest(main.user.id, league.id, league.creator.id)" ng-class="{'delete': main.sentRequestIds.includes(league.id), 'send': !main.sentRequestIds.includes(league.id)}"></i>
