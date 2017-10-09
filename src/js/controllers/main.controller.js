@@ -113,10 +113,10 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       .then(()=>{
         Request
         .delete({id: reqId});
-        CurrentUserService.getUser();
-        $rootScope.$on('loggedIn', ()=>{
-          vm.user = CurrentUserService.currentUser;
-        });
+        // CurrentUserService.getUser();
+        // $rootScope.$on('loggedIn', ()=>{
+        //   vm.user = CurrentUserService.currentUser;
+        // });
 
       });
     });
@@ -133,10 +133,10 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     Match.save({match: vm.match}).$promise.then(()=>{
       Challenge
       .delete({id: reqId});
-      CurrentUserService.getUser();
-      $rootScope.$on('loggedIn', ()=>{
-        vm.user = CurrentUserService.currentUser;
-      });
+      // CurrentUserService.getUser();
+      // $rootScope.$on('loggedIn', ()=>{
+      //   vm.user = CurrentUserService.currentUser;
+      // });
     });
 
   };
@@ -183,13 +183,13 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
   vm.deleteRequest = function(a){
     Request.delete({id: a.id});
     vm.notifications.splice(vm.notifications.indexOf(a),1);
-    CurrentUserService.getUser();
+    // CurrentUserService.getUser();
   };
 
   vm.deleteChallenge = function(a){
     Challenge.delete({id: a.id});
     vm.notifications.splice(vm.notifications.indexOf(a),1);
-    CurrentUserService.getUser();
+    // CurrentUserService.getUser();
   };
 
 
