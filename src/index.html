@@ -57,13 +57,13 @@
               <div class="dropdown show">
 
                 <div class="btn btn-secondary dropdown-toggle navbar-text" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <div class="notification" ng-show="main.user.recieved_requests.length + main.user.recieved_challenges.length > 0">
+                  <div class="notification" ng-show="main.notifications.length > 0">
                     <p>{{main.notifications.length}}</p>
                   </div>
                   <i class="fa fa-bell notification-icon" aria-hidden="true"></i>
                 </div >
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
-                  <h4 ng-show="main.user.recieved_requests.length >0">Notifications</h4>
+                  <h4 ng-show="main.notifications.length >0">Notifications</h4>
                   <div ng-repeat="notification in main.notifications | orderBy: '-date'">
                     <div class="dropdown-item">
                       <div class="row">
@@ -95,7 +95,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="dropdown-item" ng-show="main.user.recieved_challenges.length === 0 && main.user.recieved_requests.length === 0">
+                  <div class="dropdown-item" ng-show="main.notifications.length === 0">
                     <h5>You don't have any new notifications</h5>
                   </div>
                 </div>
