@@ -134,8 +134,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       CurrentUserService.getUser();
       $rootScope.$on('loggedIn', ()=>{
         vm.user = CurrentUserService.currentUser;
-        // vm.notifications.splice(obj.$index, 1);
-        // $rootScope.$broadcast('addedToLeague');
       });
     });
 
