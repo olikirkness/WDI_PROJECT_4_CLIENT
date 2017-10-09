@@ -115,14 +115,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
         CurrentUserService.getUser();
         $rootScope.$on('loggedIn', ()=>{
           vm.user = CurrentUserService.currentUser;
-          // vm.notifications.splice(obj.$index, 1);
-          for (var i = 0; i < vm.notifications.length; i++) {
-            if (vm.notifications[i].$index === obj.$index) {
-              vm.notifications.splice(i, 1);
-            }
-          }
-          $rootScope.$broadcast('addedToLeague');
-
         });
 
       });
@@ -143,12 +135,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       $rootScope.$on('loggedIn', ()=>{
         vm.user = CurrentUserService.currentUser;
         // vm.notifications.splice(obj.$index, 1);
-        for (var i = 0; i < vm.notifications.length; i++) {
-          if (vm.notifications[i].$index === obj.$index) {
-            vm.notifications.splice(i, 1);
-            $rootScope.$broadcast('addedToLeague');
-          }
-        }
         // $rootScope.$broadcast('addedToLeague');
       });
     });
