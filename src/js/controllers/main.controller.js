@@ -38,7 +38,7 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
         sender_id: vm.user.recieved_requests[i].sender.id,
         league_id: vm.user.recieved_requests[i].league.id,
         id: vm.user.recieved_requests[i].id,
-        date: vm.user.recieved_requests[i].created_at,
+        date: moment(vm.user.recieved_requests[i].created_at).format('MMM D HH:MM'),
         user: vm.user.recieved_requests[i].sender.username,
         league: vm.user.recieved_requests[i].league.title,
         message: `wants to join`
@@ -51,12 +51,13 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
         sender_id: vm.user.recieved_challenges[a].sender.id,
         league_id: vm.user.recieved_challenges[a].league.id,
         id: vm.user.recieved_challenges[a].id,
-        date: vm.user.recieved_challenges[a].created_at,
+        date: moment(vm.user.recieved_challenges[a].created_at).format('MMM D HH:MM'),
         user: vm.user.recieved_challenges[a].sender.username,
         league: vm.user.recieved_challenges[a].league.title,
         message: `wants to challenge you in`
       });
     }
+    console.log(vm.notifications);
   };
 
   $rootScope.$on('leagueIndex', ()=>{

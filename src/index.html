@@ -78,6 +78,9 @@
                         </div>
                         <!-- <h5>{{request.sender.username}} wants to join {{request.league.title}}</h5> -->
                       </div>
+                      <div class="notif-date">
+                        <p>On {{notification.date}}</p>
+                      </div>
                       <div class="buttons" ng-if="notification.type === 'request'">
                         <div class="btn-accept dropdown-item" ng-click="main.addToLeague(notification.sender_id, notification.league_id, notification, notification.id)">
                           <i class="fa fa-check" aria-hidden="true"></i>

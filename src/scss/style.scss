@@ -75,6 +75,13 @@ nav{
     margin: 0px;
   }
   .dropdown-menu{
+    .notif-date{
+      position: absolute;
+      font-size: 8px;
+      left: 60px;
+      color: #888;
+      margin-top: 10px;
+    }
     cursor: auto;
     max-height: 350px;
     overflow: auto;
@@ -85,7 +92,15 @@ nav{
     text-align: center;
     // color: white;
     h4 {
+      background-color: #fafafa;
+      border-bottom: 2px solid #BF6969;
+      padding: 14px;
       color: #BF6969;
+      width: 120%;
+      position: relative;
+      left: -10%;
+      top: -30px;
+      margin-bottom: -30px;
     }
     h5 {
       text-align: left;
@@ -134,7 +149,7 @@ nav{
       font-size: 20px;
       // height: 30px;
       position: relative;
-      right: -10%;
+      right: -15%;
       width: 80%;
       top: -10px;
       border-bottom: 1px solid #ccc;
@@ -537,7 +552,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .data-group{
   // background-color: #fafafa;
-  // padding: 10px;
+  // padding: 0 -10px;
   text-align: center;
   width: 60%;
   margin-right: 30px;
@@ -783,10 +798,10 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 .tab{
-  /* border: 2px solid black; */
   height: 40px;
   z-index: -1;
   width: 40px;
+  border-radius: 3px;
   position: absolute;
   left: 43%;
   top: 15px;
