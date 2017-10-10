@@ -40,7 +40,8 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
         id: vm.user.recieved_requests[i].id,
         date: vm.user.recieved_requests[i].created_at,
         user: vm.user.recieved_requests[i].sender.username,
-        message: `${vm.user.recieved_requests[i].sender.username} wants to join ${vm.user.recieved_requests[i].league.title}`
+        league: vm.user.recieved_requests[i].league.title,
+        message: `wants to join`
       });
     }
     for (var a = 0; a < vm.user.recieved_challenges.length; a++) {
@@ -52,7 +53,8 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
         id: vm.user.recieved_challenges[a].id,
         date: vm.user.recieved_challenges[a].created_at,
         user: vm.user.recieved_challenges[a].sender.username,
-        message: `${vm.user.recieved_challenges[a].sender.username} wants to challenge you in ${vm.user.recieved_challenges[a].league.title}`
+        league: vm.user.recieved_challenges[a].league.title,
+        message: `wants to challenge you in`
       });
     }
   };

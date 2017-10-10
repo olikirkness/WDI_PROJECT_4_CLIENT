@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="animate.min.css">
   <script src="https://use.fontawesome.com/60332babcf.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Ubuntu" rel="stylesheet">
+  <!-- <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32"/> -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <script
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -64,7 +66,7 @@
                 </div >
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
                   <h4 ng-show="main.notifications.length >0">Notifications</h4>
-                  <div ng-repeat="notification in main.notifications | orderBy: '-date'">
+                  <div class="notif-item" ng-repeat="notification in main.notifications | orderBy: '-date'">
                     <div class="dropdown-item">
                       <div class="row">
                         <div class="col-sm-2">
@@ -72,28 +74,30 @@
                           <i ng-if="notification.type === 'challenge'" class="fa fa-trophy notifIcon" aria-hidden="true"></i>
                         </div>
                         <div class="col-sm-10">
-                          <h5>{{notification.message}}</h5>
+                          <h5><strong class="notifLink" ui-sref="playerShow({id:  notification.sender_id})">{{notification.user}}</strong> {{notification.message}} <strong class="notifLink" ui-sref="leagueShow({id:  notification.league_id})">{{notification.league}}</strong></h5>
                         </div>
                         <!-- <h5>{{request.sender.username}} wants to join {{request.league.title}}</h5> -->
                       </div>
+                      <div class="buttons" ng-if="notification.type === 'request'">
+                        <div class="btn-accept dropdown-item" ng-click="main.addToLeague(notification.sender_id, notification.league_id, notification, notification.id)">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </div>
+                        <div class="btn-delete dropdown-item" ng-click="main.deleteRequest(notification)">
+                          <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                      <div class="buttons" ng-if="notification.type === 'challenge'">
+                        <div class="btn-accept dropdown-item" ng-click="main.addToMatches(notification.sender_id, notification.league_id, notification, notification.id)">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </div>
+                        <div class="btn-delete dropdown-item" ng-click="main.deleteChallenge(notification, notification.id)">
+                          <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                      </div>
                     </div>
+
                     <br>
-                    <div class="buttons" ng-if="notification.type === 'request'">
-                      <div class="btn-accept dropdown-item" ng-click="main.addToLeague(notification.sender_id, notification.league_id, notification, notification.id)">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                      </div>
-                      <div class="btn-delete dropdown-item" ng-click="main.deleteRequest(notification)">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                    <div class="buttons" ng-if="notification.type === 'challenge'">
-                      <div class="btn-accept dropdown-item" ng-click="main.addToMatches(notification.sender_id, notification.league_id, notification, notification.id)">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                      </div>
-                      <div class="btn-delete dropdown-item" ng-click="main.deleteChallenge(notification, notification.id)">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                      </div>
-                    </div>
+
                   </div>
                   <div class="dropdown-item" ng-show="main.notifications.length === 0">
                     <h5>You don't have any new notifications</h5>

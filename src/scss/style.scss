@@ -55,7 +55,17 @@
     visibility: visible;
   }
 }
-
+.notifLink{
+  font-size: 15px;
+  transition: all 0.3s;
+  padding: 4px 0;
+  line-height: 25px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.notifLink:hover{
+  background-color: #eaeaea;
+}
 nav{
   background-color: #BF6969!important;
   height:50px;
@@ -65,6 +75,7 @@ nav{
     margin: 0px;
   }
   .dropdown-menu{
+    cursor: auto;
     max-height: 350px;
     overflow: auto;
     width: 300px;
@@ -80,7 +91,11 @@ nav{
       text-align: left;
       color: #777;
     }
+    .notif-item{
+      height: 100px;
+    }
     .btn-accept{
+      cursor: pointer;
       transition: all 0.3s;
       display: inline-block;
       color: #34b77d;
@@ -92,7 +107,8 @@ nav{
       margin: 5px 15px;
     }
     .btn-delete{
-      margin: 5px 15px;
+      cursor: pointer;
+      margin: 0px 15px;
       transition: all 0.3s;
       display: inline-block;
       width: 30px;
@@ -110,14 +126,20 @@ nav{
       background-color: #34b77d;
       color: white;
     }
+    br{
+      margin-bottom: 0px;
+    }
     .buttons{
       text-align: right;
       font-size: 20px;
       // height: 30px;
-      margin-top: -35px;
+      position: relative;
+      right: -10%;
+      width: 80%;
+      top: -10px;
       border-bottom: 1px solid #ccc;
       // margin: -10px 40px;
-      margin-bottom: 5px;
+      // bottom: -8px;
     }
     .notifIcon{
       font-size: 25px;
