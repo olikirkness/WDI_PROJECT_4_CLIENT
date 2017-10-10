@@ -57,7 +57,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
         message: `wants to challenge you in`
       });
     }
-    console.log(vm.notifications);
   };
 
   $rootScope.$on('leagueIndex', ()=>{
