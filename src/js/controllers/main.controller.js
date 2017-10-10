@@ -143,19 +143,26 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
 
   };
   /////__________________________________________________________________________________
-  vm.handleRequest = function(senderId, leagueId, recieverId){
+  vm.handleRequest = function(senderId, leagueId, recieverId, present){
+    if (present) {
+      vm.sentRequestIds.splice(vm.sentRequestIds.indexOf(leagueId), 1);
+    } else {
+      vm.sentRequestIds.push(leagueId);
+    }
+
     User.get({id: vm.user.id}).$promise.then((user)=>{
       vm.user = user;
       if(vm.sentRequestIds.includes(leagueId)){
         for (var i = 0; i < vm.user.sent_requests.length; i++) {
           if (vm.user.sent_requests[i].league.id === leagueId) {
-            const index = vm.sentRequestIds.indexOf(leagueId);
-            vm.sentRequestIds.splice(index, 1);
+            // const index = vm.sentRequestIds.indexOf(leagueId);
+            // vm.sentRequestIds.splice(index, 1);
+            console.log('DELETED?');
             vm.removeRequestFromFilter(vm.user.sent_requests[i].id);
           }
         }
       }else{
-        vm.sentRequestIds.push(leagueId);
+        // vm.sentRequestIds.push(leagueId);
         vm.request(senderId, leagueId, recieverId);
       }
     });
