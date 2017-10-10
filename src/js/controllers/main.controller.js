@@ -155,7 +155,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       if(present){
         for (var i = 0; i < vm.user.sent_requests.length; i++) {
           if (vm.user.sent_requests[i].league.id === leagueId) {
-            console.log('DELETED?');
             vm.removeRequestFromFilter(vm.user.sent_requests[i].id);
           }
         }

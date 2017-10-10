@@ -24,12 +24,9 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
             y: vm.player.ranking.reverse()[vm.count]
           }
         );
-        console.log(vm.count, vm.player.ranking.reverse()[vm.count]);
         vm.count++;
       }
     }
-
-    console.log(vm.formattedMatches, vm.player.ranking, vm.matchStamps);
     vm.levels = new Chartist.Line('.ct-chart', {
     series: [
       {
