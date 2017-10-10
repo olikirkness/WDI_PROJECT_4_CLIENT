@@ -155,14 +155,11 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       if(vm.sentRequestIds.includes(leagueId)){
         for (var i = 0; i < vm.user.sent_requests.length; i++) {
           if (vm.user.sent_requests[i].league.id === leagueId) {
-            // const index = vm.sentRequestIds.indexOf(leagueId);
-            // vm.sentRequestIds.splice(index, 1);
             console.log('DELETED?');
             vm.removeRequestFromFilter(vm.user.sent_requests[i].id);
           }
         }
       }else{
-        // vm.sentRequestIds.push(leagueId);
         vm.request(senderId, leagueId, recieverId);
       }
     });
