@@ -66,7 +66,7 @@
                 </div >
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
                   <h4 ng-show="main.notifications.length >0">Notifications</h4>
-                  <div class="notif-item" ng-repeat="notification in main.notifications | orderBy: '-date'">
+                  <div class="notif-item" ng-repeat="notification in main.notifications | orderBy: '-created_at'">
                     <div class="dropdown-item">
                       <div class="row">
                         <div class="col-sm-2">
