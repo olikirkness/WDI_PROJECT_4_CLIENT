@@ -152,7 +152,7 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
 
     User.get({id: vm.user.id}).$promise.then((user)=>{
       vm.user = user;
-      if(vm.sentRequestIds.includes(leagueId)){
+      if(present){
         for (var i = 0; i < vm.user.sent_requests.length; i++) {
           if (vm.user.sent_requests[i].league.id === leagueId) {
             console.log('DELETED?');
