@@ -24,7 +24,6 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
         vm.count++;
       }
     }
-    console.log(vm.formattedMatches, vm.player.ranking);
     vm.levels = new Chartist.Line('.ct-chart', {
       series: [
         {
@@ -77,18 +76,20 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
       vm.pie = new Chartist.Pie('.pie', pieData, pieOptions, responsiveOptions);
       vm.weeksTally = {};
       vm.matchStamps.push(new Date());
-      for (var d = 0; d < vm.matchStamps.length; d++) {
+      for (var d = 1; d < vm.matchStamps.length; d++) {
         vm.dif = (new Date(vm.matchStamps[0]).getTime() - new Date(vm.matchStamps[d]).getTime()) / (24 * 60 * 60 * 1000);
         vm.thisWeek = Math.ceil(Math.abs(vm.dif/7));
-        if (vm.weeksTally[`${vm.thisWeek}`] === undefined && d !== vm.matchStamps.length - 1 && d !== 0) {
+        console.log(vm.thisWeek, vm.matchStamps[d]);
+        if (vm.weeksTally[`${vm.thisWeek}`] === undefined && d !== vm.matchStamps.length - 1 ) {
           vm.weeksTally[`${vm.thisWeek}`] = 1;
-        } else {
+        } else if (d !== vm.matchStamps.length - 1){
           vm.weeksTally[`${vm.thisWeek}`]++;
         }
         if (d === vm.matchStamps.length - 1) {
           vm.max = vm.thisWeek;
         }
       }
+      console.log(vm.weeksTally);
       vm.weeksTally[`${1}`]++;
       vm.frequency = [];
       vm.weeks = [];
