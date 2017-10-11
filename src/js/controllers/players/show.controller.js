@@ -8,25 +8,22 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
   $rootScope.$broadcast('notLeagueIndex');
   User.get({id: $stateParams.id}).$promise.then((a)=>{
     vm.player = a;
-    vm.matchStamps = [];
+    // vm.matchStamps = [];
     vm.count = 1;
     vm.formattedMatches = [{x: new Date(vm.player.created_at), y: 1000}];
-
+    vm.rankings = vm.player.ranking.reverse();
     for (var i = 0; i < vm.player.matches.length; i++) {
       if(vm.player.matches[i].played){
-
-        vm.matchStamps.unshift(vm.player.matches[i].updated_at.split('').splice(0,10).join(''));
-        vm.matchStamps.push(vm.player.matches[i]);
-
         vm.formattedMatches.push(
           {
             x: new Date(vm.player.matches[i].updated_at),
-            y: vm.player.ranking.reverse()[vm.count]
+            y: vm.rankings[vm.count]
           }
         );
         vm.count++;
       }
     }
+    console.log(vm.formattedMatches, vm.player.ranking);
     vm.levels = new Chartist.Line('.ct-chart', {
     series: [
       {
