@@ -80,7 +80,7 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
       for (var d = 0; d < vm.matchStamps.length; d++) {
         vm.dif = (new Date(vm.matchStamps[0]).getTime() - new Date(vm.matchStamps[d]).getTime()) / (24 * 60 * 60 * 1000);
         vm.thisWeek = Math.ceil(Math.abs(vm.dif/7));
-        if (vm.weeksTally[`${vm.thisWeek}`] === undefined && d !== vm.matchStamps.length - 1) {
+        if (vm.weeksTally[`${vm.thisWeek}`] === undefined && d !== vm.matchStamps.length - 1 && d !== 0) {
           vm.weeksTally[`${vm.thisWeek}`] = 1;
         } else {
           vm.weeksTally[`${vm.thisWeek}`]++;
@@ -89,10 +89,11 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
           vm.max = vm.thisWeek;
         }
       }
+      vm.weeksTally[`${1}`]++;
       vm.frequency = [];
       vm.weeks = [];
       vm.maxFreq = 0;
-      for (var e = 0; e <= vm.max; e++) {
+      for (var e = 1; e <= vm.max; e++) {
         if (vm.weeksTally[`${e}`] !== undefined) {
           vm.frequency.push(vm.weeksTally[e]);
           if (vm.weeksTally[e] > vm.maxFreq) {
@@ -101,7 +102,11 @@ function PlayerShowCtrl($stateParams, User, $rootScope) {
         } else {
           vm.frequency.push( 0 );
         }
-        vm.weeks.push(e);
+        if (e === vm.max) {
+          vm.weeks.push(`This week`);
+        } else {
+          vm.weeks.push(`Week ${e}`);
+        }
       }
       var barData = {
         labels: vm.weeks,
