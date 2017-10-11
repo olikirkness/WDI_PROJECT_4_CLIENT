@@ -35,7 +35,13 @@ function LeaguesIndexCtrl($http, League, filterFilter, $rootScope) {
     vm.filtered = [];
   });
   vm.startSearch = function(){
-    vm.searching = true;
     vm.filtered = vm.leagues;
+    vm.searching = true;
+    League.query()
+    .$promise
+    .then((a)=>{
+      vm.leagues = a;
+      vm.filtered = vm.leagues;
+    });
   };
 }

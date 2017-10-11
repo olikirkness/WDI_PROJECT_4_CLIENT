@@ -117,11 +117,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
       .then(()=>{
         Request
         .delete({id: reqId});
-        // CurrentUserService.getUser();
-        // $rootScope.$on('loggedIn', ()=>{
-        //   vm.user = CurrentUserService.currentUser;
-        // });
-
       });
     });
   };
@@ -137,10 +132,6 @@ function MainCtrl($rootScope, CurrentUserService, $state, User, League, Request,
     Match.save({match: vm.match}).$promise.then(()=>{
       Challenge
       .delete({id: reqId});
-      // CurrentUserService.getUser();
-      // $rootScope.$on('loggedIn', ()=>{
-      //   vm.user = CurrentUserService.currentUser;
-      // });
     });
 
   };

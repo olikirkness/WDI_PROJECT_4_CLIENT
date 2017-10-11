@@ -1,0 +1,94 @@
+.match-result-input:disabled{
+  background-color: #aaa;
+}
+.submit-btn{
+  transition: all 0.3s;
+  background-color: #bbb;
+  border: 2px solid #888;
+  border-radius: 8px;
+  color: #eee;
+  margin-top: 10px;
+  height: 40px!important;
+  margin-bottom: 30px;
+  p{
+    font-size: 18px;
+    padding-top: 0px;
+  }
+}
+.valid:hover{
+  color: white;
+  background-color: #BF6969!important;
+}
+
+.valid{
+  background-color: white!important;
+  border: 2px solid #BF6969;
+  color: #BF6969;
+}
+.testRow{
+  height: 80px;
+  h4{
+    color: white;
+    position: relative;
+    background-color: #BF6969;
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    padding-top: 10px;
+    left: 34%;
+    top: 10px;
+  }
+  h3{
+    color: #666;
+    font-size: 35px;
+    padding: 0 20px;
+  }
+  .rightTest{
+    z-index: -1;
+    margin-left: -8.3%;
+    h3{
+      padding: 0 40px;
+      text-align: left;
+    }
+    height: 100%;
+    background-color: #eee;
+  }
+  .leftTest{
+    margin-right: -8.3%;
+    margin-left: 8%;
+    h3{
+      padding: 0 40px;
+      text-align: right;
+    }
+    height: 100%;
+    background-color: #bbb;
+  }
+}
+.gameRow{
+  border-bottom: 2px solid #ccc;
+  width: 83.5%;
+  margin-left: 8%;
+}
+.submit-input-div{
+  text-align: center;
+  color: #777;
+  font-size: 30px;
+  .number{
+    font-size: 30px;
+    margin-left: 80px;
+  }
+  h4{
+    padding: 40px;
+  }
+  input{
+    outline: none;
+    text-align: center;
+    border: 1.5px solid #aaa;
+    border-radius: 8px;
+    background-color: none;
+    margin: 30px;
+    height: 80px;
+    width: 80px;
+  }
+}

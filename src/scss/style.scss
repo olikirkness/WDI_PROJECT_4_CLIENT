@@ -3,6 +3,7 @@
 @import "components/charts";
 @import "components/homepage";
 @import "components/comments";
+@import "components/submit-match";
 
 .notification{
   background-color: #34b77d;
@@ -454,42 +455,6 @@ a:hover{
   position: relative;
   margin-left: -50%;
 }
-.submit-input-div{
-  text-align: center;
-  height: 100px;
-  vertical-align: middle;
-  // transform: translate(-50%);
-  h4, h3{
-    margin-top: 35px;
-    color: #777;
-    text-align: center;
-  }
-  h3{
-  // text-align: center;
-  }
-  .number{
-    text-align: right;
-  }
-}
-
-.submitPage{
-    margin-left: -60px
-}
-.match-result-input{
-  width: 80px;
-  height: 80px;
-  font-size: 45px;
-  outline: none;
-  border: 2px solid #bbb;
-  border-radius: 8px;
-  text-align: center;
-  padding: 5px;
-  margin: 10px;
-  color: #777;
-}
-.match-result-input:disabled{
-  background-color: #aaa;
-}
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -497,43 +462,9 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
-.submit-btn{
-  transition: all 0.3s;
-  background-color: #bbb;
-  border: 2px solid #888;
-  border-radius: 8px;
-  color: #eee;
-  margin-top: 10px;
-  height: 40px!important;
-  margin-bottom: 30px;
-  p{
-    font-size: 18px;
-    padding-top: 0px;
-  }
-}
-.valid:hover{
-  color: white;
-  background-color: #BF6969!important;
-}
-
-.valid{
-  background-color: white!important;
-  border: 2px solid #BF6969;
-  color: #BF6969;
-  // background-color: #BF6969!important;
-}
 .challengers{
   text-align: center;
   color: #777;
-}
-.right-player{
-  margin-top: 15px;
-  color: #777;
-  text-align: center!important;
-  height: 85px;
-}
-.players{
-  height: 60px;
 }
 .show-info-header{
   transition: all 0.2s;
