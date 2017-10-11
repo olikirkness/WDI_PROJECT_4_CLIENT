@@ -57,3 +57,11 @@
 // // svg{
 // //   width: 80%;
 // // }
+
+.ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
+    stroke: #34b77d;
+}
+.ct-bar {
+    fill: none;
+    stroke-width: 40px;
+}
